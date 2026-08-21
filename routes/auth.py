@@ -1,10 +1,18 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash  # Handles routes, forms, pages, and messages.
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session  # Handles routes, forms, pages, and messages.
 from flask_login import login_user, logout_user, current_user  # Handles user sessions.
 from werkzeug.security import generate_password_hash, check_password_hash  # Secures user passwords.
 from datetime import datetime, timezone  # Stores account creation time.
 from database.mongodb import get_db  # Gives this file access to MongoDB.
 from models.user import User  # Loads our User object.
+import os
+import requests
+import secrets
+
 auth = Blueprint("auth", __name__)  # Creates the authentication blueprint.
+
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET")
+
 @auth.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:  # Checks whether the user is already logged in.
@@ -96,3 +104,96 @@ def logout():
     logout_user()  # Removes the current user's login session.
     flash("You have been logged out.", "success")  # Shows a logout message.
     return redirect(url_for("home"))  # Returns the user to the homepage.
+
+@auth.route("/login/google")
+def google_login():
+    role = request.args.get("role", "client")
+    if role not in ["client", "freelancer"]:
+        flash("Invalid role selected.", "danger")
+        return redirect(url_for("auth.register"))
+        
+    session["oauth_state"] = secrets.token_urlsafe(16)
+    session["oauth_role"] = role
+    
+    authorization_endpoint = "https://accounts.google.com/o/oauth2/v2/auth"
+    redirect_uri = url_for("auth.google_callback", _external=True)
+    
+    request_uri = f"{authorization_endpoint}?client_id={GOOGLE_CLIENT_ID}&redirect_uri={redirect_uri}&response_type=code&scope=openid email profile&state={session['oauth_state']}"
+    return redirect(request_uri)
+
+@auth.route("/login/google/callback")
+def google_callback():
+    state = request.args.get("state")
+    if state is None or state != session.get("oauth_state"):
+        flash("Invalid OAuth state. Please try again.", "danger")
+        return redirect(url_for("auth.login"))
+        
+    code = request.args.get("code")
+    if not code:
+        flash("Google authentication failed.", "danger")
+        return redirect(url_for("auth.login"))
+        
+    token_endpoint = "https://oauth2.googleapis.com/token"
+    redirect_uri = url_for("auth.google_callback", _external=True)
+    
+    token_response = requests.post(
+        token_endpoint,
+        data={
+            "code": code,
+            "client_id": GOOGLE_CLIENT_ID,
+            "client_secret": GOOGLE_CLIENT_SECRET,
+            "redirect_uri": redirect_uri,
+            "grant_type": "authorization_code",
+        },
+    )
+    
+    if not token_response.ok:
+        flash("Failed to fetch token from Google.", "danger")
+        return redirect(url_for("auth.login"))
+        
+    tokens = token_response.json()
+    access_token = tokens.get("access_token")
+    
+    userinfo_endpoint = "https://www.googleapis.com/oauth2/v3/userinfo"
+    userinfo_response = requests.get(
+        userinfo_endpoint,
+        headers={"Authorization": f"Bearer {access_token}"},
+    )
+    
+    if userinfo_response.ok:
+        user_info = userinfo_response.json()
+        email = user_info.get("email")
+        name = user_info.get("name")
+        
+        db = get_db()
+        user_data = db.users.find_one({"email": email})
+        
+        if not user_data:
+            role = session.get("oauth_role", "client")
+            new_user = {
+                "full_name": name,
+                "email": email,
+                "password_hash": "",
+                "role": role,
+                "terms_accepted": True,
+                "is_active": True,
+                "created_at": datetime.now(timezone.utc),
+                "updated_at": datetime.now(timezone.utc)
+            }
+            result = db.users.insert_one(new_user)
+            new_user["_id"] = result.inserted_id
+            user_data = new_user
+            flash("Successfully created account with Google.", "success")
+            
+        user = User(user_data)
+        login_user(user)
+        
+        if user.role == "client":
+            return redirect(url_for("client.dashboard"))
+        elif user.role == "freelancer":
+            return redirect(url_for("freelancer.dashboard"))
+        elif user.role == "admin":
+            return redirect(url_for("admin.dashboard"))
+            
+    flash("Google authentication failed.", "danger")
+    return redirect(url_for("auth.login"))
