@@ -1,20 +1,11 @@
-from models import db
-from flask_login import UserMixin
-from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
-
-class User(UserMixin, db.Model):
-    __tablename__ = 'users'
-    
-    id = db.Column(db.Integer, primary_key=True)
-    full_name = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False, index=True)
-    password_hash = db.Column(db.String(256), nullable=False)
-    role = db.Column(db.String(20), nullable=False) # 'client', 'freelancer', 'admin'
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
-        
-    def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+from flask_login import UserMixin  # Provides Flask-Login's required user methods.
+class User(UserMixin):
+    def __init__(self, user_data):
+        self.data = user_data  # Stores the complete MongoDB user document.
+        self.id = str(user_data["_id"])  # Converts MongoDB ObjectId into a string for Flask-Login.
+        self.full_name = user_data.get("full_name", "")  # Gets the user's full name.
+        self.email = user_data.get("email", "")  # Gets the user's email.
+        self.role = user_data.get("role", "")  # Gets the user's role.
+        self.is_active = user_data.get("is_active", True)  # Checks whether the account is active.
+    def get_id(self):
+        return self.id  # Returns the user's ID to Flask-Login.
