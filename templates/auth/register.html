@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-left">
+        <div class="auth-left-content">
+            <a href="/" class="auth-logo">SmartTeam</a>
+            <h1 class="auth-title">Build Your Perfect Team</h1>
+            <p class="auth-desc">Connect with the right talent, form intelligent teams, and deliver projects successfully.</p>
+            
+            <ul class="auth-benefits">
+                <li><i class="fas fa-check-circle"></i> AI-powered freelancer matching</li>
+                <li><i class="fas fa-check-circle"></i> Smart team recommendations</li>
+                <li><i class="fas fa-check-circle"></i> Project collaboration</li>
+                <li><i class="fas fa-check-circle"></i> Secure milestone payments</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="auth-right">
+        <div class="auth-form-container">
+            <h2 class="auth-heading">Create Your SmartTeam Account</h2>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <form action="{{ url_for('auth.register') }}" method="POST">
+                <div class="form-group">
+                    <label class="form-label" for="full_name">Full Name</label>
+                    <input class="form-control" type="text" id="full_name" name="full_name" required placeholder="John Doe">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input class="form-control" type="email" id="email" name="email" required placeholder="john@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input class="form-control" type="password" id="password" name="password" required placeholder="Create a strong password">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="confirm_password">Confirm Password</label>
+                    <input class="form-control" type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm your password">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">I want to join as</label>
+                    <div class="role-selector">
+                        <label class="role-option">
+                            <input type="radio" name="role" value="client" required>
+                            <div class="role-card">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Client</span>
+                            </div>
+                        </label>
+                        <label class="role-option">
+                            <input type="radio" name="role" value="freelancer" required>
+                            <div class="role-card">
+                                <i class="fas fa-user-astronaut"></i>
+                                <span>Freelancer</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-options mb-3">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms" required> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+            </form>
+            
+            <div class="auth-divider"><span>OR</span></div>
+            
+            <button class="btn btn-outline btn-block btn-google">
+                <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google" width="20">
+                Continue with Google
+            </button>
+            
+            <p class="auth-bottom">Already have an account? <a href="{{ url_for('auth.login') }}">Log In</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

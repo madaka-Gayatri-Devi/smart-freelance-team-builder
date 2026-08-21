@@ -1,0 +1,449 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-bg-shapes">
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
+        <div class="shape-3"></div>
+    </div>
+    <div class="container hero-container">
+        <div class="hero-content" data-aos="fade-right" data-aos-duration="800">
+            <div class="badge pulse-glow">✨ AI-Powered Freelance Team Builder</div>
+            <h1 class="hero-title">Build the Right <span class="highlight-text">Team.</span><br>For Every Project.</h1>
+            <p class="hero-subtitle">Find the perfect freelancers, build complementary teams, and manage your entire project from one intelligent platform.</p>
+            <div class="hero-actions">
+                <a href="#" onclick="openAuthModal('signup'); return false;" class="btn btn-primary btn-lg">Build Your Team <i class="fas fa-arrow-right ml-2" style="margin-left: 0.5rem;"></i></a>
+                <a href="#how-it-works" class="btn btn-outline btn-lg">Explore Platform</a>
+            </div>
+            <div class="trust-indicators">
+                <span data-aos="fade-up" data-aos-delay="200"><i class="fas fa-check-circle text-success"></i> AI Matching</span>
+                <span data-aos="fade-up" data-aos-delay="300"><i class="fas fa-check-circle text-success"></i> Verified Talent</span>
+                <span data-aos="fade-up" data-aos-delay="400"><i class="fas fa-check-circle text-success"></i> Smart Formation</span>
+            </div>
+        </div>
+        
+        <div class="hero-visual" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+            <div class="hero-image-wrapper">
+                <div class="floating-card card-top-left float-anim-1">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="icon-box" style="background: var(--success-light); color: var(--success);"><i class="fas fa-bolt"></i></div>
+                        <div>
+                            <div class="font-weight-bold" style="color: var(--text-dark);">98% Match</div>
+                            <div class="text-muted small">AI Recommendation</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-preview">
+                    <div class="preview-header">
+                        <div>
+                            <div class="preview-title">Project: E-Commerce Mobile App</div>
+                            <div class="preview-skills">
+                                <span class="skill-tag">React Native</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">UI/UX</span>
+                                <span class="skill-tag">MongoDB</span>
+                            </div>
+                        </div>
+                        <div class="preview-badge"><i class="fas fa-magic"></i> AI Pick</div>
+                    </div>
+                    <div class="preview-body">
+                        <h4 class="preview-subtitle"><i class="fas fa-users text-primary"></i> Recommended Team</h4>
+                        <div class="team-card hover-lift">
+                            <div class="avatar"><img src="https://ui-avatars.com/api/?name=Sarah+J&background=6D4AFF&color=fff&bold=true" alt="Avatar"></div>
+                            <div class="info">
+                                <div class="name">Sarah J. <span class="match">98% Match</span></div>
+                                <div class="role">UI/UX Designer</div>
+                                <div class="stats">4.9 <i class="fas fa-star text-warning"></i> (120 jobs) • Available Now</div>
+                            </div>
+                        </div>
+                        <div class="team-card hover-lift">
+                            <div class="avatar"><img src="https://ui-avatars.com/api/?name=Michael+T&background=C43D9B&color=fff&bold=true" alt="Avatar"></div>
+                            <div class="info">
+                                <div class="name">Michael T. <span class="match">95% Match</span></div>
+                                <div class="role">React Native Developer</div>
+                                <div class="stats">5.0 <i class="fas fa-star text-warning"></i> (85 jobs) • 30 hrs/wk</div>
+                            </div>
+                        </div>
+                        <div class="team-card hover-lift">
+                            <div class="avatar"><img src="https://ui-avatars.com/api/?name=David+R&background=3B82F6&color=fff&bold=true" alt="Avatar"></div>
+                            <div class="info">
+                                <div class="name">David R. <span class="match">92% Match</span></div>
+                                <div class="role">Node.js Backend Engineer</div>
+                                <div class="stats">4.8 <i class="fas fa-star text-warning"></i> (210 jobs) • Available Now</div>
+                            </div>
+                        </div>
+                        <div class="preview-footer">
+                            <div style="font-size: 1.05rem;">Overall Team Match: <strong class="text-success" style="font-size: 1.25rem;">95%</strong></div>
+                            <button class="btn btn-primary btn-sm">Form Team <i class="fas fa-arrow-right ml-2" style="margin-left: 0.5rem;"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="floating-card card-bottom-right float-anim-2">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="icon-box" style="background: var(--primary-light); color: var(--primary);"><i class="fas fa-check-double"></i></div>
+                        <div>
+                            <div class="font-weight-bold" style="color: var(--text-dark);">Team Formed!</div>
+                            <div class="text-muted small">Ready to start</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Section -->
+<section class="trust-section">
+    <div class="container text-center">
+        <h3 class="section-subtitle" data-aos="fade-up">Powering Modern Project Teams Across Industries</h3>
+        <div class="category-logos">
+            <span class="category-badge" data-aos="fade-up" data-aos-delay="0"><i class="fas fa-rocket text-primary"></i> Startups</span>
+            <span class="category-badge" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-building text-secondary"></i> Agencies</span>
+            <span class="category-badge" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-laptop-code text-info"></i> Technology</span>
+            <span class="category-badge" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-bullhorn text-warning"></i> Marketing</span>
+            <span class="category-badge" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-globe text-success"></i> Enterprise</span>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title">Build Your Dream Team</h2>
+            <p class="section-desc">Our intelligent platform makes finding, combining, and managing top freelance talent completely effortless.</p>
+        </div>
+        <div class="steps-wrapper">
+            <div class="steps-line"></div>
+            <div class="steps-grid">
+                <div class="step-card step-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-icon-wrapper">01</div>
+                    <h3 class="step-title">Create Project</h3>
+                    <p class="step-desc">Define your project requirements, necessary skills, budget constraints, and timeline.</p>
+                </div>
+                <div class="step-card step-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-icon-wrapper">02</div>
+                    <h3 class="step-title">AI Finds Talent</h3>
+                    <p class="step-desc">Our engine analyzes thousands of freelancers based on skills, experience, and ratings.</p>
+                </div>
+                <div class="step-card step-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-icon-wrapper">03</div>
+                    <h3 class="step-title">Build Team</h3>
+                    <p class="step-desc">Get intelligent recommendations that combine freelancers with perfectly complementary skills.</p>
+                </div>
+                <div class="step-card step-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-icon-wrapper">04</div>
+                    <h3 class="step-title">Manage & Deliver</h3>
+                    <p class="step-desc">Track tasks, manage milestones, communicate, and handle payments in one place.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why SmartTeam Section -->
+<section class="py-section bg-light">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title">Why Build Your Team with SmartTeam?</h2>
+            <p class="section-desc">More than simple freelancer matching. SmartTeam helps you create balanced, high-performing project teams that are guaranteed to deliver.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card" data-aos="fade-up">
+                <div class="why-icon purple"><i class="fas fa-brain"></i></div>
+                <h3 class="why-title">AI-Powered Matching</h3>
+                <p class="why-desc">Find freelancers based on precise project requirements, deep skill analysis, historical ratings, and verified portfolio work.</p>
+            </div>
+            <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="why-icon pink"><i class="fas fa-puzzle-piece"></i></div>
+                <h3 class="why-title">Complementary Skills</h3>
+                <p class="why-desc">Build complete teams where members' skills perfectly complement each other to cover absolutely all your project needs.</p>
+            </div>
+            <div class="why-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="why-icon blue"><i class="far fa-calendar-check"></i></div>
+                <h3 class="why-title">Availability-Aware</h3>
+                <p class="why-desc">We only recommend top-rated freelancers who are actually available with enough bandwidth for your specific project timeline.</p>
+            </div>
+            <div class="why-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="why-icon green"><i class="fas fa-chart-pie"></i></div>
+                <h3 class="why-title">Budget Optimized</h3>
+                <p class="why-desc">Find the absolute best combination of talent while intelligently respecting your overall project budget constraints.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Visual Process Section -->
+<section id="ai-matching" class="py-section process-section">
+    <div class="container process-wrapper">
+        <div data-aos="fade-right">
+            <h2 class="section-title mb-4">From Project Requirements to the Perfect Team</h2>
+            <p class="section-desc mb-5">Our AI acts as your technical recruiter, analyzing thousands of data points to build the optimal team for your specific needs.</p>
+            
+            <div class="process-list">
+                <div class="process-item" data-aos="slide-right" data-aos-delay="100">
+                    <div class="process-num">1</div>
+                    <div class="process-text">Project Requirements Defined</div>
+                </div>
+                <div class="process-item" data-aos="slide-right" data-aos-delay="200">
+                    <div class="process-num">2</div>
+                    <div class="process-text">Deep Skill & Portfolio Analysis</div>
+                </div>
+                <div class="process-item" data-aos="slide-right" data-aos-delay="300">
+                    <div class="process-num">3</div>
+                    <div class="process-text">AI Freelancer Matching</div>
+                </div>
+                <div class="process-item" data-aos="slide-right" data-aos-delay="400">
+                    <div class="process-num">4</div>
+                    <div class="process-text">Compatibility & Budget Scoring</div>
+                </div>
+                <div class="process-item active" data-aos="slide-right" data-aos-delay="500">
+                    <div class="process-num"><i class="fas fa-check"></i></div>
+                    <div class="process-text">Smart Team Formation</div>
+                </div>
+            </div>
+        </div>
+        
+        <div data-aos="fade-left" data-aos-delay="200">
+            <div class="dashboard-preview" style="box-shadow: 0 30px 60px -15px rgba(0,0,0,0.2); transform: perspective(1000px) rotateY(-2deg);">
+                <div class="preview-header bg-primary-light border-0 pb-0 pt-4 px-4">
+                    <div class="font-weight-bold text-primary" style="font-size: 1.1rem;"><i class="fas fa-chart-pie mr-2"></i> Real-time AI Analysis Report</div>
+                </div>
+                <div class="preview-body px-4 pb-4">
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="font-weight-bold text-muted small text-uppercase letter-spacing-1">Skills Match</span>
+                            <span class="text-success font-weight-bold">96%</span>
+                        </div>
+                        <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
+                            <div style="height: 100%; width: 96%; background: var(--success); transition: width 1.5s ease-out;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="font-weight-bold text-muted small text-uppercase letter-spacing-1">Experience</span>
+                            <span class="text-success font-weight-bold">92%</span>
+                        </div>
+                        <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
+                            <div style="height: 100%; width: 92%; background: var(--success); transition: width 1.5s ease-out; transition-delay: 0.2s;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="font-weight-bold text-muted small text-uppercase letter-spacing-1">Availability Fit</span>
+                            <span class="text-warning font-weight-bold">94%</span>
+                        </div>
+                        <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
+                            <div style="height: 100%; width: 94%; background: var(--warning); transition: width 1.5s ease-out; transition-delay: 0.4s;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="font-weight-bold text-muted small text-uppercase letter-spacing-1">Budget Optimization</span>
+                            <span class="text-primary font-weight-bold">89%</span>
+                        </div>
+                        <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
+                            <div style="height: 100%; width: 89%; background: var(--primary); transition: width 1.5s ease-out; transition-delay: 0.6s;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-5 pt-4 border-top">
+                        <h5 class="mb-4 font-weight-bold text-dark" style="font-size: 1.15rem;">Recommended Synergistic Team</h5>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="https://ui-avatars.com/api/?name=Sarah+J&background=6D4AFF&color=fff&size=32" style="border-radius: 50%; box-shadow: var(--shadow-sm);">
+                                <span class="font-weight-bold">Sarah J.</span>
+                            </div>
+                            <span class="text-success font-weight-bold bg-success-light px-2 py-1 rounded">98% Fit</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="https://ui-avatars.com/api/?name=Michael+T&background=C43D9B&color=fff&size=32" style="border-radius: 50%; box-shadow: var(--shadow-sm);">
+                                <span class="font-weight-bold">Michael T.</span>
+                            </div>
+                            <span class="text-success font-weight-bold bg-success-light px-2 py-1 rounded">95% Fit</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="https://ui-avatars.com/api/?name=David+R&background=3B82F6&color=fff&size=32" style="border-radius: 50%; box-shadow: var(--shadow-sm);">
+                                <span class="font-weight-bold">David R.</span>
+                            </div>
+                            <span class="text-success font-weight-bold bg-success-light px-2 py-1 rounded">91% Fit</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 p-4 bg-primary-light rounded-lg d-flex justify-content-between align-items-center border" style="border-color: rgba(109,74,255,0.2) !important;">
+                        <span class="font-weight-bold text-primary">Overall Team Score</span>
+                        <span class="font-weight-bold text-primary" style="font-size: 1.75rem;">94%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-section features-section">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title">Everything You Need to Succeed</h2>
+            <p class="section-desc">A complete end-to-end platform for sourcing, building, and managing world-class freelance teams.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-icon bg-purple-light"><i class="fas fa-brain"></i></div>
+                <h3 class="feature-title">AI Freelancer Matching</h3>
+                <p class="feature-desc">Instantly find the perfect talent based on intelligent skill matching, portfolio analysis, and past performance history.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-icon bg-pink-light"><i class="fas fa-users-cog"></i></div>
+                <h3 class="feature-title">Smart Team Formation</h3>
+                <p class="feature-desc">AI suggests mathematically optimized combinations of freelancers whose skills perfectly complement each other.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-icon bg-blue-light"><i class="fas fa-tasks"></i></div>
+                <h3 class="feature-title">Project & Task Management</h3>
+                <p class="feature-desc">Track project progress, assign granular tasks, and monitor critical milestones all in one centralized dashboard.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-icon bg-yellow-light"><i class="fas fa-comments"></i></div>
+                <h3 class="feature-title">Real-Time Team Chat</h3>
+                <p class="feature-desc">Communicate instantly with your entire team, share important files securely, and keep everyone on the same page.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-icon bg-green-light"><i class="fas fa-shield-alt"></i></div>
+                <h3 class="feature-title">Secure Escrow Payments</h3>
+                <p class="feature-desc">Milestone-based secure payments ensure you only release funds for approved, completed, and verified work.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-icon bg-purple-light"><i class="fas fa-chart-line"></i></div>
+                <h3 class="feature-title">Time & Workload Tracking</h3>
+                <p class="feature-desc">Monitor real-time freelancer availability, track hours logged on specific tasks, and prevent team burnout.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Verified Freelancers</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-number">5K+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-number">94%</div>
+                <div class="stat-label">Successful Matches</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-number">4.8<span style="font-size: 2rem; opacity: 0.8;">/5</span></div>
+                <div class="stat-label">Average Client Rating</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Dual Audience Section -->
+<section id="for-clients" class="py-section">
+    <div class="container">
+        <div class="audience-split">
+            <div class="audience-card client" data-aos="fade-right">
+                <h2 class="audience-title">For Clients</h2>
+                <p class="text-muted" style="font-size: 1.15rem; max-width: 90%;">Build the perfect synergistic team for your next big project without the usual hiring headache.</p>
+                <ul class="benefit-list">
+                    <li><i class="fas fa-check-circle text-primary"></i> <span>Create projects and define required skills easily</span></li>
+                    <li><i class="fas fa-check-circle text-primary"></i> <span>Receive instant AI freelancer recommendations</span></li>
+                    <li><i class="fas fa-check-circle text-primary"></i> <span>Compare freelancers and build balanced teams</span></li>
+                    <li><i class="fas fa-check-circle text-primary"></i> <span>Track project progress and critical milestones</span></li>
+                    <li><i class="fas fa-check-circle text-primary"></i> <span>Manage secure milestone-based payments</span></li>
+                </ul>
+                <div class="mt-auto">
+                    <a href="#" onclick="openAuthModal('signup'); return false;" class="btn btn-primary btn-lg">Find Your Team <i class="fas fa-arrow-right ml-2" style="margin-left: 0.5rem;"></i></a>
+                </div>
+            </div>
+            <div id="for-freelancers" class="audience-card freelancer" data-aos="fade-left">
+                <h2 class="audience-title">For Freelancers</h2>
+                <p class="text-muted" style="font-size: 1.15rem; max-width: 90%;">Find high-quality projects, collaborate with great teams, and get paid securely for your work.</p>
+                <ul class="benefit-list">
+                    <li><i class="fas fa-check-circle text-secondary"></i> <span>Create a professional profile and portfolio</span></li>
+                    <li><i class="fas fa-check-circle text-secondary"></i> <span>Receive highly targeted project invitations</span></li>
+                    <li><i class="fas fa-check-circle text-secondary"></i> <span>Manage your true availability and workload</span></li>
+                    <li><i class="fas fa-check-circle text-secondary"></i> <span>Track time and get paid securely via escrow</span></li>
+                    <li><i class="fas fa-check-circle text-secondary"></i> <span>Build a stellar reputation with verified ratings</span></li>
+                </ul>
+                <div class="mt-auto">
+                    <a href="#" onclick="openAuthModal('signup'); return false;" class="btn btn-outline btn-lg">Join as Freelancer <i class="fas fa-arrow-right ml-2" style="margin-left: 0.5rem;"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-section bg-light">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title">What Teams Are Saying</h2>
+            <p class="section-desc">See how SmartTeam is completely transforming the way digital projects are built and delivered.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"SmartTeam's AI matching completely eliminated the headache of interviewing dozens of freelancers. We formed a perfectly balanced team of three in just 2 days."</p>
+                <div class="testimonial-author">
+                    <img src="https://ui-avatars.com/api/?name=Alex+M&background=random" alt="Author">
+                    <div>
+                        <div class="author-name">Alex Martinez</div>
+                        <div class="author-role">Startup Founder</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"As a developer, I love that I only get invited to projects that actually match my stack and schedule. The integrated chat and guaranteed payments make everything seamless."</p>
+                <div class="testimonial-author">
+                    <img src="https://ui-avatars.com/api/?name=Sam+L&background=random" alt="Author">
+                    <div>
+                        <div class="author-name">Samantha Lee</div>
+                        <div class="author-role">Freelance Developer</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"The 'Smart Team Formation' feature is absolutely incredible. It suggested a UI designer and frontend dev who had highly complementary skills, and they worked together flawlessly."</p>
+                <div class="testimonial-author">
+                    <img src="https://ui-avatars.com/api/?name=James+W&background=random" alt="Author">
+                    <div>
+                        <div class="author-name">James Wilson</div>
+                        <div class="author-role">Project Manager</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="final-cta">
+    <div class="container" data-aos="zoom-in">
+        <div class="cta-container">
+            <h2 class="cta-title">Build Better Teams. Deliver Better Projects.</h2>
+            <p class="cta-desc">Let SmartTeam's intelligent engine find the right talent while you focus entirely on building great products.</p>
+            <a href="#" onclick="openAuthModal('signup'); return false;" class="btn btn-primary btn-lg" style="padding-left: 3rem; padding-right: 3rem;">Get Started Free <i class="fas fa-arrow-right ml-2" style="margin-left: 0.5rem;"></i></a>
+        </div>
+    </div>
+</section>
+{% endblock %}

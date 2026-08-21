@@ -1,0 +1,18 @@
+/* Flash Messages */
+.alert {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+.alert-error {
+    background-color: #FED7E2;
+    color: #9B2C2C;
+    border: 1px solid #FEB2B2;
+}
+.alert-success {
+    background-color: #C6F6D5;
+    color: #22543D;
+    border: 1px solid #9AE6B4;
+}

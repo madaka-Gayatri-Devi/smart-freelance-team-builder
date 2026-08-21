@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-user">
+            <div class="avatar"><i class="fas fa-user-circle fa-2x"></i></div>
+            <div class="user-info">
+                <div class="name">{{ current_user.full_name }}</div>
+                <div class="role">Freelancer</div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="#"><i class="fas fa-user"></i> My Profile</a>
+            <a href="#"><i class="fas fa-briefcase"></i> Portfolio</a>
+            <a href="#"><i class="fas fa-envelope-open-text"></i> Invitations</a>
+            <a href="#"><i class="fas fa-project-diagram"></i> My Projects</a>
+            <a href="#"><i class="fas fa-tasks"></i> My Tasks</a>
+            <a href="#"><i class="fas fa-wallet"></i> Earnings</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="dashboard-main">
+        <header class="dashboard-header">
+            <h2>Welcome back, {{ current_user.full_name }}!</h2>
+            <div class="availability-status">
+                <span class="badge bg-success text-white"><i class="fas fa-circle"></i> Available for Work</span>
+            </div>
+        </header>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon bg-primary-light text-primary"><i class="fas fa-star"></i></div>
+                <div class="stat-details">
+                    <div class="stat-value">4.9</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-success text-white"><i class="fas fa-project-diagram"></i></div>
+                <div class="stat-details">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Completed Projects</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-warning text-white"><i class="fas fa-envelope"></i></div>
+                <div class="stat-details">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Pending Invitations</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-light text-primary"><i class="fas fa-wallet"></i></div>
+                <div class="stat-details">
+                    <div class="stat-value">$8,450</div>
+                    <div class="stat-label">Total Earnings</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="dashboard-section mt-4">
+            <h3>Recent Project Invitations</h3>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Client</th>
+                            <th>Project</th>
+                            <th>Budget</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TechStart Inc.</td>
+                            <td>E-Commerce Mobile App</td>
+                            <td>$2,000</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">Accept</button>
+                                <button class="btn btn-outline btn-sm">Decline</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

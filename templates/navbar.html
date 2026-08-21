@@ -1,0 +1,33 @@
+<nav class="navbar">
+    <div class="container navbar-container">
+        <a href="/" class="logo-text">SmartTeam</a>
+        
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#ai-matching">AI Matching</a>
+            <a href="#features">Features</a>
+            <a href="#for-clients">For Clients</a>
+            <a href="#for-freelancers">For Freelancers</a>
+        </div>
+        
+        <div class="navbar-actions">
+            {% if current_user and current_user.is_authenticated %}
+                {% if current_user.role == 'client' %}
+                    <a href="/client/dashboard" class="btn btn-outline">Dashboard</a>
+                {% elif current_user.role == 'freelancer' %}
+                    <a href="/freelancer/dashboard" class="btn btn-outline">Dashboard</a>
+                {% elif current_user.role == 'admin' %}
+                    <a href="/admin/dashboard" class="btn btn-outline">Dashboard</a>
+                {% endif %}
+                <a href="/logout" class="btn btn-primary">Logout</a>
+            {% else %}
+                <a href="#" class="btn btn-outline" onclick="openAuthModal('login'); return false;">Login</a>
+                <a href="#" class="btn btn-primary" onclick="openAuthModal('signup'); return false;">Get Started</a>
+            {% endif %}
+        </div>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>

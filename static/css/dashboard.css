@@ -1,0 +1,49 @@
+.dashboard-layout { display: flex; min-height: calc(100vh - 72px); background: var(--bg-light); margin-top: -5rem; padding-top: 5rem; }
+
+/* Sidebar */
+.sidebar { width: 260px; background: white; border-right: 1px solid var(--border-color); padding: 1.5rem 0; flex-shrink: 0; }
+.sidebar-user { display: flex; align-items: center; gap: 1rem; padding: 0 1.5rem 1.5rem; border-bottom: 1px solid var(--border-color); margin-bottom: 1.5rem; }
+.sidebar-user .name { font-weight: 600; }
+.sidebar-user .role { font-size: 0.875rem; color: var(--text-muted); }
+.sidebar-nav { display: flex; flex-direction: column; gap: 0.25rem; }
+.sidebar-nav a { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1.5rem; color: var(--text-main); font-weight: 500; transition: background 0.2s, color 0.2s; }
+.sidebar-nav a:hover, .sidebar-nav a.active { background: var(--primary-light); color: var(--primary); }
+.sidebar-nav a i { width: 20px; text-align: center; color: var(--text-muted); }
+.sidebar-nav a:hover i, .sidebar-nav a.active i { color: var(--primary); }
+
+/* Main Content */
+.dashboard-main { flex: 1; padding: 2rem 3rem; overflow-y: auto; }
+.dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+
+/* Stats Grid */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+.stat-card { background: white; padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); display: flex; align-items: center; gap: 1rem; box-shadow: var(--shadow-sm); }
+.stat-icon { width: 48px; height: 48px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+.stat-value { font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
+.stat-label { font-size: 0.875rem; color: var(--text-muted); }
+
+/* Dashboard Section */
+.dashboard-section { background: white; padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); margin-bottom: 2rem; }
+.dashboard-section h3 { margin-bottom: 1rem; font-size: 1.25rem; }
+
+/* Tables */
+.table-responsive { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+.table th { color: var(--text-muted); font-weight: 600; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.table tbody tr:hover { background: var(--bg-light); }
+
+/* Badges */
+.badge { padding: 0.25rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+.bg-success { background-color: var(--success); }
+.bg-warning { background-color: var(--warning); }
+
+/* Text colors */
+.text-muted { color: var(--text-muted); }
+
+/* Responsive */
+@media (max-width: 992px) {
+    .dashboard-layout { flex-direction: column; }
+    .sidebar { width: 100%; display: none; } /* In real app, implement mobile toggle */
+    .dashboard-main { padding: 1.5rem; }
+}
