@@ -84,7 +84,7 @@
                         <span>OR</span>
                     </div>
                     
-                    <button class="btn-auth-google">
+                    <button class="btn-auth-google" onclick="handleGoogleAuth(event, 'login')">
                         <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google">
                         Continue with Google
                     </button>
@@ -157,6 +157,15 @@
                         <button type="submit" class="btn-auth-primary">Create Account</button>
                     </form>
                     
+                    <div class="auth-divider">
+                        <span>OR</span>
+                    </div>
+                    
+                    <button class="btn-auth-google" onclick="handleGoogleAuth(event, 'signup')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google">
+                        Continue with Google
+                    </button>
+                    
                     <p class="auth-bottom">
                         Already have an account? <a href="#" onclick="switchAuthView('login')">Log In</a>
                     </p>
@@ -165,3 +174,15 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var flashMessages = document.querySelectorAll('#auth-flash-messages .alert');
+    if (flashMessages.length > 0) {
+        var modal = document.getElementById('auth-modal');
+        if (modal) {
+            modal.style.display = 'flex';
+        }
+    }
+});
+</script>

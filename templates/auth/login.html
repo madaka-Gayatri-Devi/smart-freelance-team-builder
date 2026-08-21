@@ -56,10 +56,10 @@
             
             <div class="auth-divider"><span>OR</span></div>
             
-            <button class="btn btn-outline btn-block btn-google">
+            <a href="{{ url_for('auth.google_login', role='client') }}" class="btn btn-outline btn-block btn-google" style="text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px;">
                 <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google" width="20">
                 Continue with Google
-            </button>
+            </a>
             
             <p class="auth-bottom">Don't have an account? <a href="{{ url_for('auth.register') }}">Sign Up</a></p>
         </div>

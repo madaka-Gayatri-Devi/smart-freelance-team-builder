@@ -158,3 +158,17 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('scrolled');
     }
 });
+function handleGoogleAuth(event, view) {
+    event.preventDefault();
+    let role = 'client';
+    if (view === 'signup') {
+        let selectedRole = document.querySelector('.auth-view:not([style*="display: none"]) input[name="role"]:checked');
+        if (selectedRole) {
+            role = selectedRole.value;
+        } else {
+            alert('Please select whether you want to join as a Client or Freelancer first.');
+            return;
+        }
+    }
+    window.location.href = '/login/google?role=' + role;
+}

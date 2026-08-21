@@ -23,18 +23,18 @@ def login():
         remember_me = request.form.get("remember_me") == "on"  # Checks the Remember Me option.
         if not email or not password:  # Checks that both fields were provided.
             flash("Please enter your email and password.", "danger")  # Shows an error message.
-            return redirect(url_for("auth.login"))  # Returns to the login page.
+            return redirect(request.referrer or url_for("auth.login"))  # Returns to the login page.
         db = get_db()  # Gets our MongoDB database.
         user_data = db.users.find_one({"email": email})  # Searches for the user by email.
         if not user_data:  # Checks whether the email exists.
             flash("Invalid email or password.", "danger")  # Hides which login field was incorrect.
-            return redirect(url_for("auth.login"))  # Returns to login.
+            return redirect(request.referrer or url_for("auth.login"))  # Returns to login.
         if not user_data.get("is_active", True):  # Checks whether the account is active.
             flash("Your account has been disabled.", "danger")  # Tells the user the account is disabled.
-            return redirect(url_for("auth.login"))  # Returns to login.
+            return redirect(request.referrer or url_for("auth.login"))  # Returns to login.
         if not check_password_hash(user_data["password_hash"], password):  # Verifies the password.
             flash("Invalid email or password.", "danger")  # Shows an invalid-login message.
-            return redirect(url_for("auth.login"))  # Returns to login.
+            return redirect(request.referrer or url_for("auth.login"))  # Returns to login.
         user = User(user_data)  # Creates a Flask-Login user object.
         login_user(user, remember=remember_me)  # Creates the user's login session.
         flash("Welcome back!", "success")  # Shows a successful login message.

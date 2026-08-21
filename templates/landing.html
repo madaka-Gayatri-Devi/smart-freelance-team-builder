@@ -36,50 +36,8 @@
                     </div>
                 </div>
                 
-                <div class="dashboard-preview">
-                    <div class="preview-header">
-                        <div>
-                            <div class="preview-title">Project: E-Commerce Mobile App</div>
-                            <div class="preview-skills">
-                                <span class="skill-tag">React Native</span>
-                                <span class="skill-tag">Node.js</span>
-                                <span class="skill-tag">UI/UX</span>
-                                <span class="skill-tag">MongoDB</span>
-                            </div>
-                        </div>
-                        <div class="preview-badge"><i class="fas fa-magic"></i> AI Pick</div>
-                    </div>
-                    <div class="preview-body">
-                        <h4 class="preview-subtitle"><i class="fas fa-users text-primary"></i> Recommended Team</h4>
-                        <div class="team-card hover-lift">
-                            <div class="avatar"><img src="https://ui-avatars.com/api/?name=Sarah+J&background=6D4AFF&color=fff&bold=true" alt="Avatar"></div>
-                            <div class="info">
-                                <div class="name">Sarah J. <span class="match">98% Match</span></div>
-                                <div class="role">UI/UX Designer</div>
-                                <div class="stats">4.9 <i class="fas fa-star text-warning"></i> (120 jobs) • Available Now</div>
-                            </div>
-                        </div>
-                        <div class="team-card hover-lift">
-                            <div class="avatar"><img src="https://ui-avatars.com/api/?name=Michael+T&background=C43D9B&color=fff&bold=true" alt="Avatar"></div>
-                            <div class="info">
-                                <div class="name">Michael T. <span class="match">95% Match</span></div>
-                                <div class="role">React Native Developer</div>
-                                <div class="stats">5.0 <i class="fas fa-star text-warning"></i> (85 jobs) • 30 hrs/wk</div>
-                            </div>
-                        </div>
-                        <div class="team-card hover-lift">
-                            <div class="avatar"><img src="https://ui-avatars.com/api/?name=David+R&background=3B82F6&color=fff&bold=true" alt="Avatar"></div>
-                            <div class="info">
-                                <div class="name">David R. <span class="match">92% Match</span></div>
-                                <div class="role">Node.js Backend Engineer</div>
-                                <div class="stats">4.8 <i class="fas fa-star text-warning"></i> (210 jobs) • Available Now</div>
-                            </div>
-                        </div>
-                        <div class="preview-footer">
-                            <div style="font-size: 1.05rem;">Overall Team Match: <strong class="text-success" style="font-size: 1.25rem;">95%</strong></div>
-                            <button class="btn btn-primary btn-sm">Form Team <i class="fas fa-arrow-right ml-2" style="margin-left: 0.5rem;"></i></button>
-                        </div>
-                    </div>
+                <div class="illustration-preview" style="max-width: 75%; margin: 0 auto;">
+                    <img src="{{ url_for('static', filename='images/hero_illustration.jpg') }}" alt="AI Team Formation" class="img-fluid rounded-xl shadow-lg" style="border-radius: 1.5rem; border: 4px solid rgba(255, 255, 255, 0.4); box-shadow: 0 20px 40px rgba(109, 74, 255, 0.15); width: 100%;">
                 </div>
                 
                 <div class="floating-card card-bottom-right float-anim-2">
@@ -97,15 +55,25 @@
 </section>
 
 <!-- Trust Section -->
-<section class="trust-section">
+<section class="trust-section" style="padding: 4rem 0;">
     <div class="container text-center">
-        <h3 class="section-subtitle" data-aos="fade-up">Powering Modern Project Teams Across Industries</h3>
-        <div class="category-logos">
-            <span class="category-badge" data-aos="fade-up" data-aos-delay="0"><i class="fas fa-rocket text-primary"></i> Startups</span>
-            <span class="category-badge" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-building text-secondary"></i> Agencies</span>
-            <span class="category-badge" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-laptop-code text-info"></i> Technology</span>
-            <span class="category-badge" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-bullhorn text-warning"></i> Marketing</span>
-            <span class="category-badge" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-globe text-success"></i> Enterprise</span>
+        <h3 class="section-subtitle" data-aos="fade-up" style="font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 2rem;">Trusted By Industry Leaders</h3>
+        <div class="trust-logos-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
+            <div class="trust-logo-box" data-aos="fade-up" data-aos-delay="0" style="background: white; border-radius: 12px; padding: 1.25rem 2.5rem; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.2); font-size: 1.5rem; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 0.75rem; transition: transform 0.3s; cursor: default;">
+                <i class="fab fa-google" style="color: #4285F4;"></i> Google
+            </div>
+            <div class="trust-logo-box" data-aos="fade-up" data-aos-delay="100" style="background: white; border-radius: 12px; padding: 1.25rem 2.5rem; box-shadow: 0 10px 25px rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.2); font-size: 1.5rem; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 0.75rem; transition: transform 0.3s; cursor: default;">
+                <i class="fab fa-microsoft" style="color: #00A4EF;"></i> Microsoft
+            </div>
+            <div class="trust-logo-box" data-aos="fade-up" data-aos-delay="200" style="background: white; border-radius: 12px; padding: 1.25rem 2.5rem; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.2); font-size: 1.5rem; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 0.75rem; transition: transform 0.3s; cursor: default;">
+                <i class="fab fa-amazon" style="color: #FF9900;"></i> Amazon
+            </div>
+            <div class="trust-logo-box" data-aos="fade-up" data-aos-delay="300" style="background: white; border-radius: 12px; padding: 1.25rem 2.5rem; box-shadow: 0 10px 25px rgba(6, 182, 212, 0.15); border: 1px solid rgba(6, 182, 212, 0.2); font-size: 1.5rem; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 0.75rem; transition: transform 0.3s; cursor: default;">
+                <i class="fab fa-meta" style="color: #0668E1;"></i> Meta
+            </div>
+            <div class="trust-logo-box" data-aos="fade-up" data-aos-delay="400" style="background: white; border-radius: 12px; padding: 1.25rem 2.5rem; box-shadow: 0 10px 25px rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.2); font-size: 1.5rem; font-weight: 800; color: #E50914; display: flex; align-items: center; transition: transform 0.3s; cursor: default; letter-spacing: 1px;">
+                NETFLIX
+            </div>
         </div>
     </div>
 </section>
@@ -117,28 +85,28 @@
             <h2 class="section-title">Build Your Dream Team</h2>
             <p class="section-desc">Our intelligent platform makes finding, combining, and managing top freelance talent completely effortless.</p>
         </div>
-        <div class="steps-wrapper">
-            <div class="steps-line"></div>
-            <div class="steps-grid">
-                <div class="step-card step-1" data-aos="fade-up" data-aos-delay="100">
-                    <div class="step-icon-wrapper">01</div>
-                    <h3 class="step-title">Create Project</h3>
-                    <p class="step-desc">Define your project requirements, necessary skills, budget constraints, and timeline.</p>
+        <div class="steps-wrapper" style="position: relative;">
+            <div class="steps-line" style="position: absolute; top: 30px; left: 10%; right: 10%; height: 3px; background: linear-gradient(90deg, var(--primary-light), var(--secondary-light)); z-index: 1;"></div>
+            <div class="steps-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; position: relative; z-index: 2;">
+                <div class="step-card step-1 hover-lift" data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(135deg, #f3e8ff, #ffffff); border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; border: 1px solid #e9d5ff;">
+                    <div class="step-icon-wrapper" style="width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1.5rem auto; box-shadow: 0 0 0 10px #f3e8ff;">1</div>
+                    <h3 class="step-title" style="margin-bottom: 1rem;">Create Project</h3>
+                    <p class="step-desc text-muted">Define your project requirements, necessary skills, budget constraints, and timeline.</p>
                 </div>
-                <div class="step-card step-2" data-aos="fade-up" data-aos-delay="200">
-                    <div class="step-icon-wrapper">02</div>
-                    <h3 class="step-title">AI Finds Talent</h3>
-                    <p class="step-desc">Our engine analyzes thousands of freelancers based on skills, experience, and ratings.</p>
+                <div class="step-card step-2 hover-lift" data-aos="fade-up" data-aos-delay="200" style="background: linear-gradient(135deg, #fce7f3, #ffffff); border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; border: 1px solid #fbcfe8;">
+                    <div class="step-icon-wrapper" style="width: 60px; height: 60px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1.5rem auto; box-shadow: 0 0 0 10px #fce7f3;">2</div>
+                    <h3 class="step-title" style="margin-bottom: 1rem;">AI Finds Talent</h3>
+                    <p class="step-desc text-muted">Our engine analyzes thousands of freelancers based on skills, experience, and ratings.</p>
                 </div>
-                <div class="step-card step-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="step-icon-wrapper">03</div>
-                    <h3 class="step-title">Build Team</h3>
-                    <p class="step-desc">Get intelligent recommendations that combine freelancers with perfectly complementary skills.</p>
+                <div class="step-card step-3 hover-lift" data-aos="fade-up" data-aos-delay="300" style="background: linear-gradient(135deg, #e0f2fe, #ffffff); border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; border: 1px solid #bae6fd;">
+                    <div class="step-icon-wrapper" style="width: 60px; height: 60px; background: var(--info); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1.5rem auto; box-shadow: 0 0 0 10px #e0f2fe;">3</div>
+                    <h3 class="step-title" style="margin-bottom: 1rem;">Build Team</h3>
+                    <p class="step-desc text-muted">Get intelligent recommendations that combine freelancers with perfectly complementary skills.</p>
                 </div>
-                <div class="step-card step-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="step-icon-wrapper">04</div>
-                    <h3 class="step-title">Manage & Deliver</h3>
-                    <p class="step-desc">Track tasks, manage milestones, communicate, and handle payments in one place.</p>
+                <div class="step-card step-4 hover-lift" data-aos="fade-up" data-aos-delay="400" style="background: linear-gradient(135deg, #dcfce7, #ffffff); border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; border: 1px solid #bbf7d0;">
+                    <div class="step-icon-wrapper" style="width: 60px; height: 60px; background: var(--success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1.5rem auto; box-shadow: 0 0 0 10px #dcfce7;">4</div>
+                    <h3 class="step-title" style="margin-bottom: 1rem;">Manage & Deliver</h3>
+                    <p class="step-desc text-muted">Track tasks, manage milestones, communicate, and handle payments in one place.</p>
                 </div>
             </div>
         </div>
@@ -179,7 +147,7 @@
 
 <!-- Visual Process Section -->
 <section id="ai-matching" class="py-section process-section">
-    <div class="container process-wrapper">
+    <div class="container process-wrapper" style="max-width: 1200px; margin: 0 auto;">
         <div data-aos="fade-right">
             <h2 class="section-title mb-4">From Project Requirements to the Perfect Team</h2>
             <p class="section-desc mb-5">Our AI acts as your technical recruiter, analyzing thousands of data points to build the optimal team for your specific needs.</p>
@@ -296,34 +264,34 @@
             <h2 class="section-title">Everything You Need to Succeed</h2>
             <p class="section-desc">A complete end-to-end platform for sourcing, building, and managing world-class freelance teams.</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="feature-icon bg-purple-light"><i class="fas fa-brain"></i></div>
+        <div class="features-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+            <div class="feature-card hover-lift" data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(135deg, #f5f3ff, #ffffff); border-radius: 1rem; padding: 2.5rem; border: 1px solid #ede9fe; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+                <div class="feature-icon" style="background: #ede9fe; color: var(--primary);"><i class="fas fa-brain"></i></div>
                 <h3 class="feature-title">AI Freelancer Matching</h3>
                 <p class="feature-desc">Instantly find the perfect talent based on intelligent skill matching, portfolio analysis, and past performance history.</p>
             </div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="feature-icon bg-pink-light"><i class="fas fa-users-cog"></i></div>
+            <div class="feature-card hover-lift" data-aos="fade-up" data-aos-delay="200" style="background: linear-gradient(135deg, #fdf2f8, #ffffff); border-radius: 1rem; padding: 2.5rem; border: 1px solid #fce7f3; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+                <div class="feature-icon" style="background: #fce7f3; color: var(--secondary);"><i class="fas fa-users-cog"></i></div>
                 <h3 class="feature-title">Smart Team Formation</h3>
                 <p class="feature-desc">AI suggests mathematically optimized combinations of freelancers whose skills perfectly complement each other.</p>
             </div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="feature-icon bg-blue-light"><i class="fas fa-tasks"></i></div>
+            <div class="feature-card hover-lift" data-aos="fade-up" data-aos-delay="300" style="background: linear-gradient(135deg, #eff6ff, #ffffff); border-radius: 1rem; padding: 2.5rem; border: 1px solid #dbeafe; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+                <div class="feature-icon" style="background: #dbeafe; color: var(--info);"><i class="fas fa-tasks"></i></div>
                 <h3 class="feature-title">Project & Task Management</h3>
                 <p class="feature-desc">Track project progress, assign granular tasks, and monitor critical milestones all in one centralized dashboard.</p>
             </div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="feature-icon bg-yellow-light"><i class="fas fa-comments"></i></div>
+            <div class="feature-card hover-lift" data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(135deg, #fffbeb, #ffffff); border-radius: 1rem; padding: 2.5rem; border: 1px solid #fef3c7; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+                <div class="feature-icon" style="background: #fef3c7; color: var(--warning);"><i class="fas fa-comments"></i></div>
                 <h3 class="feature-title">Real-Time Team Chat</h3>
                 <p class="feature-desc">Communicate instantly with your entire team, share important files securely, and keep everyone on the same page.</p>
             </div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="feature-icon bg-green-light"><i class="fas fa-shield-alt"></i></div>
+            <div class="feature-card hover-lift" data-aos="fade-up" data-aos-delay="200" style="background: linear-gradient(135deg, #f0fdf4, #ffffff); border-radius: 1rem; padding: 2.5rem; border: 1px solid #dcfce7; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+                <div class="feature-icon" style="background: #dcfce7; color: var(--success);"><i class="fas fa-shield-alt"></i></div>
                 <h3 class="feature-title">Secure Escrow Payments</h3>
                 <p class="feature-desc">Milestone-based secure payments ensure you only release funds for approved, completed, and verified work.</p>
             </div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="feature-icon bg-purple-light"><i class="fas fa-chart-line"></i></div>
+            <div class="feature-card hover-lift" data-aos="fade-up" data-aos-delay="300" style="background: linear-gradient(135deg, #faf5ff, #ffffff); border-radius: 1rem; padding: 2.5rem; border: 1px solid #f3eaaf; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+                <div class="feature-icon" style="background: #f3e8ff; color: #a855f7;"><i class="fas fa-chart-line"></i></div>
                 <h3 class="feature-title">Time & Workload Tracking</h3>
                 <p class="feature-desc">Monitor real-time freelancer availability, track hours logged on specific tasks, and prevent team burnout.</p>
             </div>
@@ -332,59 +300,305 @@
 </section>
 
 <!-- Statistics Section -->
-<section class="stats-section">
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
-                <div class="stat-number">10K+</div>
-                <div class="stat-label">Verified Freelancers</div>
+<section class="stats-section" style="position: relative; overflow: hidden;">
+    <div class="blob blob-1" style="position: absolute; background: rgba(255,255,255,0.1); width: 300px; height: 300px; top: -100px; left: -100px;"></div>
+    <div class="blob blob-2" style="position: absolute; background: rgba(255,255,255,0.1); width: 400px; height: 400px; bottom: -200px; right: -100px;"></div>
+    <div class="container" style="position: relative; z-index: 2;">
+        <div class="stats-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;">
+            <div class="stat-item hover-lift" data-aos="zoom-in" data-aos-delay="0" style="background: linear-gradient(135deg, #f5f3ff, #ffffff); border: 1px solid #ede9fe; border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 20px rgba(109,74,255,0.05);">
+                <div class="stat-number count-up" data-target="10000" data-suffix="+" style="color: var(--primary);">0</div>
+                <div class="stat-label" style="opacity: 0.9;">Verified Freelancers</div>
             </div>
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-                <div class="stat-number">5K+</div>
-                <div class="stat-label">Projects Completed</div>
+            <div class="stat-item hover-lift" data-aos="zoom-in" data-aos-delay="100" style="background: linear-gradient(135deg, #fdf2f8, #ffffff); border: 1px solid #fce7f3; border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 20px rgba(236,72,153,0.05);">
+                <div class="stat-number count-up" data-target="5000" data-suffix="+" style="color: var(--secondary);">0</div>
+                <div class="stat-label" style="opacity: 0.9;">Projects Completed</div>
             </div>
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="stat-number">94%</div>
-                <div class="stat-label">Successful Matches</div>
+            <div class="stat-item hover-lift" data-aos="zoom-in" data-aos-delay="200" style="background: linear-gradient(135deg, #eff6ff, #ffffff); border: 1px solid #dbeafe; border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 20px rgba(59,130,246,0.05);">
+                <div class="stat-number count-up" data-target="94" data-suffix="%" style="color: var(--info);">0</div>
+                <div class="stat-label" style="opacity: 0.9;">Successful Matches</div>
             </div>
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-                <div class="stat-number">4.8<span style="font-size: 2rem; opacity: 0.8;">/5</span></div>
-                <div class="stat-label">Average Client Rating</div>
+            <div class="stat-item hover-lift" data-aos="zoom-in" data-aos-delay="300" style="background: linear-gradient(135deg, #f0fdf4, #ffffff); border: 1px solid #dcfce7; border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 20px rgba(34,197,94,0.05);">
+                <div class="stat-number count-up" data-target="4.8" data-decimals="1" data-suffix="/5" style="color: var(--success);">0.0</div>
+                <div class="stat-label" style="opacity: 0.9;">Average Client Rating</div>
             </div>
         </div>
     </div>
 </section>
 
+<script>
+// Number counting animation
+document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('.count-up');
+    const speed = 200;
+
+    const animateCounters = () => {
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText.replace(/[^0-9.]/g, '');
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const decimals = counter.getAttribute('data-decimals') ? 1 : 0;
+                
+                const inc = target / speed;
+
+                if (count < target) {
+                    let nextValue = count + inc;
+                    if(decimals === 1) {
+                        nextValue = Math.min(target, nextValue).toFixed(1);
+                    } else {
+                        nextValue = Math.min(target, Math.ceil(nextValue));
+                    }
+                    counter.innerText = nextValue + suffix;
+                    setTimeout(updateCount, 15);
+                } else {
+                    counter.innerText = (decimals === 1 ? target.toFixed(1) : target) + suffix;
+                }
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    updateCount();
+                    observer.disconnect();
+                }
+            });
+            observer.observe(counter);
+        });
+    };
+    
+    // Give AOS time to initialize before starting numbers
+    setTimeout(animateCounters, 500);
+});
+</script>
+
 <!-- Dual Audience Section -->
 <section id="for-clients" class="py-section">
-    <div class="container">
-        <div class="audience-split">
-            <div class="audience-card client" data-aos="fade-right">
-                <h2 class="audience-title">For Clients</h2>
-                <p class="text-muted" style="font-size: 1.15rem; max-width: 90%;">Build the perfect synergistic team for your next big project without the usual hiring headache.</p>
-                <ul class="benefit-list">
-                    <li><i class="fas fa-check-circle text-primary"></i> <span>Create projects and define required skills easily</span></li>
-                    <li><i class="fas fa-check-circle text-primary"></i> <span>Receive instant AI freelancer recommendations</span></li>
-                    <li><i class="fas fa-check-circle text-primary"></i> <span>Compare freelancers and build balanced teams</span></li>
-                    <li><i class="fas fa-check-circle text-primary"></i> <span>Track project progress and critical milestones</span></li>
-                    <li><i class="fas fa-check-circle text-primary"></i> <span>Manage secure milestone-based payments</span></li>
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+        <div class="audience-split" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+            <div class="audience-card client hover-lift" data-aos="fade-right" style="background: linear-gradient(135deg, #f5f3ff, #ede9fe); padding: 3rem; border-radius: 1.5rem; border: 1px solid #ddd6fe; box-shadow: 0 15px 30px rgba(109,74,255,0.1); height: 100%; display: flex; flex-direction: column;">
+                <h2 class="audience-title" style="color: var(--primary-dark); font-weight: 700;">For Clients</h2>
+                <p class="text-muted mb-4" style="font-size: 1.15rem;">Build the perfect synergistic team for your next big project without the usual hiring headache.</p>
+                <ul class="benefit-list" style="list-style: none; padding: 0; margin-bottom: 2rem;">
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><i class="fas fa-check-circle text-primary" style="margin-top: 5px;"></i> <span>Create projects and define required skills easily</span></li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><i class="fas fa-check-circle text-primary" style="margin-top: 5px;"></i> <span>Receive instant AI freelancer recommendations</span></li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><i class="fas fa-check-circle text-primary" style="margin-top: 5px;"></i> <span>Compare freelancers and build balanced teams</span></li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><i class="fas fa-check-circle text-primary" style="margin-top: 5px;"></i> <span>Track project progress and critical milestones</span></li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><i class="fas fa-check-circle text-primary" style="margin-top: 5px;"></i> <span>Manage secure milestone-based payments</span></li>
                 </ul>
                 <div class="mt-auto">
-                    <a href="#" onclick="openAuthModal('signup'); return false;" class="btn btn-primary btn-lg">Find Your Team <i class="fas fa-arrow-right ml-2" style="margin-left: 0.5rem;"></i></a>
+                    <a href="#" onclick="openAuthModal('signup'); return false;" class="btn btn-primary btn-lg" style="width: 100%;">Find Your Team <i class="fas fa-arrow-right ml-2"></i></a>
                 </div>
             </div>
-            <div id="for-freelancers" class="audience-card freelancer" data-aos="fade-left">
-                <h2 class="audience-title">For Freelancers</h2>
-                <p class="text-muted" style="font-size: 1.15rem; max-width: 90%;">Find high-quality projects, collaborate with great teams, and get paid securely for your work.</p>
-                <ul class="benefit-list">
-                    <li><i class="fas fa-check-circle text-secondary"></i> <span>Create a professional profile and portfolio</span></li>
-                    <li><i class="fas fa-check-circle text-secondary"></i> <span>Receive highly targeted project invitations</span></li>
-                    <li><i class="fas fa-check-circle text-secondary"></i> <span>Manage your true availability and workload</span></li>
-                    <li><i class="fas fa-check-circle text-secondary"></i> <span>Track time and get paid securely via escrow</span></li>
-                    <li><i class="fas fa-check-circle text-secondary"></i> <span>Build a stellar reputation with verified ratings</span></li>
+            <div id="for-freelancers" class="audience-card freelancer hover-lift" data-aos="fade-left" style="background: linear-gradient(135deg, #fff1f2, #ffedd5); padding: 3rem; border-radius: 1.5rem; border: 1px solid #fecdd3; box-shadow: 0 15px 30px rgba(236,72,153,0.1); height: 100%; display: flex; flex-direction: column;">
+                <h2 class="audience-title" style="color: var(--secondary-dark); font-weight: 700;">For Freelancers</h2>
+                <p class="text-muted mb-4" style="font-size: 1.15rem;">Find high-quality projects, collaborate with great teams, and get paid securely for your work.</p>
+                <ul class="benefit-list" style="list-style: none; padding: 0; margin-bottom: 2rem;">
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><i class="fas fa-check-circle text-secondary" style="margin-top: 5px;"></i> <span>Create a professional profile and portfolio</span></li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><i class="fas fa-check-circle text-secondary" style="margin-top: 5px;"></i> <span>Receive highly targeted project invitations</span></li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><i class="fas fa-check-circle text-secondary" style="margin-top: 5px;"></i> <span>Manage your true availability and workload</span></li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><i class="fas fa-check-circle text-secondary" style="margin-top: 5px;"></i> <span>Track time and get paid securely via escrow</span></li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><i class="fas fa-check-circle text-secondary" style="margin-top: 5px;"></i> <span>Build a stellar reputation with verified ratings</span></li>
                 </ul>
                 <div class="mt-auto">
-                    <a href="#" onclick="openAuthModal('signup'); return false;" class="btn btn-outline btn-lg">Join as Freelancer <i class="fas fa-arrow-right ml-2" style="margin-left: 0.5rem;"></i></a>
+                    <a href="#" onclick="openAuthModal('signup'); return false;" class="btn btn-secondary btn-lg" style="width: 100%; background: var(--secondary); color: white; border: none;">Join as Freelancer <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Talent & Clients Section -->
+<section class="py-section" style="background: linear-gradient(to bottom, #ffffff, #fdf5f9); padding-top: 5rem; padding-bottom: 5rem;">
+    <div class="container text-center" style="max-width: 1600px; width: 100%; margin: 0 auto; padding-left: 32px; padding-right: 32px;">
+        <!-- Part 1: Featured Freelancers -->
+        <h3 class="section-subtitle text-primary" data-aos="fade-up" style="font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; text-align: center;">Meet Our Top Freelancers</h3>
+        <h2 class="section-title mb-3" data-aos="fade-up" style="font-size: 2.5rem; text-align: center;">Discover Top Talent</h2>
+        <p class="section-desc mb-5" data-aos="fade-up" style="max-width: 600px; margin: 0 auto 3rem auto; text-align: center; color: #475569;">Discover talented professionals ready to join your next project.</p>
+        
+        <style>
+            .responsive-grid {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 24px;
+            }
+            @media (max-width: 1024px) {
+                .responsive-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+            }
+            @media (max-width: 767px) {
+                .responsive-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        
+        <div class="responsive-grid mb-5 pb-4">
+            <!-- Freelancer 1 -->
+            <div style="display: flex;">
+                <div class="freelancer-card hover-lift w-100" data-aos="fade-up" data-aos-delay="0" style="background: white; border-radius: 16px; overflow: hidden; border: 1px solid #f3e8ff; text-align: left; box-shadow: 0 4px 20px rgba(109,74,255,0.05); display: flex; flex-direction: column; transition: all 0.3s ease;">
+                    <div class="freelancer-img-wrap" style="height: 220px; overflow: hidden; position: relative; flex-shrink: 0;">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" alt="Sarah Johnson" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.5s ease;">
+                        <div style="position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.95); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: #6d4aff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); backdrop-filter: blur(4px);">Top Rated</div>
+                    </div>
+                    <div style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem;">
+                            <h4 style="font-size: 1.15rem; font-weight: 700; margin: 0; color: #1e293b;">Sarah Johnson</h4>
+                            <div style="color: #fbbf24; font-size: 0.85rem; font-weight: 600;"><i class="fas fa-star"></i> 4.9</div>
+                        </div>
+                        <p style="color: #6d4aff; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;">UI/UX Designer</p>
+                        
+                        <div class="skills-tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; flex-grow: 1;">
+                            <span style="background: #f8fafc; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; border: 1px solid #e2e8f0;">Figma</span>
+                            <span style="background: #f8fafc; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; border: 1px solid #e2e8f0;">UX Research</span>
+                            <span style="background: #f8fafc; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; border: 1px solid #e2e8f0;">Design</span>
+                        </div>
+                        
+                        <a href="/profile/sarah" class="view-profile-btn" style="display: block; width: 100%; text-align: center; padding: 0.6rem; border-radius: 8px; border: 1px solid #6d4aff; color: #6d4aff; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; text-decoration: none;">View Profile</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Freelancer 2 -->
+            <div style="display: flex;">
+                <div class="freelancer-card hover-lift w-100" data-aos="fade-up" data-aos-delay="100" style="background: white; border-radius: 16px; overflow: hidden; border: 1px solid #f3e8ff; text-align: left; box-shadow: 0 4px 20px rgba(109,74,255,0.05); display: flex; flex-direction: column; transition: all 0.3s ease;">
+                    <div class="freelancer-img-wrap" style="height: 220px; overflow: hidden; position: relative; flex-shrink: 0;">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Michael Thomas" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.5s ease;">
+                        <div style="position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.95); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: #10b981; box-shadow: 0 2px 10px rgba(0,0,0,0.1); backdrop-filter: blur(4px);">Available</div>
+                    </div>
+                    <div style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem;">
+                            <h4 style="font-size: 1.15rem; font-weight: 700; margin: 0; color: #1e293b;">Michael Thomas</h4>
+                            <div style="color: #fbbf24; font-size: 0.85rem; font-weight: 600;"><i class="fas fa-star"></i> 4.8</div>
+                        </div>
+                        <p style="color: #6d4aff; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;">React Developer</p>
+                        
+                        <div class="skills-tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; flex-grow: 1;">
+                            <span style="background: #f8fafc; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; border: 1px solid #e2e8f0;">React</span>
+                            <span style="background: #f8fafc; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; border: 1px solid #e2e8f0;">Node.js</span>
+                            <span style="background: #f8fafc; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; border: 1px solid #e2e8f0;">MongoDB</span>
+                        </div>
+                        
+                        <a href="/profile/michael" class="view-profile-btn" style="display: block; width: 100%; text-align: center; padding: 0.6rem; border-radius: 8px; border: 1px solid #6d4aff; color: #6d4aff; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; text-decoration: none;">View Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Freelancer 3 -->
+            <div style="display: flex;">
+                <div class="freelancer-card hover-lift w-100" data-aos="fade-up" data-aos-delay="200" style="background: white; border-radius: 16px; overflow: hidden; border: 1px solid #f3e8ff; text-align: left; box-shadow: 0 4px 20px rgba(109,74,255,0.05); display: flex; flex-direction: column; transition: all 0.3s ease;">
+                    <div class="freelancer-img-wrap" style="height: 220px; overflow: hidden; position: relative; flex-shrink: 0;">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="David Rodriguez" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.5s ease;">
+                        <div style="position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.95); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: #c43d9b; box-shadow: 0 2px 10px rgba(0,0,0,0.1); backdrop-filter: blur(4px);">Expert</div>
+                    </div>
+                    <div style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem;">
+                            <h4 style="font-size: 1.15rem; font-weight: 700; margin: 0; color: #1e293b;">David Rodriguez</h4>
+                            <div style="color: #fbbf24; font-size: 0.85rem; font-weight: 600;"><i class="fas fa-star"></i> 4.9</div>
+                        </div>
+                        <p style="color: #6d4aff; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;">Backend Developer</p>
+                        
+                        <div class="skills-tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; flex-grow: 1;">
+                            <span style="background: #f8fafc; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; border: 1px solid #e2e8f0;">Python</span>
+                            <span style="background: #f8fafc; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; border: 1px solid #e2e8f0;">Flask</span>
+                            <span style="background: #f8fafc; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; border: 1px solid #e2e8f0;">PostgreSQL</span>
+                        </div>
+                        
+                        <a href="/profile/david" class="view-profile-btn" style="display: block; width: 100%; text-align: center; padding: 0.6rem; border-radius: 8px; border: 1px solid #6d4aff; color: #6d4aff; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; text-decoration: none;">View Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Freelancer 4 -->
+            <div class="col-12 col-md-6 col-lg-3 d-flex">
+                <div class="freelancer-card hover-lift w-100" data-aos="fade-up" data-aos-delay="300" style="background: white; border-radius: 16px; overflow: hidden; border: 1px solid #f3e8ff; text-align: left; box-shadow: 0 4px 20px rgba(109,74,255,0.05); display: flex; flex-direction: column; transition: all 0.3s ease;">
+                    <div class="freelancer-img-wrap" style="height: 220px; overflow: hidden; position: relative; flex-shrink: 0;">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80" alt="Emily Chen" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.5s ease;">
+                        <div style="position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.95); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: #10b981; box-shadow: 0 2px 10px rgba(0,0,0,0.1); backdrop-filter: blur(4px);">Available</div>
+                    </div>
+                    <div style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem;">
+                            <h4 style="font-size: 1.15rem; font-weight: 700; margin: 0; color: #1e293b;">Emily Chen</h4>
+                            <div style="color: #fbbf24; font-size: 0.85rem; font-weight: 600;"><i class="fas fa-star"></i> 5.0</div>
+                        </div>
+                        <p style="color: #6d4aff; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;">Data Scientist</p>
+                        
+                        <div class="skills-tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; flex-grow: 1;">
+                            <span style="background: #f8fafc; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; border: 1px solid #e2e8f0;">Python</span>
+                            <span style="background: #f8fafc; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; border: 1px solid #e2e8f0;">ML</span>
+                            <span style="background: #f8fafc; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; border: 1px solid #e2e8f0;">AI</span>
+                        </div>
+                        
+                        <a href="/profile/emily" class="view-profile-btn" style="display: block; width: 100%; text-align: center; padding: 0.6rem; border-radius: 8px; border: 1px solid #6d4aff; color: #6d4aff; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; text-decoration: none;">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 2: Trusted Clients -->
+        <div style="margin-top: 4rem; border-top: 1px solid rgba(109,74,255,0.1); padding-top: 5rem;">
+            <h3 class="section-subtitle text-secondary" data-aos="fade-up" style="font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; text-align: center;">Trusted by Growing Teams</h3>
+            <h2 class="section-title mb-3" data-aos="fade-up" style="font-size: 2.5rem; text-align: center;">Client Success Stories</h2>
+            <p class="section-desc mb-5" data-aos="fade-up" style="max-width: 600px; margin: 0 auto 3rem auto; text-align: center; color: #475569;">SmartTeam helps businesses find the right talent and build high-performing project teams.</p>
+            
+            <div class="responsive-grid text-left">
+                <!-- Client 1 -->
+                <div style="display: flex;">
+                    <div class="client-card hover-lift w-100" data-aos="fade-up" data-aos-delay="0" style="background: white; border-radius: 16px; padding: 2rem; border: 1px solid #e2e8f0; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #6d4aff, #c43d9b); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; flex-shrink: 0;"><i class="fas fa-rocket"></i></div>
+                            <div>
+                                <h4 style="font-size: 1.15rem; font-weight: 700; margin: 0; color: #1e293b;">NovaTech</h4>
+                                <p style="color: #64748b; font-size: 0.85rem; margin: 0;">Technology</p>
+                            </div>
+                        </div>
+                        <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">"Building scalable digital products with expert freelance teams."</p>
+                        <a href="#" class="view-project-link" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #6d4aff; font-weight: 600; font-size: 0.9rem; margin-top: 1.5rem; text-decoration: none; transition: gap 0.3s;">View Project <i class="fas fa-arrow-right" style="font-size: 0.8rem;"></i></a>
+                    </div>
+                </div>
+
+                <!-- Client 2 -->
+            <div style="display: flex;">
+                    <div class="client-card hover-lift w-100" data-aos="fade-up" data-aos-delay="100" style="background: white; border-radius: 16px; padding: 2rem; border: 1px solid #e2e8f0; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #3b82f6, #06b6d4); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; flex-shrink: 0;"><i class="fas fa-shopping-bag"></i></div>
+                            <div>
+                                <h4 style="font-size: 1.15rem; font-weight: 700; margin: 0; color: #1e293b;">BrightCommerce</h4>
+                                <p style="color: #64748b; font-size: 0.85rem; margin: 0;">E-Commerce</p>
+                            </div>
+                        </div>
+                        <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">"Finding specialized developers and designers for fast-growing products."</p>
+                        <a href="#" class="view-project-link" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #6d4aff; font-weight: 600; font-size: 0.9rem; margin-top: 1.5rem; text-decoration: none; transition: gap 0.3s;">View Project <i class="fas fa-arrow-right" style="font-size: 0.8rem;"></i></a>
+                    </div>
+                </div>
+
+                <!-- Client 3 -->
+            <div style="display: flex;">
+                    <div class="client-card hover-lift w-100" data-aos="fade-up" data-aos-delay="200" style="background: white; border-radius: 16px; padding: 2rem; border: 1px solid #e2e8f0; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #10b981, #3b82f6); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; flex-shrink: 0;"><i class="fas fa-cloud"></i></div>
+                            <div>
+                                <h4 style="font-size: 1.15rem; font-weight: 700; margin: 0; color: #1e293b;">CloudWorks</h4>
+                                <p style="color: #64748b; font-size: 0.85rem; margin: 0;">SaaS</p>
+                            </div>
+                        </div>
+                        <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">"Connecting projects with experienced cloud and backend professionals."</p>
+                        <a href="#" class="view-project-link" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #6d4aff; font-weight: 600; font-size: 0.9rem; margin-top: 1.5rem; text-decoration: none; transition: gap 0.3s;">View Project <i class="fas fa-arrow-right" style="font-size: 0.8rem;"></i></a>
+                    </div>
+                </div>
+
+                <!-- Client 4 -->
+            <div style="display: flex;">
+                    <div class="client-card hover-lift w-100" data-aos="fade-up" data-aos-delay="300" style="background: white; border-radius: 16px; padding: 2rem; border: 1px solid #e2e8f0; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #f59e0b, #ef4444); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; flex-shrink: 0;"><i class="fas fa-bullseye"></i></div>
+                            <div>
+                                <h4 style="font-size: 1.15rem; font-weight: 700; margin: 0; color: #1e293b;">MarketPro</h4>
+                                <p style="color: #64748b; font-size: 0.85rem; margin: 0;">Digital Marketing</p>
+                            </div>
+                        </div>
+                        <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">"Building flexible creative and marketing teams on demand."</p>
+                        <a href="#" class="view-project-link" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #6d4aff; font-weight: 600; font-size: 0.9rem; margin-top: 1.5rem; text-decoration: none; transition: gap 0.3s;">View Project <i class="fas fa-arrow-right" style="font-size: 0.8rem;"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -398,37 +612,40 @@
             <h2 class="section-title">What Teams Are Saying</h2>
             <p class="section-desc">See how SmartTeam is completely transforming the way digital projects are built and delivered.</p>
         </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"SmartTeam's AI matching completely eliminated the headache of interviewing dozens of freelancers. We formed a perfectly balanced team of three in just 2 days."</p>
-                <div class="testimonial-author">
-                    <img src="https://ui-avatars.com/api/?name=Alex+M&background=random" alt="Author">
+        <div class="testimonials-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: stretch;">
+            <div class="testimonial-card hover-lift" data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(135deg, #f8fafc, #ffffff); padding: 2.5rem; border-radius: 1rem; border: 1px solid #e2e8f0; position: relative; height: 100%; display: flex; flex-direction: column;">
+                <i class="fas fa-quote-left" style="position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; color: #e2e8f0; opacity: 0.5;"></i>
+                <div class="stars" style="color: #fbbf24; margin-bottom: 1rem; font-size: 1.1rem;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testimonial-text" style="font-style: italic; color: #475569; margin-bottom: 2rem; flex-grow: 1;">"SmartTeam's AI matching completely eliminated the headache of interviewing dozens of freelancers. We formed a perfectly balanced team of three in just 2 days."</p>
+                <div class="testimonial-author" style="display: flex; align-items: center; gap: 1rem;">
+                    <img src="https://ui-avatars.com/api/?name=Alex+M&background=6D4AFF&color=fff&size=50" alt="Author" style="border-radius: 50%; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                     <div>
-                        <div class="author-name">Alex Martinez</div>
-                        <div class="author-role">Startup Founder</div>
+                        <div class="author-name" style="font-weight: bold; color: #1e293b;">Alex Martinez</div>
+                        <div class="author-role" style="font-size: 0.9rem; color: #64748b;">Startup Founder</div>
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"As a developer, I love that I only get invited to projects that actually match my stack and schedule. The integrated chat and guaranteed payments make everything seamless."</p>
-                <div class="testimonial-author">
-                    <img src="https://ui-avatars.com/api/?name=Sam+L&background=random" alt="Author">
+            <div class="testimonial-card hover-lift" data-aos="fade-up" data-aos-delay="200" style="background: linear-gradient(135deg, #f8fafc, #ffffff); padding: 2.5rem; border-radius: 1rem; border: 1px solid #e2e8f0; position: relative; height: 100%; display: flex; flex-direction: column;">
+                <i class="fas fa-quote-left" style="position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; color: #e2e8f0; opacity: 0.5;"></i>
+                <div class="stars" style="color: #fbbf24; margin-bottom: 1rem; font-size: 1.1rem;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testimonial-text" style="font-style: italic; color: #475569; margin-bottom: 2rem; flex-grow: 1;">"As a developer, I love that I only get invited to projects that actually match my stack and schedule. The integrated chat and guaranteed payments make everything seamless."</p>
+                <div class="testimonial-author" style="display: flex; align-items: center; gap: 1rem;">
+                    <img src="https://ui-avatars.com/api/?name=Sam+L&background=C43D9B&color=fff&size=50" alt="Author" style="border-radius: 50%; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                     <div>
-                        <div class="author-name">Samantha Lee</div>
-                        <div class="author-role">Freelance Developer</div>
+                        <div class="author-name" style="font-weight: bold; color: #1e293b;">Samantha Lee</div>
+                        <div class="author-role" style="font-size: 0.9rem; color: #64748b;">Freelance Developer</div>
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"The 'Smart Team Formation' feature is absolutely incredible. It suggested a UI designer and frontend dev who had highly complementary skills, and they worked together flawlessly."</p>
-                <div class="testimonial-author">
-                    <img src="https://ui-avatars.com/api/?name=James+W&background=random" alt="Author">
+            <div class="testimonial-card hover-lift" data-aos="fade-up" data-aos-delay="300" style="background: linear-gradient(135deg, #f8fafc, #ffffff); padding: 2.5rem; border-radius: 1rem; border: 1px solid #e2e8f0; position: relative; height: 100%; display: flex; flex-direction: column;">
+                <i class="fas fa-quote-left" style="position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; color: #e2e8f0; opacity: 0.5;"></i>
+                <div class="stars" style="color: #fbbf24; margin-bottom: 1rem; font-size: 1.1rem;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testimonial-text" style="font-style: italic; color: #475569; margin-bottom: 2rem; flex-grow: 1;">"The 'Smart Team Formation' feature is absolutely incredible. It suggested a UI designer and frontend dev who had highly complementary skills, and they worked together flawlessly."</p>
+                <div class="testimonial-author" style="display: flex; align-items: center; gap: 1rem;">
+                    <img src="https://ui-avatars.com/api/?name=James+W&background=3B82F6&color=fff&size=50" alt="Author" style="border-radius: 50%; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                     <div>
-                        <div class="author-name">James Wilson</div>
-                        <div class="author-role">Project Manager</div>
+                        <div class="author-name" style="font-weight: bold; color: #1e293b;">James Wilson</div>
+                        <div class="author-role" style="font-size: 0.9rem; color: #64748b;">Project Manager</div>
                     </div>
                 </div>
             </div>
@@ -437,13 +654,13 @@
 </section>
 
 <!-- Final CTA Section -->
-<section class="final-cta">
-    <div class="container" data-aos="zoom-in">
-        <div class="cta-container">
-            <h2 class="cta-title">Build Better Teams. Deliver Better Projects.</h2>
-            <p class="cta-desc">Let SmartTeam's intelligent engine find the right talent while you focus entirely on building great products.</p>
-            <a href="#" onclick="openAuthModal('signup'); return false;" class="btn btn-primary btn-lg" style="padding-left: 3rem; padding-right: 3rem;">Get Started Free <i class="fas fa-arrow-right ml-2" style="margin-left: 0.5rem;"></i></a>
-        </div>
+<section class="final-cta" style="background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-light) 100%); padding: 6rem 0; text-align: center; position: relative; overflow: hidden; border-top: 1px solid rgba(109,74,255,0.1);">
+    <div class="blob blob-1" style="position: absolute; background: rgba(255,255,255,0.4); width: 300px; height: 300px; top: -100px; left: -100px;"></div>
+    <div class="blob blob-2" style="position: absolute; background: rgba(255,255,255,0.4); width: 400px; height: 400px; bottom: -200px; right: -100px;"></div>
+    <div class="container" data-aos="zoom-in" style="position: relative; z-index: 2;">
+        <h2 class="cta-title" style="color: var(--text-dark); margin-bottom: 1.5rem;">Build Better Teams. Deliver Better Projects.</h2>
+        <p class="cta-desc" style="color: var(--text-muted); font-size: 1.25rem; max-width: 600px; margin: 0 auto 3rem;">Let SmartTeam's intelligent engine find the right talent while you focus entirely on building great products.</p>
+        <a href="#" onclick="openAuthModal('signup'); return false;" class="btn btn-primary btn-lg" style="padding-left: 3rem; padding-right: 3rem;">Get Started Free <i class="fas fa-arrow-right ml-2" style="margin-left: 0.5rem;"></i></a>
     </div>
 </section>
 {% endblock %}
