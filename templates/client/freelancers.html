@@ -1,0 +1,549 @@
+{% extends "base.html" %}
+
+{% block title %}Find Freelancers - SmartTeam{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client/freelancers.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-layout">
+
+    <!-- COMMON CLIENT SIDEBAR -->
+    {% include 'components/client_sidebar.html' %}
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+
+        <!-- PAGE HEADER -->
+        <div class="dashboard-header freelancers-header">
+
+            <div>
+                <h1>Find Freelancers</h1>
+                <p>
+                    Discover talented professionals for your next project.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- SEARCH & FILTERS -->
+        <section class="freelancer-search-box">
+
+            <div class="freelancer-search">
+
+                <i class="fas fa-search"></i>
+
+                <input
+                    type="text"
+                    id="freelancer-search"
+                    placeholder="Search by name, skill, or role..."
+                >
+
+            </div>
+
+
+            <select id="category-filter">
+
+                <option value="">All Categories</option>
+
+                <option value="Web Development">
+                    Web Development
+                </option>
+
+                <option value="Mobile Development">
+                    Mobile Development
+                </option>
+
+                <option value="UI/UX Design">
+                    UI/UX Design
+                </option>
+
+                <option value="Graphic Design">
+                    Graphic Design
+                </option>
+
+                <option value="Data Science">
+                    Data Science
+                </option>
+
+            </select>
+
+
+            <select id="experience-filter">
+
+                <option value="">Experience</option>
+
+                <option value="Entry Level">
+                    Entry Level
+                </option>
+
+                <option value="Intermediate">
+                    Intermediate
+                </option>
+
+                <option value="Expert">
+                    Expert
+                </option>
+
+            </select>
+
+
+            <select id="rating-filter">
+
+                <option value="">Rating</option>
+
+                <option value="4.5">
+                    4.5+ Stars
+                </option>
+
+                <option value="4.0">
+                    4.0+ Stars
+                </option>
+
+                <option value="3.5">
+                    3.5+ Stars
+                </option>
+
+            </select>
+
+
+            <button type="button" class="filter-btn">
+                <i class="fas fa-sliders-h"></i>
+                Filters
+            </button>
+
+        </section>
+
+
+        <!-- RESULTS HEADER -->
+        <div class="freelancer-results-header">
+
+            <div>
+                <strong>124 Freelancers</strong>
+                <span> matching your search</span>
+            </div>
+
+            <select id="sort-freelancers">
+
+                <option value="recommended">
+                    Recommended
+                </option>
+
+                <option value="rating">
+                    Highest Rated
+                </option>
+
+                <option value="rate">
+                    Lowest Rate
+                </option>
+
+                <option value="experience">
+                    Most Experienced
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- FREELANCER RESULTS -->
+        <section class="freelancer-results">
+
+
+            <!-- FREELANCER 1 -->
+            <article class="freelancer-profile-card">
+
+                <div class="profile-card-top">
+
+                    <div class="profile-avatar large">
+                        SJ
+                    </div>
+
+                    <span class="availability available">
+                        <i class="fas fa-circle"></i>
+                        Available
+                    </span>
+
+                </div>
+
+
+                <div class="profile-rating">
+
+                    <i class="fas fa-star"></i>
+                    4.9
+
+                    <span>
+                        (42 reviews)
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Sarah Johnson
+                </h3>
+
+                <p class="profile-role">
+                    UI/UX Designer
+                </p>
+
+
+                <p class="profile-bio">
+                    Creating intuitive and scalable digital experiences
+                    with a focus on user needs and business goals.
+                </p>
+
+
+                <div class="profile-skills">
+
+                    <span>Figma</span>
+                    <span>UX Research</span>
+                    <span>Design Systems</span>
+                    <span>Prototyping</span>
+
+                </div>
+
+
+                <div class="profile-stats">
+
+                    <div>
+                        <strong>5+</strong>
+                        <span>Years</span>
+                    </div>
+
+                    <div>
+                        <strong>42</strong>
+                        <span>Projects</span>
+                    </div>
+
+                    <div>
+                        <strong>$65</strong>
+                        <span>/hour</span>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-actions">
+
+<a href="{{ url_for('client.freelancer_profile', freelancer_id=1) }}" class="outline-btn">View Profile</a>
+
+                    <button type="button" class="hire-btn">
+                        Hire
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- FREELANCER 2 -->
+            <article class="freelancer-profile-card">
+
+                <div class="profile-card-top">
+
+                    <div class="profile-avatar large purple-avatar">
+                        MT
+                    </div>
+
+                    <span class="availability available">
+                        <i class="fas fa-circle"></i>
+                        Available
+                    </span>
+
+                </div>
+
+
+                <div class="profile-rating">
+
+                    <i class="fas fa-star"></i>
+                    4.8
+
+                    <span>
+                        (35 reviews)
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Michael Thomas
+                </h3>
+
+                <p class="profile-role">
+                    React Developer
+                </p>
+
+
+                <p class="profile-bio">
+                    Full-stack developer specializing in fast,
+                    responsive web applications using modern technologies.
+                </p>
+
+
+                <div class="profile-skills">
+
+                    <span>React</span>
+                    <span>Node.js</span>
+                    <span>MongoDB</span>
+                    <span>TypeScript</span>
+
+                </div>
+
+
+                <div class="profile-stats">
+
+                    <div>
+                        <strong>4</strong>
+                        <span>Years</span>
+                    </div>
+
+                    <div>
+                        <strong>28</strong>
+                        <span>Projects</span>
+                    </div>
+
+                    <div>
+                        <strong>$55</strong>
+                        <span>/hour</span>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-actions">
+
+                  <a href="{{ url_for('client.freelancer_profile', freelancer_id=2) }}" class="outline-btn">View Profile</a>
+
+                    <button type="button" class="hire-btn">
+                        Hire
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- FREELANCER 3 -->
+            <article class="freelancer-profile-card">
+
+                <div class="profile-card-top">
+
+                    <div class="profile-avatar large green-avatar">
+                        DR
+                    </div>
+
+                    <span class="availability busy">
+                        <i class="fas fa-circle"></i>
+                        Busy
+                    </span>
+
+                </div>
+
+
+                <div class="profile-rating">
+
+                    <i class="fas fa-star"></i>
+                    4.9
+
+                    <span>
+                        (56 reviews)
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    David Rodriguez
+                </h3>
+
+                <p class="profile-role">
+                    Backend Developer
+                </p>
+
+
+                <p class="profile-bio">
+                    Backend architect specializing in scalable APIs,
+                    microservices, and database optimization.
+                </p>
+
+
+                <div class="profile-skills">
+
+                    <span>Python</span>
+                    <span>Flask</span>
+                    <span>PostgreSQL</span>
+                    <span>AWS</span>
+
+                </div>
+
+
+                <div class="profile-stats">
+
+                    <div>
+                        <strong>7</strong>
+                        <span>Years</span>
+                    </div>
+
+                    <div>
+                        <strong>56</strong>
+                        <span>Projects</span>
+                    </div>
+
+                    <div>
+                        <strong>$80</strong>
+                        <span>/hour</span>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-actions">
+
+<a href="{{ url_for('client.freelancer_profile', freelancer_id=4) }}" class="outline-btn">View Profile</a>
+
+                    <button type="button" class="hire-btn">
+                        Hire
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- FREELANCER 4 -->
+            <article class="freelancer-profile-card">
+
+                <div class="profile-card-top">
+
+                    <div class="profile-avatar large orange-avatar">
+                        EC
+                    </div>
+
+                    <span class="availability available">
+                        <i class="fas fa-circle"></i>
+                        Available
+                    </span>
+
+                </div>
+
+
+                <div class="profile-rating">
+
+                    <i class="fas fa-star"></i>
+                    5.0
+
+                    <span>
+                        (31 reviews)
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Emily Chen
+                </h3>
+
+                <p class="profile-role">
+                    Data Scientist
+                </p>
+
+
+                <p class="profile-bio">
+                    Helping businesses turn complex data into useful
+                    insights through machine learning and analytics.
+                </p>
+
+
+                <div class="profile-skills">
+
+                    <span>Python</span>
+                    <span>Machine Learning</span>
+                    <span>AI</span>
+                    <span>TensorFlow</span>
+
+                </div>
+
+
+                <div class="profile-stats">
+
+                    <div>
+                        <strong>6</strong>
+                        <span>Years</span>
+                    </div>
+
+                    <div>
+                        <strong>34</strong>
+                        <span>Projects</span>
+                    </div>
+
+                    <div>
+                        <strong>$90</strong>
+                        <span>/hour</span>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-actions">
+
+                    <a href="{{ url_for('client.freelancer_profile', freelancer_id=1) }}" class="outline-btn">View Profile</a>
+
+                    <button type="button" class="hire-btn">
+                        Hire
+                    </button>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- PAGINATION -->
+        <div class="freelancer-pagination">
+
+            <span>
+                Showing 1–4 of 124 freelancers
+            </span>
+
+            <div>
+
+                <button type="button" disabled>
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <button type="button" class="page-active">
+                    1
+                </button>
+
+                <button type="button">
+                    2
+                </button>
+
+                <button type="button">
+                    3
+                </button>
+
+                <button type="button">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+{% endblock %}

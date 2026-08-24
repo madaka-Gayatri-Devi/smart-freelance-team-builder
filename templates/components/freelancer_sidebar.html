@@ -1,0 +1,54 @@
+<aside class="sidebar">
+    <div class="sidebar-user">
+        <div class="freelancer-avatar">
+            <i class="fas fa-user"></i>
+        </div>
+        <div class="sidebar-user-info">
+            <div class="name">{{ current_user.full_name }}</div>
+            <div class="role">Freelancer</div>
+        </div>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="{{ url_for('freelancer.dashboard') }}" class="sidebar-link {% if request.endpoint == 'freelancer.dashboard' %}active{% endif %}">
+            <i class="fas fa-th-large"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="#" class="sidebar-link">
+            <i class="fas fa-search"></i>
+            <span>Find Projects</span>
+        </a>
+        <a href="#" class="sidebar-link">
+            <i class="fas fa-file-alt"></i>
+            <span>My Proposals</span>
+            <span class="sidebar-badge">4</span>
+        </a>
+        <a href="#" class="sidebar-link">
+            <i class="fas fa-briefcase"></i>
+            <span>My Work</span>
+        </a>
+        <a href="{{ url_for('freelancer.profile') }}" class="sidebar-link {% if request.endpoint == 'freelancer.profile' %}active{% endif %}">
+            <i class="fas fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="sidebar-link">
+            <i class="fas fa-comments"></i>
+            <span>Messages</span>
+            <span class="sidebar-badge">2</span>
+        </a>
+        <a href="#" class="sidebar-link">
+            <i class="fas fa-bell"></i>
+            <span>Notifications</span>
+            <span class="sidebar-badge">3</span>
+        </a>
+        <a href="#" class="sidebar-link">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </a>
+    </nav>
+    <div class="sidebar-bottom">
+        <a href="{{ url_for('auth.logout') }}" class="sidebar-link logout-link">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</aside>

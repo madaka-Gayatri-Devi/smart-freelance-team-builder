@@ -1,98 +1,286 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
+{% block title %}Freelancer Dashboard - SmartTeam{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/freelancer/dashboard.css') }}">
 {% endblock %}
-
 {% block content %}
 <div class="dashboard-layout">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="sidebar-user">
-            <div class="avatar"><i class="fas fa-user-circle fa-2x"></i></div>
-            <div class="user-info">
-                <div class="name">{{ current_user.full_name }}</div>
-                <div class="role">Freelancer</div>
+    {% include 'components/freelancer_sidebar.html' %}
+    <main class="dashboard-main">
+        <header class="dashboard-header freelancer-header">
+            <div>
+                <h1>Welcome back, {{ current_user.full_name.split()[0] }}! 👋</h1>
+                <p>Find great projects, manage your work, and grow your freelance career.</p>
             </div>
-        </div>
-        <nav class="sidebar-nav">
-            <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
-            <a href="#"><i class="fas fa-user"></i> My Profile</a>
-            <a href="#"><i class="fas fa-briefcase"></i> Portfolio</a>
-            <a href="#"><i class="fas fa-envelope-open-text"></i> Invitations</a>
-            <a href="#"><i class="fas fa-project-diagram"></i> My Projects</a>
-            <a href="#"><i class="fas fa-tasks"></i> My Tasks</a>
-            <a href="#"><i class="fas fa-wallet"></i> Earnings</a>
-            <a href="#"><i class="fas fa-cog"></i> Settings</a>
-        </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <div class="dashboard-main">
-        <header class="dashboard-header">
-            <h2>Welcome back, {{ current_user.full_name }}!</h2>
-            <div class="availability-status">
-                <span class="badge bg-success text-white"><i class="fas fa-circle"></i> Available for Work</span>
+            <div class="header-actions">
+                <button type="button" class="dashboard-icon-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button type="button" class="dashboard-icon-btn notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span></span>
+                </button>
+                <a href="{{ url_for('freelancer.profile') }}" class="header-profile">
+                    <div class="freelancer-avatar small">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </a>
             </div>
         </header>
-        
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon bg-primary-light text-primary"><i class="fas fa-star"></i></div>
-                <div class="stat-details">
-                    <div class="stat-value">4.9</div>
-                    <div class="stat-label">Average Rating</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon bg-success text-white"><i class="fas fa-project-diagram"></i></div>
-                <div class="stat-details">
-                    <div class="stat-value">5</div>
-                    <div class="stat-label">Completed Projects</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon bg-warning text-white"><i class="fas fa-envelope"></i></div>
-                <div class="stat-details">
-                    <div class="stat-value">2</div>
-                    <div class="stat-label">Pending Invitations</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon bg-light text-primary"><i class="fas fa-wallet"></i></div>
-                <div class="stat-details">
-                    <div class="stat-value">$8,450</div>
-                    <div class="stat-label">Total Earnings</div>
-                </div>
-            </div>
-        </div>
 
-        <section class="dashboard-section mt-4">
-            <h3>Recent Project Invitations</h3>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Client</th>
-                            <th>Project</th>
-                            <th>Budget</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>TechStart Inc.</td>
-                            <td>E-Commerce Mobile App</td>
-                            <td>$2,000</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm">Accept</button>
-                                <button class="btn btn-outline btn-sm">Decline</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        <section class="freelancer-stats">
+            <div class="freelancer-stat-card">
+                <div class="freelancer-stat-icon blue">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div>
+                    <span>Active Projects</span>
+                    <strong>3</strong>
+                    <small>Currently working</small>
+                </div>
+            </div>
+
+            <div class="freelancer-stat-card">
+                <div class="freelancer-stat-icon purple">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div>
+                    <span>Proposals Sent</span>
+                    <strong>18</strong>
+                    <small>This month</small>
+                </div>
+            </div>
+
+            <div class="freelancer-stat-card">
+                <div class="freelancer-stat-icon green">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div>
+                    <span>Total Earnings</span>
+                    <strong>$8,420</strong>
+                    <small>All time</small>
+                </div>
+            </div>
+
+            <div class="freelancer-stat-card">
+                <div class="freelancer-stat-icon orange">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <span>Rating</span>
+                    <strong>4.9</strong>
+                    <small>From 56 reviews</small>
+                </div>
             </div>
         </section>
-    </div>
+
+        <section class="freelancer-dashboard-grid">
+            <div class="dashboard-section">
+                <div class="section-heading">
+                    <div>
+                        <h3>Active Projects</h3>
+                        <p>Projects you are currently working on.</p>
+                    </div>
+                    <a href="#" class="section-link">
+                        View All <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="work-list">
+                    <div class="work-item">
+                        <div class="work-icon blue">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="work-info">
+                            <h4>E-Commerce Website</h4>
+                            <p>Client: NovaTech</p>
+                            <div class="progress-bar">
+                                <span style="width:75%"></span>
+                            </div>
+                            <small>75% completed</small>
+                        </div>
+                        <div class="work-side">
+                            <strong>$2,500</strong>
+                            <span class="work-status active">In Progress</span>
+                        </div>
+                    </div>
+
+                    <div class="work-item">
+                        <div class="work-icon purple">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="work-info">
+                            <h4>Mobile Application</h4>
+                            <p>Client: BrightWorks</p>
+                            <div class="progress-bar">
+                                <span style="width:45%"></span>
+                            </div>
+                            <small>45% completed</small>
+                        </div>
+                        <div class="work-side">
+                            <strong>$1,800</strong>
+                            <span class="work-status active">In Progress</span>
+                        </div>
+                    </div>
+
+                    <div class="work-item">
+                        <div class="work-icon green">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="work-info">
+                            <h4>Analytics Dashboard</h4>
+                            <p>Client: MarketPro</p>
+                            <div class="progress-bar">
+                                <span style="width:90%"></span>
+                            </div>
+                            <small>90% completed</small>
+                        </div>
+                        <div class="work-side">
+                            <strong>$1,400</strong>
+                            <span class="work-status deadline">Due Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-section">
+                <div class="section-heading">
+                    <div>
+                        <h3>Quick Actions</h3>
+                        <p>Manage your freelance work.</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <a href="#" class="quick-action primary-action">
+                        <div>
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <span>
+                            <strong>Find Projects</strong>
+                            <small>Discover new opportunities</small>
+                        </span>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+
+                    <a href="#" class="quick-action">
+                        <div>
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <span>
+                            <strong>My Proposals</strong>
+                            <small>Track your applications</small>
+                        </span>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+
+                    <a href="{{ url_for('freelancer.profile') }}" class="quick-action">
+                        <div>
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                        <span>
+                            <strong>Update Profile</strong>
+                            <small>Improve your profile</small>
+                        </span>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <h3>Recommended Projects</h3>
+                    <p>Projects matching your skills and experience.</p>
+                </div>
+                <a href="#" class="section-link">
+                    View All Projects <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="recommended-projects">
+                <div class="recommended-project">
+                    <div class="recommended-top">
+                        <div class="project-mini-icon blue">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <span class="match-badge">95% Match</span>
+                    </div>
+                    <h4>Build SaaS Landing Page</h4>
+                    <p>Design and develop a modern responsive landing page for a SaaS product.</p>
+                    <div class="recommended-skills">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="recommended-bottom">
+                        <strong>$800–$1,200</strong>
+                        <span><i class="fas fa-clock"></i> 2 weeks</span>
+                    </div>
+                </div>
+
+                <div class="recommended-project">
+                    <div class="recommended-top">
+                        <div class="project-mini-icon purple">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <span class="match-badge">91% Match</span>
+                    </div>
+                    <h4>React Native Developer</h4>
+                    <p>Looking for a developer to build features for an existing mobile application.</p>
+                    <div class="recommended-skills">
+                        <span>React Native</span>
+                        <span>Redux</span>
+                        <span>API</span>
+                    </div>
+                    <div class="recommended-bottom">
+                        <strong>$1,500–$2,500</strong>
+                        <span><i class="fas fa-clock"></i> 1 month</span>
+                    </div>
+                </div>
+
+                <div class="recommended-project">
+                    <div class="recommended-top">
+                        <div class="project-mini-icon green">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <span class="match-badge">88% Match</span>
+                    </div>
+                    <h4>Python Backend API</h4>
+                    <p>Build scalable REST APIs and integrate them with an existing platform.</p>
+                    <div class="recommended-skills">
+                        <span>Python</span>
+                        <span>Flask</span>
+                        <span>MongoDB</span>
+                    </div>
+                    <div class="recommended-bottom">
+                        <strong>$2,000–$3,000</strong>
+                        <span><i class="fas fa-clock"></i> 3 weeks</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-section profile-progress-section">
+            <div class="profile-progress-content">
+                <div class="profile-progress-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div>
+                    <h3>Complete your freelancer profile</h3>
+                    <p>A complete profile helps clients understand your skills and increases your chances of getting hired.</p>
+                    <div class="profile-progress">
+                        <span style="width:70%"></span>
+                    </div>
+                    <small>70% complete</small>
+                </div>
+                <a href="{{ url_for('freelancer.profile') }}" class="complete-profile-btn">
+                    Complete Profile
+                </a>
+            </div>
+        </section>
+    </main>
 </div>
 {% endblock %}

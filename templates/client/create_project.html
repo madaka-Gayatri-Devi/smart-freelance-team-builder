@@ -1,1 +1,431 @@
+{% extends "base.html" %}
 
+{% block title %}Create Project - SmartTeam{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client/create-project.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-layout">
+
+    <!-- COMMON CLIENT SIDEBAR -->
+    {% include 'components/client_sidebar.html' %}
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+
+        <!-- PAGE HEADER -->
+        <div class="dashboard-header">
+            <div>
+                <h1>Create a New Project</h1>
+                <p>Tell us what you need and find the right freelancer.</p>
+            </div>
+        </div>
+
+        <div class="create-project-layout">
+
+            <!-- PROJECT FORM -->
+            <form class="project-form">
+
+                <!-- PROJECT DETAILS -->
+                <section class="form-card">
+
+                    <div class="form-card-heading">
+                        <div class="form-step">01</div>
+
+                        <div>
+                            <h2>Project Details</h2>
+                            <p>Start with the basic information about your project.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-title">
+                            Project Title <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="project-title"
+                            name="project_title"
+                            placeholder="e.g. Build a modern e-commerce website"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-description">
+                            Project Description <span>*</span>
+                        </label>
+
+                        <textarea
+                            id="project-description"
+                            name="project_description"
+                            rows="6"
+                            placeholder="Describe your project, goals, requirements, and what you expect from the freelancer..."
+                        ></textarea>
+
+                        <small>
+                            Be as detailed as possible to attract the right freelancers.
+                        </small>
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="category">
+                                Category <span>*</span>
+                            </label>
+
+                            <select id="category" name="category">
+                                <option value="">Select category</option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="Mobile Development">Mobile Development</option>
+                                <option value="UI/UX Design">UI/UX Design</option>
+                                <option value="Graphic Design">Graphic Design</option>
+                                <option value="Data Science">Data Science</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="Content Writing">Content Writing</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience">
+                                Experience Level <span>*</span>
+                            </label>
+
+                            <select id="experience" name="experience">
+                                <option value="">Select experience</option>
+                                <option value="Entry Level">Entry Level</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Expert">Expert</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- REQUIRED SKILLS -->
+                <section class="form-card">
+
+                    <div class="form-card-heading">
+                        <div class="form-step">02</div>
+
+                        <div>
+                            <h2>Required Skills</h2>
+                            <p>Select the skills you need for this project.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+                            Skills <span>*</span>
+                        </label>
+
+                        <div class="skill-input">
+
+                            <input
+                                type="text"
+                                id="skill-input"
+                                placeholder="Search or type a skill"
+                            >
+
+                            <button type="button" id="add-skill-btn">
+                                <i class="fas fa-plus"></i>
+                                Add
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="selected-skills">
+
+                        <span>
+                            HTML
+                            <button type="button">&times;</button>
+                        </span>
+
+                        <span>
+                            CSS
+                            <button type="button">&times;</button>
+                        </span>
+
+                        <span>
+                            JavaScript
+                            <button type="button">&times;</button>
+                        </span>
+
+                    </div>
+
+                    <div class="popular-skills">
+
+                        <label>Popular skills</label>
+
+                        <div>
+                            <button type="button">React</button>
+                            <button type="button">Python</button>
+                            <button type="button">Node.js</button>
+                            <button type="button">MongoDB</button>
+                            <button type="button">Figma</button>
+                            <button type="button">Django</button>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- BUDGET AND DEADLINE -->
+                <section class="form-card">
+
+                    <div class="form-card-heading">
+
+                        <div class="form-step">03</div>
+
+                        <div>
+                            <h2>Budget & Deadline</h2>
+                            <p>
+                                Set your project budget and expected completion date.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="budget">
+                                Budget <span>*</span>
+                            </label>
+
+                            <div class="input-prefix">
+
+                                <span>$</span>
+
+                                <input
+                                    type="number"
+                                    id="budget"
+                                    name="budget"
+                                    placeholder="2500"
+                                    min="0"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="budget-type">
+                                Budget Type <span>*</span>
+                            </label>
+
+                            <select
+                                id="budget-type"
+                                name="budget_type"
+                            >
+                                <option value="Fixed Price">
+                                    Fixed Price
+                                </option>
+
+                                <option value="Hourly Rate">
+                                    Hourly Rate
+                                </option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="deadline">
+                            Project Deadline <span>*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="deadline"
+                            name="deadline"
+                        >
+
+                    </div>
+
+                </section>
+
+
+                <!-- ADDITIONAL INFORMATION -->
+                <section class="form-card">
+
+                    <div class="form-card-heading">
+
+                        <div class="form-step">04</div>
+
+                        <div>
+                            <h2>Additional Information</h2>
+                            <p>
+                                Add anything else freelancers should know.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="attachments">
+                            Project Attachments
+                        </label>
+
+                        <div class="upload-box">
+
+                            <i class="fas fa-cloud-upload-alt"></i>
+
+                            <strong>
+                                Upload project files
+                            </strong>
+
+                            <span>
+                                PDF, DOC, PNG, JPG or ZIP up to 10MB
+                            </span>
+
+                            <button
+                                type="button"
+                                id="choose-files-btn"
+                            >
+                                Choose Files
+                            </button>
+
+                            <input
+                                type="file"
+                                id="attachments"
+                                name="attachments"
+                                hidden
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="additional-info">
+                            Additional Notes
+                        </label>
+
+                        <textarea
+                            id="additional-info"
+                            name="additional_info"
+                            rows="4"
+                            placeholder="Anything else you want freelancers to know?"
+                        ></textarea>
+
+                    </div>
+
+                </section>
+
+
+                <!-- FORM ACTIONS -->
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                    >
+                        Save as Draft
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="publish-btn"
+                    >
+                        <i class="fas fa-paper-plane"></i>
+                        Publish Project
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- RIGHT SIDE TIPS -->
+            <aside class="project-tips">
+
+                <div class="tips-card">
+
+                    <div class="tips-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+
+                    <h3>Tips for a great project</h3>
+
+                    <div class="tip">
+                        <i class="fas fa-check"></i>
+                        <p>Use a clear and specific project title.</p>
+                    </div>
+
+                    <div class="tip">
+                        <i class="fas fa-check"></i>
+                        <p>
+                            Describe your goals and requirements clearly.
+                        </p>
+                    </div>
+
+                    <div class="tip">
+                        <i class="fas fa-check"></i>
+                        <p>
+                            Select all the skills needed for the project.
+                        </p>
+                    </div>
+
+                    <div class="tip">
+                        <i class="fas fa-check"></i>
+                        <p>
+                            Set a realistic budget and deadline.
+                        </p>
+                    </div>
+
+                    <div class="tip">
+                        <i class="fas fa-check"></i>
+                        <p>
+                            Attach useful reference files when possible.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="secure-card">
+
+                    <i class="fas fa-shield-alt"></i>
+
+                    <div>
+                        <strong>Your project is secure</strong>
+
+                        <p>
+                            Your project information is only shared
+                            with relevant freelancers.
+                        </p>
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+</div>
+
+{% endblock %}

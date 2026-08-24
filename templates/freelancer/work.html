@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% block title %}My Work - SmartTeam{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/freelancer/work.css') }}">
+{% endblock %}
+{% block content %}
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="sidebar-user">
+            <div class="freelancer-avatar"><i class="fas fa-user"></i></div>
+            <div>
+                <div class="name">{{ current_user.full_name }}</div>
+                <div class="role">Freelancer</div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-link"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-search"></i><span>Find Projects</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-file-alt"></i><span>My Proposals</span></a>
+            <a href="#" class="sidebar-link active"><i class="fas fa-briefcase"></i><span>My Work</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-comments"></i><span>Messages</span><span class="nav-count">2</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-bell"></i><span>Notifications</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-user-circle"></i><span>My Profile</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-cog"></i><span>Settings</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="#" class="sidebar-link logout-link"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+        </div>
+    </aside>
+    <main class="dashboard-main">
+        <div class="dashboard-header work-header">
+            <div>
+                <h1>My Work</h1>
+                <p>Manage your active projects, deadlines, and completed work.</p>
+            </div>
+            <button class="work-search-btn"><i class="fas fa-search"></i> Find More Projects</button>
+        </div>
+
+        <section class="work-stats">
+            <div class="work-stat-card">
+                <div class="work-stat-icon blue"><i class="fas fa-spinner"></i></div>
+                <div><span>Active Projects</span><strong>3</strong><small>Currently working</small></div>
+            </div>
+            <div class="work-stat-card">
+                <div class="work-stat-icon orange"><i class="fas fa-clock"></i></div>
+                <div><span>Upcoming Deadlines</span><strong>2</strong><small>Within 7 days</small></div>
+            </div>
+            <div class="work-stat-card">
+                <div class="work-stat-icon green"><i class="fas fa-check-circle"></i></div>
+                <div><span>Completed</span><strong>24</strong><small>Projects finished</small></div>
+            </div>
+            <div class="work-stat-card">
+                <div class="work-stat-icon purple"><i class="fas fa-dollar-sign"></i></div>
+                <div><span>Total Earned</span><strong>$18,650</strong><small>From completed work</small></div>
+            </div>
+        </section>
+
+        <section class="work-tabs-card">
+            <div class="work-tabs">
+                <button class="work-tab active">Active <span>3</span></button>
+                <button class="work-tab">Completed <span>24</span></button>
+                <button class="work-tab">Cancelled <span>2</span></button>
+            </div>
+            <select>
+                <option>Recently Updated</option>
+                <option>Deadline Soon</option>
+                <option>Highest Value</option>
+            </select>
+        </section>
+
+        <section class="active-work-list">
+            <article class="work-project-card">
+                <div class="work-project-header">
+                    <div class="work-project-icon blue"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="work-project-title">
+                        <span class="work-project-status active"><i class="fas fa-circle"></i> In Progress</span>
+                        <h2>E-Commerce Website</h2>
+                        <p>Client: NovaTech</p>
+                    </div>
+                    <button class="work-menu"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+                <div class="work-project-details">
+                    <div><span>Project Budget</span><strong>$2,500</strong></div>
+                    <div><span>Start Date</span><strong>Aug 10, 2026</strong></div>
+                    <div><span>Deadline</span><strong class="deadline-warning">Aug 30, 2026</strong></div>
+                    <div><span>Days Left</span><strong class="deadline-warning">6 days</strong></div>
+                </div>
+                <div class="work-progress-section">
+                    <div class="work-progress-heading"><span>Project Progress</span><strong>75%</strong></div>
+                    <div class="work-progress-bar"><span style="width:75%"></span></div>
+                    <div class="work-progress-labels"><span>Started</span><span>75% completed</span><span>Deadline: Aug 30</span></div>
+                </div>
+                <div class="work-project-footer">
+                    <div class="work-client"><div class="work-client-avatar">NT</div><div><strong>NovaTech</strong><span><i class="fas fa-star"></i> 4.9 Client Rating</span></div></div>
+                    <div class="work-actions"><button class="message-client-btn"><i class="fas fa-comment"></i> Message Client</button><button class="view-work-btn">View Project</button></div>
+                </div>
+            </article>
+
+            <article class="work-project-card">
+                <div class="work-project-header">
+                    <div class="work-project-icon purple"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="work-project-title">
+                        <span class="work-project-status active"><i class="fas fa-circle"></i> In Progress</span>
+                        <h2>Mobile Application</h2>
+                        <p>Client: BrightWorks</p>
+                    </div>
+                    <button class="work-menu"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+                <div class="work-project-details">
+                    <div><span>Project Budget</span><strong>$1,800</strong></div>
+                    <div><span>Start Date</span><strong>Aug 15, 2026</strong></div>
+                    <div><span>Deadline</span><strong>Sep 15, 2026</strong></div>
+                    <div><span>Days Left</span><strong>22 days</strong></div>
+                </div>
+                <div class="work-progress-section">
+                    <div class="work-progress-heading"><span>Project Progress</span><strong>45%</strong></div>
+                    <div class="work-progress-bar purple-bar"><span style="width:45%"></span></div>
+                    <div class="work-progress-labels"><span>Started</span><span>45% completed</span><span>Deadline: Sep 15</span></div>
+                </div>
+                <div class="work-project-footer">
+                    <div class="work-client"><div class="work-client-avatar purple">BW</div><div><strong>BrightWorks</strong><span><i class="fas fa-star"></i> 4.8 Client Rating</span></div></div>
+                    <div class="work-actions"><button class="message-client-btn"><i class="fas fa-comment"></i> Message Client</button><button class="view-work-btn">View Project</button></div>
+                </div>
+            </article>
+
+            <article class="work-project-card">
+                <div class="work-project-header">
+                    <div class="work-project-icon green"><i class="fas fa-chart-line"></i></div>
+                    <div class="work-project-title">
+                        <span class="work-project-status deadline"><i class="fas fa-circle"></i> Due Soon</span>
+                        <h2>Analytics Dashboard</h2>
+                        <p>Client: MarketPro</p>
+                    </div>
+                    <button class="work-menu"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+                <div class="work-project-details">
+                    <div><span>Project Budget</span><strong>$1,400</strong></div>
+                    <div><span>Start Date</span><strong>Aug 5, 2026</strong></div>
+                    <div><span>Deadline</span><strong class="deadline-warning">Aug 26, 2026</strong></div>
+                    <div><span>Days Left</span><strong class="deadline-warning">2 days</strong></div>
+                </div>
+                <div class="work-progress-section">
+                    <div class="work-progress-heading"><span>Project Progress</span><strong>90%</strong></div>
+                    <div class="work-progress-bar green-bar"><span style="width:90%"></span></div>
+                    <div class="work-progress-labels"><span>Started</span><span>90% completed</span><span>Deadline: Aug 26</span></div>
+                </div>
+                <div class="work-project-footer">
+                    <div class="work-client"><div class="work-client-avatar green">MP</div><div><strong>MarketPro</strong><span><i class="fas fa-star"></i> 5.0 Client Rating</span></div></div>
+                    <div class="work-actions"><button class="message-client-btn"><i class="fas fa-comment"></i> Message Client</button><button class="view-work-btn">View Project</button></div>
+                </div>
+            </article>
+        </section>
+
+        <section class="dashboard-section completed-work-section">
+            <div class="section-heading">
+                <div>
+                    <h3>Recently Completed</h3>
+                    <p>Your latest successfully completed projects.</p>
+                </div>
+                <a href="#" class="section-link">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="completed-work-list">
+                <div class="completed-work-item">
+                    <div class="completed-icon"><i class="fas fa-check"></i></div>
+                    <div class="completed-info">
+                        <h4>Corporate Website Redesign</h4>
+                        <p>Client: DesignHub</p>
+                    </div>
+                    <div class="completed-rating"><i class="fas fa-star"></i> 5.0</div>
+                    <div class="completed-amount">$1,800</div>
+                    <span class="completed-date">Aug 12, 2026</span>
+                </div>
+                <div class="completed-work-item">
+                    <div class="completed-icon"><i class="fas fa-check"></i></div>
+                    <div class="completed-info">
+                        <h4>REST API Development</h4>
+                        <p>Client: CloudWorks</p>
+                    </div>
+                    <div class="completed-rating"><i class="fas fa-star"></i> 4.9</div>
+                    <div class="completed-amount">$2,200</div>
+                    <span class="completed-date">Jul 28, 2026</span>
+                </div>
+                <div class="completed-work-item">
+                    <div class="completed-icon"><i class="fas fa-check"></i></div>
+                    <div class="completed-info">
+                        <h4>Business Landing Page</h4>
+                        <p>Client: StartupLabs</p>
+                    </div>
+                    <div class="completed-rating"><i class="fas fa-star"></i> 5.0</div>
+                    <div class="completed-amount">$950</div>
+                    <span class="completed-date">Jul 15, 2026</span>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+{% endblock %}

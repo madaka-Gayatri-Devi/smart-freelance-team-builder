@@ -1,0 +1,64 @@
+/* Freelancer Projects */
+.project-search-panel{background:white;border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:1rem;display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:.6rem;margin-bottom:1.25rem}
+.freelancer-project-search{display:flex;align-items:center;gap:.6rem;border:1px solid var(--border-color);border-radius:var(--radius-md);padding:0 .75rem}
+.freelancer-project-search i{font-size:.7rem;color:var(--text-muted)}
+.freelancer-project-search input{border:0;outline:0;width:100%;padding:.7rem 0;font-size:.72rem}
+.project-search-panel select{border:1px solid var(--border-color);border-radius:var(--radius-md);background:white;padding:.7rem;font-size:.7rem;outline:0}
+.filter-project-btn{border:1px solid var(--border-color);background:white;border-radius:var(--radius-md);padding:.7rem .8rem;font-size:.7rem;cursor:pointer}
+.projects-content{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:1.25rem;align-items:start}
+.results-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
+.results-heading strong{font-size:.85rem}
+.results-heading span{font-size:.68rem;color:var(--text-muted)}
+.results-heading select{border:1px solid var(--border-color);background:white;border-radius:var(--radius-md);padding:.55rem .65rem;font-size:.68rem}
+.projects-results{display:flex;flex-direction:column;gap:.8rem}
+.freelancer-project-card{background:white;border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:1.2rem;box-shadow:var(--shadow-sm);transition:.2s}
+.freelancer-project-card:hover{border-color:var(--primary);transform:translateY(-1px)}
+.project-card-header{display:flex;align-items:flex-start;gap:.8rem}
+.project-category-icon{width:44px;height:44px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.project-category-icon.blue{background:#dbeafe;color:#2563eb}
+.project-category-icon.purple{background:#ede9fe;color:#7c3aed}
+.project-category-icon.green{background:#dcfce7;color:#16a34a}
+.project-category-icon.orange{background:#ffedd5;color:#ea580c}
+.project-card-title{flex:1}
+.project-match{display:inline-block;background:#dcfce7;color:#15803d;padding:.25rem .45rem;border-radius:999px;font-size:.58rem;font-weight:700}
+.project-card-title h2{font-size:.92rem;margin:.4rem 0 .2rem}
+.project-card-title>span{font-size:.62rem;color:var(--text-muted)}
+.bookmark-btn{border:0;background:none;color:var(--text-muted);font-size:.9rem;cursor:pointer}
+.bookmark-btn:hover{color:var(--primary)}
+.project-description{font-size:.7rem;line-height:1.6;color:var(--text-muted);margin:.8rem 0}
+.project-skills{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1rem}
+.project-skills span{background:var(--bg-light);color:var(--text-muted);padding:.3rem .5rem;border-radius:4px;font-size:.6rem}
+.project-card-bottom{border-top:1px solid var(--border-color);padding-top:.9rem;display:grid;grid-template-columns:1.4fr 1fr .8fr auto;align-items:center;gap:.8rem}
+.project-client-info{display:flex;align-items:center;gap:.5rem}
+.client-mini-avatar{width:30px;height:30px;border-radius:50%;background:#dbeafe;color:#2563eb;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700}
+.client-mini-avatar.purple{background:#ede9fe;color:#7c3aed}
+.client-mini-avatar.green{background:#dcfce7;color:#16a34a}
+.client-mini-avatar.orange{background:#ffedd5;color:#ea580c}
+.project-client-info strong{display:block;font-size:.68rem}
+.project-client-info span{display:block;font-size:.58rem;color:var(--text-muted);margin-top:.15rem}
+.project-client-info span i{color:#f59e0b}
+.project-budget strong,.project-deadline strong{display:block;font-size:.7rem}
+.project-budget span,.project-deadline span{display:block;font-size:.58rem;color:var(--text-muted);margin-top:.2rem}
+.apply-btn{border:1px solid var(--primary);background:var(--primary);color:white;padding:.55rem .7rem;border-radius:var(--radius-md);font-size:.62rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.apply-btn:hover{opacity:.9}
+.project-filter-sidebar{position:sticky;top:1rem}
+.filter-card{background:white;border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:1rem;box-shadow:var(--shadow-sm)}
+.filter-card-heading{display:flex;align-items:center;justify-content:space-between;padding-bottom:.8rem;border-bottom:1px solid var(--border-color)}
+.filter-card-heading h3{margin:0;font-size:.85rem}
+.filter-card-heading button{border:0;background:none;color:var(--primary);font-size:.6rem;cursor:pointer}
+.filter-group{padding:1rem 0;border-bottom:1px solid var(--border-color)}
+.filter-group:last-child{border-bottom:0;padding-bottom:0}
+.filter-group>label:first-child{display:block;font-size:.68rem;font-weight:700;margin-bottom:.7rem}
+.check-option{display:flex!important;align-items:center;gap:.45rem;font-size:.63rem!important;font-weight:400!important;color:var(--text-muted);margin-bottom:.55rem}
+.check-option:last-child{margin-bottom:0}
+.check-option input{accent-color:var(--primary)}
+.check-option span{margin-left:auto;color:var(--text-muted)}
+.filter-skill-list{display:flex;flex-wrap:wrap;gap:.35rem}
+.filter-skill-list span{background:var(--primary-light);color:var(--primary);padding:.3rem .45rem;border-radius:4px;font-size:.58rem}
+.projects-pagination{display:flex;align-items:center;justify-content:space-between;margin-top:.4rem;color:var(--text-muted);font-size:.65rem}
+.projects-pagination div{display:flex;gap:.25rem}
+.projects-pagination button{width:29px;height:29px;border:1px solid var(--border-color);background:white;border-radius:6px;font-size:.65rem;cursor:pointer}
+.projects-pagination button:disabled{opacity:.4;cursor:not-allowed}
+.projects-pagination .page-active{background:var(--primary);color:white;border-color:var(--primary)}
+@media(max-width:1100px){.project-search-panel{grid-template-columns:1fr 1fr}.freelancer-project-search{grid-column:1/-1}.projects-content{grid-template-columns:1fr}.project-filter-sidebar{position:static}.filter-card{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.filter-card-heading{grid-column:1/-1}.filter-group{border-bottom:0}}
+@media(max-width:750px){.project-search-panel{grid-template-columns:1fr}.freelancer-project-search{grid-column:auto}.project-card-bottom{grid-template-columns:1fr 1fr}.apply-btn{width:100%}.filter-card{display:block}.results-heading{align-items:flex-start;gap:.6rem;flex-direction:column}.projects-pagination{align-items:flex-start;gap:.6rem;flex-direction:column}}

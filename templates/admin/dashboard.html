@@ -1,90 +1,272 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
+{% block title %}Admin Dashboard - SmartTeam{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/dashboard.css') }}">
 {% endblock %}
-
 {% block content %}
 <div class="dashboard-layout">
-    <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-user">
-            <div class="avatar"><i class="fas fa-user-shield fa-2x text-primary"></i></div>
-            <div class="user-info">
+            <div class="admin-avatar"><i class="fas fa-shield-alt"></i></div>
+            <div>
                 <div class="name">{{ current_user.full_name }}</div>
-                <div class="role">Admin</div>
+                <div class="role">Administrator</div>
             </div>
         </div>
         <nav class="sidebar-nav">
-            <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
-            <a href="#"><i class="fas fa-users"></i> Users</a>
-            <a href="#"><i class="fas fa-user-astronaut"></i> Freelancers</a>
-            <a href="#"><i class="fas fa-briefcase"></i> Clients</a>
-            <a href="#"><i class="fas fa-project-diagram"></i> Projects</a>
-            <a href="#"><i class="fas fa-wallet"></i> Payments</a>
-            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#" class="sidebar-link active"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-users"></i><span>Users</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-user-tie"></i><span>Freelancers</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-project-diagram"></i><span>Projects</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-file-invoice-dollar"></i><span>Transactions</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-chart-line"></i><span>Reports</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-bell"></i><span>Notifications</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-cog"></i><span>Settings</span></a>
         </nav>
+        <div class="sidebar-bottom">
+            <a href="#" class="sidebar-link logout-link"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+        </div>
     </aside>
 
-    <!-- Main Content -->
-    <div class="dashboard-main">
-        <header class="dashboard-header">
-            <h2>Admin Dashboard</h2>
-        </header>
-        
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon bg-primary-light text-primary"><i class="fas fa-users"></i></div>
-                <div class="stat-details">
-                    <div class="stat-value">1,245</div>
-                    <div class="stat-label">Total Users</div>
-                </div>
+    <main class="dashboard-main admin-main">
+        <div class="dashboard-header admin-header">
+            <div>
+                <span class="admin-badge"><i class="fas fa-shield-alt"></i> Admin Panel</span>
+                <h1>Dashboard Overview</h1>
+                <p>Monitor and manage the SmartTeam platform.</p>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon bg-success text-white"><i class="fas fa-project-diagram"></i></div>
-                <div class="stat-details">
-                    <div class="stat-value">342</div>
-                    <div class="stat-label">Active Projects</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon bg-warning text-white"><i class="fas fa-wallet"></i></div>
-                <div class="stat-details">
-                    <div class="stat-value">$45,200</div>
-                    <div class="stat-label">Platform Volume</div>
-                </div>
+            <div class="admin-header-date">
+                <i class="far fa-calendar-alt"></i>
+                <span>August 24, 2026</span>
             </div>
         </div>
 
-        <section class="dashboard-section mt-4">
-            <h3>Recent Users</h3>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Joined</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>jane@example.com</td>
-                            <td><span class="badge bg-primary-light text-primary">Client</span></td>
-                            <td>Today</td>
-                        </tr>
-                        <tr>
-                            <td>Mark Johnson</td>
-                            <td>mark@example.com</td>
-                            <td><span class="badge bg-success text-white">Freelancer</span></td>
-                            <td>Yesterday</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <section class="admin-stats">
+            <div class="admin-stat-card">
+                <div class="admin-stat-icon blue"><i class="fas fa-users"></i></div>
+                <div>
+                    <span>Total Users</span>
+                    <strong>1,248</strong>
+                    <small><i class="fas fa-arrow-up"></i> 12.5% this month</small>
+                </div>
+            </div>
+
+            <div class="admin-stat-card">
+                <div class="admin-stat-icon purple"><i class="fas fa-user-tie"></i></div>
+                <div>
+                    <span>Freelancers</span>
+                    <strong>842</strong>
+                    <small><i class="fas fa-arrow-up"></i> 8.4% this month</small>
+                </div>
+            </div>
+
+            <div class="admin-stat-card">
+                <div class="admin-stat-icon green"><i class="fas fa-briefcase"></i></div>
+                <div>
+                    <span>Active Projects</span>
+                    <strong>186</strong>
+                    <small><i class="fas fa-arrow-up"></i> 15.2% this month</small>
+                </div>
+            </div>
+
+            <div class="admin-stat-card">
+                <div class="admin-stat-icon orange"><i class="fas fa-dollar-sign"></i></div>
+                <div>
+                    <span>Total Revenue</span>
+                    <strong>$42.8K</strong>
+                    <small><i class="fas fa-arrow-up"></i> 18.7% this month</small>
+                </div>
             </div>
         </section>
-    </div>
+
+        <section class="admin-dashboard-grid">
+            <div class="admin-panel activity-panel">
+                <div class="admin-panel-header">
+                    <div>
+                        <h2>Recent Activity</h2>
+                        <p>Latest activity across the platform.</p>
+                    </div>
+                    <button class="admin-view-btn">View All</button>
+                </div>
+
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon blue"><i class="fas fa-user-plus"></i></div>
+                        <div class="activity-content">
+                            <strong>New freelancer registered</strong>
+                            <span>Sarah Williams joined the platform</span>
+                        </div>
+                        <time>5 min ago</time>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon green"><i class="fas fa-check"></i></div>
+                        <div class="activity-content">
+                            <strong>Project completed</strong>
+                            <span>E-commerce Website was marked completed</span>
+                        </div>
+                        <time>24 min ago</time>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon purple"><i class="fas fa-project-diagram"></i></div>
+                        <div class="activity-content">
+                            <strong>New project posted</strong>
+                            <span>NovaTech posted a new project</span>
+                        </div>
+                        <time>1 hour ago</time>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon orange"><i class="fas fa-flag"></i></div>
+                        <div class="activity-content">
+                            <strong>Project reported</strong>
+                            <span>A project requires admin review</span>
+                        </div>
+                        <time>2 hours ago</time>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon blue"><i class="fas fa-user-check"></i></div>
+                        <div class="activity-content">
+                            <strong>Freelancer profile verified</strong>
+                            <span>Michael Thomas was verified</span>
+                        </div>
+                        <time>3 hours ago</time>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-panel quick-panel">
+                <div class="admin-panel-header">
+                    <div>
+                        <h2>Quick Actions</h2>
+                        <p>Common administrative tasks.</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <button>
+                        <span class="quick-icon blue"><i class="fas fa-users"></i></span>
+                        <span><strong>Manage Users</strong><small>View and manage accounts</small></span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <button>
+                        <span class="quick-icon purple"><i class="fas fa-user-check"></i></span>
+                        <span><strong>Verify Freelancers</strong><small>Review pending profiles</small></span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <button>
+                        <span class="quick-icon green"><i class="fas fa-project-diagram"></i></span>
+                        <span><strong>Review Projects</strong><small>Manage posted projects</small></span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <button>
+                        <span class="quick-icon orange"><i class="fas fa-chart-bar"></i></span>
+                        <span><strong>View Reports</strong><small>Platform performance</small></span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="admin-panel platform-panel">
+            <div class="admin-panel-header">
+                <div>
+                    <h2>Platform Overview</h2>
+                    <p>Current marketplace statistics.</p>
+                </div>
+                <select>
+                    <option>Last 30 Days</option>
+                    <option>Last 7 Days</option>
+                    <option>Last 3 Months</option>
+                    <option>This Year</option>
+                </select>
+            </div>
+
+            <div class="platform-overview">
+                <div class="overview-item">
+                    <span>Projects Posted</span>
+                    <strong>326</strong>
+                    <div class="overview-bar"><span style="width:82%"></span></div>
+                    <small>82% of monthly target</small>
+                </div>
+
+                <div class="overview-item">
+                    <span>Projects Completed</span>
+                    <strong>218</strong>
+                    <div class="overview-bar green-bar"><span style="width:68%"></span></div>
+                    <small>68% completion rate</small>
+                </div>
+
+                <div class="overview-item">
+                    <span>Successful Matches</span>
+                    <strong>274</strong>
+                    <div class="overview-bar purple-bar"><span style="width:76%"></span></div>
+                    <small>76% matching success</small>
+                </div>
+
+                <div class="overview-item">
+                    <span>Pending Reviews</span>
+                    <strong>18</strong>
+                    <div class="overview-bar orange-bar"><span style="width:24%"></span></div>
+                    <small>Requires attention</small>
+                </div>
+            </div>
+        </section>
+
+        <section class="admin-panel users-panel">
+            <div class="admin-panel-header">
+                <div>
+                    <h2>Recently Registered Users</h2>
+                    <p>Latest users who joined SmartTeam.</p>
+                </div>
+                <button class="admin-view-btn">View All Users</button>
+            </div>
+
+            <div class="admin-users-table">
+                <div class="admin-table-row admin-table-heading">
+                    <span>User</span>
+                    <span>Role</span>
+                    <span>Joined</span>
+                    <span>Status</span>
+                </div>
+
+                <div class="admin-table-row">
+                    <div class="admin-user-info">
+                        <div class="table-avatar blue-avatar">SW</div>
+                        <div><strong>Sarah Williams</strong><small>sarah@example.com</small></div>
+                    </div>
+                    <span class="role-badge freelancer-role">Freelancer</span>
+                    <span>Today</span>
+                    <span class="status-badge active-status">Active</span>
+                </div>
+
+                <div class="admin-table-row">
+                    <div class="admin-user-info">
+                        <div class="table-avatar purple-avatar">JD</div>
+                        <div><strong>James Davis</strong><small>james@example.com</small></div>
+                    </div>
+                    <span class="role-badge client-role">Client</span>
+                    <span>Today</span>
+                    <span class="status-badge active-status">Active</span>
+                </div>
+
+                <div class="admin-table-row">
+                    <div class="admin-user-info">
+                        <div class="table-avatar green-avatar">MT</div>
+                        <div><strong>Michael Thomas</strong><small>michael@example.com</small></div>
+                    </div>
+                    <span class="role-badge freelancer-role">Freelancer</span>
+                    <span>Yesterday</span>
+                    <span class="status-badge pending-status">Pending</span>
+                </div>
+            </div>
+        </section>
+    </main>
 </div>
 {% endblock %}

@@ -1,0 +1,57 @@
+<aside class="sidebar">
+    <div class="sidebar-user">
+        <div class="freelancer-avatar">
+            <i class="fas fa-user"></i>
+        </div>
+        <div class="sidebar-user-info">
+            <div class="name">{{ current_user.full_name }}</div>
+            <div class="role">Client</div>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        <a href="{{ url_for('client.dashboard') }}" class="sidebar-link {% if request.endpoint == 'client.dashboard' %}active{% endif %}">
+            <i class="fas fa-th-large"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="{{ url_for('client.create_project') }}" class="sidebar-link {% if request.endpoint == 'client.create_project' %}active{% endif %}">
+            <i class="fas fa-plus-circle"></i>
+            <span>Create Project</span>
+        </a>
+
+        <a href="#" class="sidebar-link">
+            <i class="fas fa-folder"></i>
+            <span>My Projects</span>
+        </a>
+
+        <a href="{{ url_for('client.freelancers') }}" class="sidebar-link {% if request.endpoint == 'client.freelancers' %}active{% endif %}">
+    <i class="fas fa-users"></i>
+    <span>Find Freelancers</span>
+</a>
+
+        <a href="#" class="sidebar-link">
+            <i class="fas fa-comments"></i>
+            <span>Messages</span>
+            <span class="sidebar-badge">3</span>
+        </a>
+
+        <a href="#" class="sidebar-link">
+            <i class="fas fa-bell"></i>
+            <span>Notifications</span>
+            <span class="sidebar-badge">5</span>
+        </a>
+
+        <a href="#" class="sidebar-link">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <a href="{{ url_for('auth.logout') }}" class="sidebar-link logout-link">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</aside>

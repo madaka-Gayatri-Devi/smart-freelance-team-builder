@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}{{ profile.name }} | SmartTeam{% endblock %}
+
+{% block content %}
+<!-- Include AOS for animations if not already globally included in base -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<div class="profile-page-wrapper" style="background: linear-gradient(to bottom, #fdf5f9, #ffffff); min-height: 100vh; padding-top: 100px; padding-bottom: 5rem;">
+    <div class="container" style="max-width: 1280px; width: 100%; margin: 0 auto; padding-left: 24px; padding-right: 24px;">
+        
+        <!-- Back Navigation -->
+        <div data-aos="fade-right">
+            <a href="/" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #64748b; font-weight: 600; text-decoration: none; margin-bottom: 2rem; transition: color 0.3s;">
+                <i class="fas fa-arrow-left"></i> Back to Freelancers
+            </a>
+        </div>
+
+        <style>
+            .profile-layout {
+                display: grid;
+                grid-template-columns: 350px 1fr;
+                gap: 2rem;
+            }
+            @media (max-width: 991px) {
+                .profile-layout {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+
+        <div class="profile-layout">
+            <!-- Left Column: Basic Info -->
+            <div data-aos="fade-up" data-aos-delay="100">
+                <div style="background: white; border-radius: 20px; overflow: hidden; border: 1px solid #f3e8ff; box-shadow: 0 10px 40px rgba(109,74,255,0.08); display: flex; flex-direction: column;">
+                    <div style="height: 360px; overflow: hidden; position: relative;">
+                        <img src="{{ profile.image }}" alt="{{ profile.name }}" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                        <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.95); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; color: #6d4aff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); backdrop-filter: blur(4px);">
+                            {{ profile.status }}
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 2rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <h1 style="font-size: 1.75rem; font-weight: 800; margin: 0; color: #1e293b;">{{ profile.name }}</h1>
+                        </div>
+                        <p style="color: #6d4aff; font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem;">{{ profile.role }}</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                            <div style="background: #f8fafc; padding: 1rem; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center;">
+                                <div style="color: #fbbf24; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem;"><i class="fas fa-star"></i> {{ profile.rating }}</div>
+                                <div style="color: #64748b; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;">Rating</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 1rem; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center;">
+                                <div style="color: #1e293b; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem;">{{ profile.rate }}</div>
+                                <div style="color: #64748b; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;">Hourly Rate</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <button class="btn w-100" style="background: linear-gradient(135deg, #6d4aff, #c43d9b); color: white; border: none; padding: 0.8rem; border-radius: 10px; font-weight: 700; font-size: 1rem; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 20px rgba(109,74,255,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">Hire Freelancer</button>
+                            <button class="btn w-100" style="background: transparent; color: #6d4aff; border: 2px solid #f3e8ff; padding: 0.8rem; border-radius: 10px; font-weight: 700; font-size: 1rem; transition: background 0.2s;" onmouseover="this.style.background='#f3e8ff';" onmouseout="this.style.background='transparent';">Contact</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Details -->
+            <div data-aos="fade-up" data-aos-delay="200">
+                
+                <!-- About Card -->
+                <div style="background: white; border-radius: 20px; padding: 2.5rem; border: 1px solid #e2e8f0; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-user-circle text-primary"></i> About
+                    </h3>
+                    <p style="color: #475569; font-size: 1.05rem; line-height: 1.7; margin: 0;">{{ profile.bio }}</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="background: #fdf5f9; border-radius: 16px; padding: 1.5rem; border: 1px solid #fce7f3; display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 50px; height: 50px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #c43d9b; font-size: 1.25rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05);"><i class="fas fa-briefcase"></i></div>
+                        <div>
+                            <div style="color: #1e293b; font-size: 1.25rem; font-weight: 800;">{{ profile.experience }}</div>
+                            <div style="color: #64748b; font-size: 0.85rem; font-weight: 600;">Experience</div>
+                        </div>
+                    </div>
+                    <div style="background: #f5f3ff; border-radius: 16px; padding: 1.5rem; border: 1px solid #ede9fe; display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 50px; height: 50px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #6d4aff; font-size: 1.25rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05);"><i class="fas fa-check-circle"></i></div>
+                        <div>
+                            <div style="color: #1e293b; font-size: 1.25rem; font-weight: 800;">{{ profile.projects }}</div>
+                            <div style="color: #64748b; font-size: 0.85rem; font-weight: 600;">Completed Projects</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Card -->
+                <div style="background: white; border-radius: 20px; padding: 2.5rem; border: 1px solid #e2e8f0; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-tools text-primary"></i> Expertise & Skills
+                    </h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        {% for skill in profile.skills %}
+                        <span style="background: #f8fafc; color: #334155; padding: 8px 16px; border-radius: 8px; font-size: 0.95rem; font-weight: 500; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Reviews Card -->
+                <div style="background: white; border-radius: 20px; padding: 2.5rem; border: 1px solid #e2e8f0; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-comment-dots text-primary"></i> Client Reviews
+                    </h3>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        {% for review in profile.reviews %}
+                        <div style="border-bottom: 1px solid #f1f5f9; padding-bottom: 1.5rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; color: #fbbf24; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p style="color: #475569; font-size: 1.05rem; line-height: 1.6; margin-bottom: 1rem; font-style: italic;">"{{ review.text }}"</p>
+                            <div style="font-weight: 700; color: #1e293b; font-size: 0.95rem;">&mdash; {{ review.author }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+    });
+</script>
+{% endblock %}

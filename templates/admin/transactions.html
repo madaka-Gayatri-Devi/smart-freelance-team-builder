@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+{% block title %}Transactions - SmartTeam{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/transactions.css') }}">
+{% endblock %}
+{% block content %}
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="sidebar-user">
+            <div class="admin-avatar"><i class="fas fa-shield-alt"></i></div>
+            <div>
+                <div class="name">{{ current_user.full_name }}</div>
+                <div class="role">Administrator</div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-link"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-users"></i><span>Users</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-user-tie"></i><span>Freelancers</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-project-diagram"></i><span>Projects</span></a>
+            <a href="#" class="sidebar-link active"><i class="fas fa-file-invoice-dollar"></i><span>Transactions</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-chart-line"></i><span>Reports</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-bell"></i><span>Notifications</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-cog"></i><span>Settings</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="#" class="sidebar-link logout-link"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+        </div>
+    </aside>
+
+    <main class="dashboard-main transactions-main">
+        <div class="dashboard-header transactions-header">
+            <div>
+                <span class="transactions-badge"><i class="fas fa-file-invoice-dollar"></i> Finance</span>
+                <h1>Transactions</h1>
+                <p>Monitor payments, earnings, refunds, and platform revenue.</p>
+            </div>
+            <button class="export-transactions-btn"><i class="fas fa-download"></i> Export Report</button>
+        </div>
+
+        <section class="transaction-stats">
+            <div class="transaction-stat">
+                <div class="transaction-icon blue"><i class="fas fa-dollar-sign"></i></div>
+                <div>
+                    <span>Total Revenue</span>
+                    <strong>$42,860</strong>
+                    <small class="positive"><i class="fas fa-arrow-up"></i> 18.7% this month</small>
+                </div>
+            </div>
+            <div class="transaction-stat">
+                <div class="transaction-icon green"><i class="fas fa-check-circle"></i></div>
+                <div>
+                    <span>Successful Payments</span>
+                    <strong>$39,420</strong>
+                    <small>342 transactions</small>
+                </div>
+            </div>
+            <div class="transaction-stat">
+                <div class="transaction-icon orange"><i class="fas fa-clock"></i></div>
+                <div>
+                    <span>Pending Payments</span>
+                    <strong>$2,180</strong>
+                    <small>18 transactions</small>
+                </div>
+            </div>
+            <div class="transaction-stat">
+                <div class="transaction-icon red"><i class="fas fa-undo"></i></div>
+                <div>
+                    <span>Refunds</span>
+                    <strong>$1,240</strong>
+                    <small>9 transactions</small>
+                </div>
+            </div>
+        </section>
+
+        <section class="transaction-toolbar">
+            <div class="transaction-tabs">
+                <button class="transaction-tab active">All Transactions <span>369</span></button>
+                <button class="transaction-tab">Completed <span>342</span></button>
+                <button class="transaction-tab">Pending <span>18</span></button>
+                <button class="transaction-tab">Refunded <span>9</span></button>
+            </div>
+            <div class="transaction-tools">
+                <div class="transaction-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search transaction...">
+                </div>
+                <select>
+                    <option>All Time</option>
+                    <option>Today</option>
+                    <option>This Week</option>
+                    <option>This Month</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="transactions-card">
+            <div class="transactions-card-header">
+                <div>
+                    <h2>Recent Transactions</h2>
+                    <p>Latest payment activity across the platform.</p>
+                </div>
+                <select>
+                    <option>Newest First</option>
+                    <option>Oldest First</option>
+                    <option>Highest Amount</option>
+                </select>
+            </div>
+
+            <div class="transactions-table">
+                <div class="transaction-row transaction-heading">
+                    <span>Transaction</span>
+                    <span>Project</span>
+                    <span>Amount</span>
+                    <span>Date</span>
+                    <span>Status</span>
+                    <span>Actions</span>
+                </div>
+
+                <div class="transaction-row">
+                    <div class="transaction-user">
+                        <div class="transaction-avatar blue">JD</div>
+                        <div>
+                            <strong>TXN-28491</strong>
+                            <small>James Davis</small>
+                        </div>
+                    </div>
+                    <span>E-commerce Website</span>
+                    <strong class="transaction-amount">$1,500</strong>
+                    <span>Aug 24, 2026</span>
+                    <span class="payment-status completed">Completed</span>
+                    <button class="transaction-action"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+
+                <div class="transaction-row">
+                    <div class="transaction-user">
+                        <div class="transaction-avatar purple">NT</div>
+                        <div>
+                            <strong>TXN-28490</strong>
+                            <small>NovaTech</small>
+                        </div>
+                    </div>
+                    <span>Dashboard UI Design</span>
+                    <strong class="transaction-amount">$850</strong>
+                    <span>Aug 24, 2026</span>
+                    <span class="payment-status completed">Completed</span>
+                    <button class="transaction-action"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+
+                <div class="transaction-row">
+                    <div class="transaction-user">
+                        <div class="transaction-avatar green">BC</div>
+                        <div>
+                            <strong>TXN-28489</strong>
+                            <small>BrightCorp</small>
+                        </div>
+                    </div>
+                    <span>Fitness Mobile App</span>
+                    <strong class="transaction-amount">$3,200</strong>
+                    <span>Aug 23, 2026</span>
+                    <span class="payment-status pending">Pending</span>
+                    <button class="transaction-action"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+
+                <div class="transaction-row">
+                    <div class="transaction-user">
+                        <div class="transaction-avatar orange">MP</div>
+                        <div>
+                            <strong>TXN-28488</strong>
+                            <small>MarketPro</small>
+                        </div>
+                    </div>
+                    <span>Sales Analytics</span>
+                    <strong class="transaction-amount">$2,400</strong>
+                    <span>Aug 23, 2026</span>
+                    <span class="payment-status completed">Completed</span>
+                    <button class="transaction-action"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+
+                <div class="transaction-row">
+                    <div class="transaction-user">
+                        <div class="transaction-avatar red">FC</div>
+                        <div>
+                            <strong>TXN-28487</strong>
+                            <small>FinCloud</small>
+                        </div>
+                    </div>
+                    <span>Brand Identity Design</span>
+                    <strong class="transaction-amount">$900</strong>
+                    <span>Aug 22, 2026</span>
+                    <span class="payment-status refunded">Refunded</span>
+                    <button class="transaction-action"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+            </div>
+
+            <div class="transactions-footer">
+                <span>Showing 1–5 of 369 transactions</span>
+                <div class="transaction-pagination">
+                    <button disabled><i class="fas fa-chevron-left"></i></button>
+                    <button class="active-page">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="revenue-overview">
+            <div class="revenue-header">
+                <div>
+                    <h2>Revenue Overview</h2>
+                    <p>Platform revenue performance.</p>
+                </div>
+                <span><i class="fas fa-chart-line"></i> +18.7%</span>
+            </div>
+
+            <div class="revenue-content">
+                <div class="revenue-total">
+                    <span>This Month</span>
+                    <strong>$42,860</strong>
+                    <small>Compared with $36,120 last month</small>
+                </div>
+                <div class="revenue-bars">
+                    <div><span>May</span><i style="height:55%"></i></div>
+                    <div><span>Jun</span><i style="height:68%"></i></div>
+                    <div><span>Jul</span><i style="height:76%"></i></div>
+                    <div><span>Aug</span><i style="height:92%"></i></div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+{% endblock %}

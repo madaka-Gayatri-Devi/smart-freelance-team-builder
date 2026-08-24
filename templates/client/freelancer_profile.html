@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{% block title %}{{ freelancer.name }} - SmartTeam{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client/freelancer-profile.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-layout">
+
+    {% include 'components/client_sidebar.html' %}
+
+    <main class="dashboard-main">
+
+        <div class="dashboard-header">
+            <div>
+                <h1>Freelancer Profile</h1>
+                <p>View freelancer skills, experience, portfolio and ratings.</p>
+            </div>
+
+            <a href="{{ url_for('client.freelancers') }}" class="back-profile-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Freelancers
+            </a>
+        </div>
+
+        <section class="freelancer-profile-header">
+
+            <div class="profile-detail-avatar">
+                {{ freelancer.initials }}
+            </div>
+
+            <div class="profile-detail-info">
+
+                <div class="profile-name-row">
+                    <div>
+                        <h2>{{ freelancer.name }}</h2>
+                        <p>{{ freelancer.role }}</p>
+                    </div>
+
+                    <span class="profile-availability {% if freelancer.availability == 'Available' %}available{% else %}busy{% endif %}">
+                        <i class="fas fa-circle"></i>
+                        {{ freelancer.availability }}
+                    </span>
+                </div>
+
+                <div class="profile-rating">
+                    <i class="fas fa-star"></i>
+                    <strong>{{ freelancer.rating }}</strong>
+                    <span>({{ freelancer.reviews }} reviews)</span>
+                </div>
+
+                <div class="profile-skill-tags">
+                    {% for skill in freelancer.skills %}
+                    <span>{{ skill }}</span>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            <div class="profile-rate-box">
+                <span>Hourly Rate</span>
+                <strong>{{ freelancer.rate }}</strong>
+
+                <button type="button" class="hire-profile-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Hire Freelancer
+                </button>
+            </div>
+
+        </section>
+
+        <div class="profile-page-grid">
+
+            <div class="profile-main-content">
+
+                <section class="profile-section">
+                    <div class="profile-section-heading">
+                        <div>
+                            <h3>About Me</h3>
+                            <p>Professional background and introduction.</p>
+                        </div>
+                    </div>
+
+                    <p class="profile-about">
+                        {{ freelancer.about }}
+                    </p>
+                </section>
+
+                <section class="profile-section">
+                    <div class="profile-section-heading">
+                        <div>
+                            <h3>Skills</h3>
+                            <p>Technologies and areas of expertise.</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-skills-grid">
+                        {% for skill in freelancer.skills %}
+                        <div class="profile-skill-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>{{ skill }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <section class="profile-section">
+                    <div class="profile-section-heading">
+                        <div>
+                            <h3>Experience</h3>
+                            <p>Professional experience and background.</p>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+
+                        <div class="experience-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+
+                        <div>
+                            <h4>{{ freelancer.role }}</h4>
+                            <span>{{ freelancer.experience }} Experience</span>
+
+                            <p>
+                                Experienced professional with a strong background
+                                in delivering quality projects and solutions for clients.
+                            </p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="profile-section">
+
+                    <div class="profile-section-heading">
+                        <div>
+                            <h3>Portfolio</h3>
+                            <p>Previous work and completed projects.</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-grid">
+
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h4>Web Application</h4>
+                            <p>Modern responsive web application.</p>
+                        </div>
+
+                        <div class="portfolio-card">
+                            <div class="portfolio-image purple">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h4>Mobile Application</h4>
+                            <p>User-focused mobile application.</p>
+                        </div>
+
+                        <div class="portfolio-card">
+                            <div class="portfolio-image green">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Dashboard Design</h4>
+                            <p>Professional dashboard solution.</p>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="profile-section">
+
+                    <div class="profile-section-heading">
+                        <div>
+                            <h3>Client Reviews</h3>
+                            <p>Feedback from previous clients.</p>
+                        </div>
+                    </div>
+
+                    <div class="review-item">
+
+                        <div class="review-avatar">
+                            JD
+                        </div>
+
+                        <div class="review-content">
+
+                            <div class="review-header">
+                                <strong>John Davis</strong>
+
+                                <span class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+
+                            <p>
+                                Excellent freelancer with great communication
+                                and high-quality work. The project was completed
+                                on time and exceeded expectations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+            <aside class="profile-right-column">
+
+                <div class="profile-summary-card">
+
+                    <h3>Freelancer Stats</h3>
+
+                    <div class="profile-stat-item">
+                        <div class="profile-stat-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+
+                        <div>
+                            <strong>{{ freelancer.projects }}</strong>
+                            <span>Projects Completed</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-stat-item">
+                        <div class="profile-stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+
+                        <div>
+                            <strong>{{ freelancer.rating }}</strong>
+                            <span>Average Rating</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-stat-item">
+                        <div class="profile-stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+
+                        <div>
+                            <strong>{{ freelancer.experience }}</strong>
+                            <span>Experience</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="profile-summary-card hire-card">
+
+                    <div class="hire-card-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+
+                    <h3>Interested in working together?</h3>
+
+                    <p>
+                        Send a project invitation to {{ freelancer.name }}.
+                    </p>
+
+                    <button type="button" class="hire-profile-btn full">
+                        <i class="fas fa-paper-plane"></i>
+                        Hire Freelancer
+                    </button>
+
+                    <button type="button" class="contact-profile-btn full">
+                        <i class="fas fa-comment"></i>
+                        Contact Freelancer
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+</div>
+{% endblock %}

@@ -85,7 +85,7 @@
             
             <div class="auth-divider"><span>OR</span></div>
             
-            <button class="btn btn-outline btn-block btn-google">
+            <button type="button" onclick="handleGoogleRegister()" class="btn btn-outline btn-block btn-google" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
                 <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google" width="20">
                 Continue with Google
             </button>
@@ -94,4 +94,12 @@
         </div>
     </div>
 </div>
+
+<script>
+function handleGoogleRegister() {
+    let selectedRole = document.querySelector('input[name="role"]:checked');
+    let role = selectedRole ? selectedRole.value : 'client';
+    window.location.href = `/auth/google?role=${role}`; // Starts Google OAuth login with the selected role.
+}
+</script>
 {% endblock %}

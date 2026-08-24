@@ -1,1 +1,254 @@
+{% extends "base.html" %}
+{% block title %}Manage Projects - SmartTeam{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/projects.css') }}">
+{% endblock %}
+{% block content %}
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="sidebar-user">
+            <div class="admin-avatar"><i class="fas fa-shield-alt"></i></div>
+            <div>
+                <div class="name">{{ current_user.full_name }}</div>
+                <div class="role">Administrator</div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-link"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-users"></i><span>Users</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-user-tie"></i><span>Freelancers</span></a>
+            <a href="#" class="sidebar-link active"><i class="fas fa-project-diagram"></i><span>Projects</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-file-invoice-dollar"></i><span>Transactions</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-chart-line"></i><span>Reports</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-bell"></i><span>Notifications</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-cog"></i><span>Settings</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="#" class="sidebar-link logout-link"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+        </div>
+    </aside>
 
+    <main class="dashboard-main admin-projects-main">
+        <div class="dashboard-header projects-header">
+            <div>
+                <span class="projects-badge"><i class="fas fa-project-diagram"></i> Project Management</span>
+                <h1>Manage Projects</h1>
+                <p>Monitor projects, budgets, deadlines, and project activity.</p>
+            </div>
+            <button class="export-projects-btn"><i class="fas fa-download"></i> Export Projects</button>
+        </div>
+
+        <section class="project-admin-stats">
+            <div class="project-admin-stat">
+                <div class="project-stat-icon blue"><i class="fas fa-layer-group"></i></div>
+                <div><span>Total Projects</span><strong>326</strong><small>All posted projects</small></div>
+            </div>
+            <div class="project-admin-stat">
+                <div class="project-stat-icon green"><i class="fas fa-spinner"></i></div>
+                <div><span>Active</span><strong>186</strong><small>Currently in progress</small></div>
+            </div>
+            <div class="project-admin-stat">
+                <div class="project-stat-icon purple"><i class="fas fa-check-circle"></i></div>
+                <div><span>Completed</span><strong>218</strong><small>Successfully completed</small></div>
+            </div>
+            <div class="project-admin-stat">
+                <div class="project-stat-icon orange"><i class="fas fa-flag"></i></div>
+                <div><span>Reported</span><strong>12</strong><small>Needs admin attention</small></div>
+            </div>
+        </section>
+
+        <section class="project-filter-bar">
+            <div class="project-tabs">
+                <button class="project-tab active">All <span>326</span></button>
+                <button class="project-tab">Active <span>186</span></button>
+                <button class="project-tab">Completed <span>218</span></button>
+                <button class="project-tab">Reported <span>12</span></button>
+            </div>
+            <div class="project-tools">
+                <div class="project-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search projects...">
+                </div>
+                <select>
+                    <option>All Categories</option>
+                    <option>Web Development</option>
+                    <option>UI/UX Design</option>
+                    <option>Mobile Development</option>
+                    <option>Data Science</option>
+                    <option>Digital Marketing</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="projects-table-card">
+            <div class="projects-table-header">
+                <div>
+                    <h2>All Projects</h2>
+                    <p>Review projects posted by clients.</p>
+                </div>
+                <select>
+                    <option>Newest First</option>
+                    <option>Oldest First</option>
+                    <option>Highest Budget</option>
+                    <option>Deadline Soon</option>
+                </select>
+            </div>
+
+            <div class="projects-table">
+                <div class="projects-table-row projects-heading">
+                    <span>Project</span>
+                    <span>Client</span>
+                    <span>Budget</span>
+                    <span>Deadline</span>
+                    <span>Status</span>
+                    <span>Actions</span>
+                </div>
+
+                <div class="projects-table-row">
+                    <div class="admin-project-info">
+                        <div class="project-icon blue"><i class="fas fa-shopping-cart"></i></div>
+                        <div>
+                            <strong>E-commerce Website</strong>
+                            <small>Web Development</small>
+                        </div>
+                    </div>
+                    <div class="project-client">
+                        <div class="mini-avatar purple-avatar">NT</div>
+                        <span>NovaTech</span>
+                    </div>
+                    <span class="project-budget">$1,500</span>
+                    <span>Sep 15, 2026</span>
+                    <span class="project-status active">Active</span>
+                    <button class="project-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+
+                <div class="projects-table-row">
+                    <div class="admin-project-info">
+                        <div class="project-icon purple"><i class="fas fa-mobile-alt"></i></div>
+                        <div>
+                            <strong>Fitness Mobile App</strong>
+                            <small>Mobile Development</small>
+                        </div>
+                    </div>
+                    <div class="project-client">
+                        <div class="mini-avatar blue-avatar">BC</div>
+                        <span>BrightCorp</span>
+                    </div>
+                    <span class="project-budget">$3,200</span>
+                    <span>Oct 02, 2026</span>
+                    <span class="project-status active">Active</span>
+                    <button class="project-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+
+                <div class="projects-table-row">
+                    <div class="admin-project-info">
+                        <div class="project-icon green"><i class="fas fa-chart-line"></i></div>
+                        <div>
+                            <strong>Sales Analytics Dashboard</strong>
+                            <small>Data Science</small>
+                        </div>
+                    </div>
+                    <div class="project-client">
+                        <div class="mini-avatar green-avatar">MP</div>
+                        <span>MarketPro</span>
+                    </div>
+                    <span class="project-budget">$2,400</span>
+                    <span>Aug 30, 2026</span>
+                    <span class="project-status review">Review</span>
+                    <button class="project-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+
+                <div class="projects-table-row">
+                    <div class="admin-project-info">
+                        <div class="project-icon orange"><i class="fas fa-paint-brush"></i></div>
+                        <div>
+                            <strong>Brand Identity Design</strong>
+                            <small>UI/UX Design</small>
+                        </div>
+                    </div>
+                    <div class="project-client">
+                        <div class="mini-avatar orange-avatar">FC</div>
+                        <span>FinCloud</span>
+                    </div>
+                    <span class="project-budget">$900</span>
+                    <span>Aug 26, 2026</span>
+                    <span class="project-status reported">Reported</span>
+                    <button class="project-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+
+                <div class="projects-table-row">
+                    <div class="admin-project-info">
+                        <div class="project-icon blue"><i class="fas fa-globe"></i></div>
+                        <div>
+                            <strong>Corporate Website</strong>
+                            <small>Web Development</small>
+                        </div>
+                    </div>
+                    <div class="project-client">
+                        <div class="mini-avatar red-avatar">TC</div>
+                        <span>TechCore</span>
+                    </div>
+                    <span class="project-budget">$2,100</span>
+                    <span>Aug 18, 2026</span>
+                    <span class="project-status completed">Completed</span>
+                    <button class="project-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+            </div>
+
+            <div class="projects-table-footer">
+                <span>Showing 1–5 of 326 projects</span>
+                <div class="projects-pagination">
+                    <button disabled><i class="fas fa-chevron-left"></i></button>
+                    <button class="active-page">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-review-card">
+            <div class="project-review-header">
+                <div>
+                    <span class="review-project-badge"><i class="fas fa-flag"></i> Reported Project</span>
+                    <h2>Brand Identity Design</h2>
+                    <p>Reported by a platform user and requires administrator review.</p>
+                </div>
+                <span class="reported-label">Requires Attention</span>
+            </div>
+
+            <div class="project-review-grid">
+                <div>
+                    <span>Client</span>
+                    <strong>FinCloud</strong>
+                </div>
+                <div>
+                    <span>Category</span>
+                    <strong>UI/UX Design</strong>
+                </div>
+                <div>
+                    <span>Budget</span>
+                    <strong>$500 - $900</strong>
+                </div>
+                <div>
+                    <span>Deadline</span>
+                    <strong>Aug 26, 2026</strong>
+                </div>
+            </div>
+
+            <div class="project-review-description">
+                <span>Description</span>
+                <p>FinCloud is looking for a designer to create a complete brand identity including logo design, color system, typography, and social media assets.</p>
+            </div>
+
+            <div class="project-review-actions">
+                <button class="remove-project-btn"><i class="fas fa-trash-alt"></i> Remove Project</button>
+                <button class="dismiss-report-btn"><i class="fas fa-times"></i> Dismiss Report</button>
+                <button class="view-project-btn"><i class="fas fa-external-link-alt"></i> View Full Project</button>
+            </div>
+        </section>
+    </main>
+</div>
+{% endblock %}

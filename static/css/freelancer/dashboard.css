@@ -1,0 +1,116 @@
+/* Freelancer Dashboard */
+.freelancer-header{margin-bottom:26px}
+.freelancer-header h1{font-size:28px;font-weight:750;color:#171b2d;letter-spacing:-.5px}
+.freelancer-header p{font-size:13px;color:#7b8193}
+
+/* Freelancer Avatar */
+.freelancer-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#6845f5;font-size:16px;flex-shrink:0}
+.freelancer-avatar.small{width:40px;height:40px}
+
+/* Freelancer Stats */
+.freelancer-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-bottom:20px}
+.freelancer-stat-card{position:relative;background:#fff;border:1px solid #e6e8ef;border-radius:14px;padding:20px;display:flex;align-items:center;gap:14px;box-shadow:0 3px 12px rgba(31,35,50,.035);overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.freelancer-stat-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#6845f5;opacity:0;transition:opacity .2s ease}
+.freelancer-stat-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(31,35,50,.07);border-color:#ddd8f7}
+.freelancer-stat-card:hover:before{opacity:1}
+.freelancer-stat-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.freelancer-stat-icon.blue{background:#eaf2ff;color:#3978e8}
+.freelancer-stat-icon.purple{background:#f0ebff;color:#6845f5}
+.freelancer-stat-icon.green{background:#e9f9ef;color:#19945a}
+.freelancer-stat-icon.orange{background:#fff1df;color:#df7317}
+.freelancer-stat-card span{display:block;font-size:11px;color:#7d8495;font-weight:500}
+.freelancer-stat-card strong{display:block;font-size:22px;font-weight:750;color:#171b2d;line-height:1.2;margin:5px 0 3px}
+.freelancer-stat-card small{display:block;font-size:10px;color:#9a9fad}
+
+/* Main Freelancer Grid */
+.freelancer-dashboard-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,1fr);gap:20px;margin-bottom:20px}
+
+/* Active Projects */
+.work-list{display:flex;flex-direction:column}
+.work-item{display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid #eef0f4;transition:background .15s ease}
+.work-item:first-child{border-top:0;padding-top:4px}
+.work-item:last-child{padding-bottom:4px}
+.work-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+.work-icon.blue{background:#eaf2ff;color:#3978e8}
+.work-icon.purple{background:#f0ebff;color:#6845f5}
+.work-icon.green{background:#e9f9ef;color:#19945a}
+.work-info{flex:1;min-width:0}
+.work-info h4{margin:0;color:#252a3a;font-size:13px;font-weight:650}
+.work-info p{margin:4px 0 9px;color:#858b9b;font-size:10px}
+.progress-bar{height:6px;background:#eef0f5;border-radius:999px;overflow:hidden}
+.progress-bar span{display:block;height:100%;background:linear-gradient(90deg,#6845f5,#9c5bd8);border-radius:999px}
+.work-info small{display:block;margin-top:5px;color:#9096a5;font-size:9px}
+.work-side{display:flex;flex-direction:column;align-items:flex-end;gap:6px;min-width:75px}
+.work-side strong{font-size:13px;font-weight:700;color:#252a3a}
+.work-status{padding:5px 8px;border-radius:999px;font-size:9px;font-weight:650;white-space:nowrap}
+.work-status.active{background:#eaf2ff;color:#3272df}
+.work-status.deadline{background:#fff1df;color:#c76a10}
+
+/* Quick Actions */
+.quick-actions{display:flex;flex-direction:column;gap:9px}
+.quick-action{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #eef0f4;border-radius:10px;background:#fff;text-decoration:none;color:#252a3a;transition:all .2s ease}
+.quick-action:hover{background:#faf9ff;border-color:#dcd5fb;transform:translateX(2px)}
+.quick-action>div{width:36px;height:36px;border-radius:9px;background:#f1edff;color:#6845f5;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
+.quick-action span{display:flex;flex-direction:column;flex:1;min-width:0}
+.quick-action strong{font-size:12px;font-weight:650;color:#252a3a}
+.quick-action small{margin-top:3px;font-size:9px;color:#8a90a0}
+.quick-action>i{font-size:9px;color:#a0a5b2}
+.primary-action{border-color:#ddd6fa;background:#faf9ff}
+
+/* Recommended Projects */
+.recommended-projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.recommended-project{position:relative;background:#fff;border:1px solid #e7e9ef;border-radius:12px;padding:16px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.recommended-project:hover{border-color:#d5cdf8;transform:translateY(-3px);box-shadow:0 8px 22px rgba(31,35,50,.06)}
+.recommended-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.project-mini-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.project-mini-icon.blue{background:#eaf2ff;color:#3978e8}
+.project-mini-icon.purple{background:#f0ebff;color:#6845f5}
+.project-mini-icon.green{background:#e9f9ef;color:#19945a}
+.match-badge{background:#e9f9ef;color:#168650;border:1px solid #d5f1df;border-radius:999px;padding:4px 7px;font-size:8px;font-weight:700}
+.recommended-project h4{margin:13px 0 6px;color:#252a3a;font-size:13px;font-weight:700}
+.recommended-project>p{margin:0 0 13px;color:#858b9b;font-size:10px;line-height:1.6;min-height:32px}
+.recommended-skills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.recommended-skills span{background:#f5f6f9;color:#686f80;padding:4px 7px;border-radius:5px;font-size:8px;font-weight:500}
+.recommended-bottom{border-top:1px solid #eef0f4;padding-top:11px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.recommended-bottom strong{font-size:10px;color:#252a3a;font-weight:700}
+.recommended-bottom span{font-size:9px;color:#8b91a0;white-space:nowrap}
+.recommended-bottom i{margin-right:3px}
+
+/* Profile Completion */
+.profile-progress-section{overflow:hidden}
+.profile-progress-content{display:flex;align-items:center;gap:16px}
+.profile-progress-icon{width:48px;height:48px;border-radius:13px;background:#f0ebff;color:#6845f5;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.profile-progress-content>div:nth-child(2){flex:1;min-width:0}
+.profile-progress-content h3{margin:0;color:#252a3a;font-size:14px;font-weight:700}
+.profile-progress-content p{margin:5px 0 9px;color:#858b9b;font-size:10px;line-height:1.5}
+.profile-progress{height:6px;background:#eeeef3;border-radius:999px;overflow:hidden;max-width:450px}
+.profile-progress span{display:block;height:100%;background:linear-gradient(90deg,#6845f5,#9c5bd8);border-radius:999px}
+.profile-progress-content small{display:block;margin-top:5px;color:#8d93a1;font-size:9px}
+.complete-profile-btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid #d8d0fb;background:#fff;color:#6845f5;padding:9px 13px;border-radius:9px;font-size:10px;font-weight:650;text-decoration:none;cursor:pointer;white-space:nowrap;transition:all .2s ease}
+.complete-profile-btn:hover{background:#6845f5;color:#fff;border-color:#6845f5;box-shadow:0 5px 14px rgba(108,71,255,.18)}
+
+/* Freelancer Dashboard Responsive */
+@media(max-width:1200px){
+.freelancer-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.freelancer-dashboard-grid{grid-template-columns:1fr}
+.recommended-projects{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:700px){
+.freelancer-header h1{font-size:23px}
+.freelancer-stats{grid-template-columns:1fr}
+.recommended-projects{grid-template-columns:1fr}
+.work-item{align-items:flex-start;flex-wrap:wrap}
+.work-info{min-width:calc(100% - 60px)}
+.work-side{margin-left:56px;align-items:flex-start;flex-direction:row;justify-content:space-between;width:calc(100% - 56px)}
+.profile-progress-content{align-items:flex-start;flex-wrap:wrap}
+.complete-profile-btn{margin-left:64px}
+}
+
+@media(max-width:480px){
+.freelancer-stat-card{padding:16px}
+.freelancer-stat-icon{width:42px;height:42px}
+.freelancer-stat-card strong{font-size:19px}
+.work-side{margin-left:0;width:100%}
+.complete-profile-btn{margin-left:0}
+}

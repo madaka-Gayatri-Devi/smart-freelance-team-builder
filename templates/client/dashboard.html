@@ -1,124 +1,316 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
+{% block title %}Client Dashboard - SmartTeam{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client/dashboard.css') }}">
 {% endblock %}
-
 {% block content %}
 <div class="dashboard-layout">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="sidebar-user">
-            <div class="avatar"><i class="fas fa-user-circle fa-2x"></i></div>
-            <div class="user-info">
-                <div class="name">{{ current_user.full_name }}</div>
-                <div class="role">Client</div>
-            </div>
-        </div>
-        <nav class="sidebar-nav">
-            <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
-            <a href="#"><i class="fas fa-project-diagram"></i> My Projects</a>
-            <a href="#"><i class="fas fa-plus-circle"></i> Create Project</a>
-            <a href="#"><i class="fas fa-search"></i> Find Freelancers</a>
-            <a href="#"><i class="fas fa-users"></i> My Teams</a>
-            <a href="#"><i class="fas fa-tasks"></i> Tasks</a>
-            <a href="#"><i class="fas fa-wallet"></i> Payments</a>
-            <a href="#"><i class="fas fa-cog"></i> Settings</a>
-        </nav>
-    </aside>
+    {% include 'components/client_sidebar.html' %}
 
-    <!-- Main Content -->
-    <div class="dashboard-main">
-        <header class="dashboard-header">
-            <h2>Welcome back, {{ current_user.full_name }}!</h2>
-            <a href="#" class="btn btn-primary">+ Create Project</a>
+    <main class="dashboard-main">
+        <header class="dashboard-header client-header">
+            <div>
+                <h1>Welcome back, {{ current_user.full_name.split()[0] }}! 👋</h1>
+                <p>Manage your projects and find the right talent for your work.</p>
+            </div>
+            <div class="header-actions">
+                <button class="dashboard-icon-btn" type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="dashboard-icon-btn notification-btn" type="button">
+                    <i class="fas fa-bell"></i>
+                    <span></span>
+                </button>
+                <div class="header-profile">
+                    <div class="freelancer-avatar small">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
         </header>
-        
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon bg-primary-light text-primary"><i class="fas fa-project-diagram"></i></div>
-                <div class="stat-details">
-                    <div class="stat-value">3</div>
-                    <div class="stat-label">Active Projects</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon bg-success text-white"><i class="fas fa-check-circle"></i></div>
-                <div class="stat-details">
-                    <div class="stat-value">12</div>
-                    <div class="stat-label">Completed Projects</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon bg-warning text-white"><i class="fas fa-users"></i></div>
-                <div class="stat-details">
-                    <div class="stat-value">2</div>
-                    <div class="stat-label">Active Teams</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon bg-light text-primary"><i class="fas fa-dollar-sign"></i></div>
-                <div class="stat-details">
-                    <div class="stat-value">$4,250</div>
-                    <div class="stat-label">Total Spent</div>
-                </div>
-            </div>
-        </div>
 
-        <section class="dashboard-section mt-4">
-            <h3>My Projects</h3>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Project</th>
-                            <th>Progress</th>
-                            <th>Budget</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>E-Commerce Mobile App</td>
-                            <td>45%</td>
-                            <td>$5,000</td>
-                            <td><span class="badge bg-primary-light text-primary">In Progress</span></td>
-                        </tr>
-                        <tr>
-                            <td>Corporate Website Redesign</td>
-                            <td>100%</td>
-                            <td>$2,500</td>
-                            <td><span class="badge bg-success text-white">Completed</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-        
-        <section class="dashboard-section mt-4">
-            <h3>AI Recommended Freelancers</h3>
-            <p class="text-muted mb-3">Based on your active project "E-Commerce Mobile App"</p>
-            <div class="features-grid">
-                <div class="feature-card team-card">
-                    <div class="avatar mb-2"><img src="https://ui-avatars.com/api/?name=Sarah+J" alt="Avatar" style="border-radius:50%;width:48px;"></div>
-                    <div class="info">
-                        <div class="name">Sarah J.</div>
-                        <div class="role text-muted">UI/UX Designer</div>
-                        <div class="stats mb-3 mt-1">98% Match &bull; 4.9 <i class="fas fa-star text-warning"></i></div>
-                        <button class="btn btn-outline btn-sm btn-block" style="width:100%;">View Profile</button>
-                    </div>
+        <section class="client-stats">
+            <div class="client-stat-card">
+                <div class="client-stat-icon blue">
+                    <i class="fas fa-folder-open"></i>
                 </div>
-                <div class="feature-card team-card">
-                    <div class="avatar mb-2"><img src="https://ui-avatars.com/api/?name=Michael+T" alt="Avatar" style="border-radius:50%;width:48px;"></div>
-                    <div class="info">
-                        <div class="name">Michael T.</div>
-                        <div class="role text-muted">React Native Dev</div>
-                        <div class="stats mb-3 mt-1">95% Match &bull; 5.0 <i class="fas fa-star text-warning"></i></div>
-                        <button class="btn btn-outline btn-sm btn-block" style="width:100%;">View Profile</button>
-                    </div>
+                <div>
+                    <span>Total Projects</span>
+                    <strong>8</strong>
+                    <small>All projects</small>
+                </div>
+            </div>
+
+            <div class="client-stat-card">
+                <div class="client-stat-icon purple">
+                    <i class="fas fa-spinner"></i>
+                </div>
+                <div>
+                    <span>Active Projects</span>
+                    <strong>3</strong>
+                    <small>Currently running</small>
+                </div>
+            </div>
+
+            <div class="client-stat-card">
+                <div class="client-stat-icon green">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div>
+                    <span>Completed</span>
+                    <strong>5</strong>
+                    <small>Successfully completed</small>
+                </div>
+            </div>
+
+            <div class="client-stat-card">
+                <div class="client-stat-icon orange">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div>
+                    <span>Total Spent</span>
+                    <strong>$5,240</strong>
+                    <small>Project investment</small>
                 </div>
             </div>
         </section>
-    </div>
+
+        <section class="client-main-grid">
+            <div class="dashboard-section">
+                <div class="section-heading">
+                    <div>
+                        <h3>Recent Projects</h3>
+                        <p>Keep track of your latest projects.</p>
+                    </div>
+                    <a href="#" class="section-link">
+                        View All <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="project-list">
+                    <div class="client-project">
+                        <div class="project-icon blue">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="project-details">
+                            <h4>E-Commerce Website</h4>
+                            <p>
+                                <i class="fas fa-calendar"></i>
+                                Due in 12 days
+                            </p>
+                        </div>
+                        <div class="project-status active-status">
+                            In Progress
+                        </div>
+                        <strong class="project-budget">$2,500</strong>
+                    </div>
+
+                    <div class="client-project">
+                        <div class="project-icon purple">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="project-details">
+                            <h4>Mobile Application</h4>
+                            <p>
+                                <i class="fas fa-calendar"></i>
+                                Due in 24 days
+                            </p>
+                        </div>
+                        <div class="project-status active-status">
+                            In Progress
+                        </div>
+                        <strong class="project-budget">$1,800</strong>
+                    </div>
+
+                    <div class="client-project">
+                        <div class="project-icon green">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="project-details">
+                            <h4>Analytics Dashboard</h4>
+                            <p>
+                                <i class="fas fa-calendar"></i>
+                                Completed
+                            </p>
+                        </div>
+                        <div class="project-status completed-status">
+                            Completed
+                        </div>
+                        <strong class="project-budget">$940</strong>
+                    </div>
+
+                    <div class="client-project">
+                        <div class="project-icon orange">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="project-details">
+                            <h4>Brand Identity Design</h4>
+                            <p>
+                                <i class="fas fa-calendar"></i>
+                                Completed
+                            </p>
+                        </div>
+                        <div class="project-status completed-status">
+                            Completed
+                        </div>
+                        <strong class="project-budget">$650</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-section">
+                <div class="section-heading">
+                    <div>
+                        <h3>Quick Actions</h3>
+                        <p>Get started quickly.</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <a href="#" class="quick-action primary-action">
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <span>
+                            <strong>Create Project</strong>
+                            <small>Post a new project</small>
+                        </span>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+
+                    <a href="#" class="quick-action">
+                        <div>
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <span>
+                            <strong>Find Freelancers</strong>
+                            <small>Discover top talent</small>
+                        </span>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+
+                    <a href="#" class="quick-action">
+                        <div>
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <span>
+                            <strong>Messages</strong>
+                            <small>Chat with freelancers</small>
+                        </span>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <h3>Recommended Freelancers</h3>
+                    <p>Professionals who may be a good fit for your projects.</p>
+                </div>
+                <a href="#" class="section-link">
+                    Explore Freelancers
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="freelancer-grid">
+                <div class="freelancer-card">
+                    <div class="freelancer-top">
+                        <div class="freelancer-avatar">
+                            SJ
+                        </div>
+                        <span class="available-dot">
+                            Available
+                        </span>
+                    </div>
+
+                    <h4>Sarah Johnson</h4>
+                    <p>UI/UX Designer</p>
+
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        4.9
+                        <span>(42 reviews)</span>
+                    </div>
+
+                    <div class="skill-list">
+                        <span>Figma</span>
+                        <span>UX Research</span>
+                        <span>Prototyping</span>
+                    </div>
+
+                    <div class="freelancer-bottom">
+                        <strong>$65/hr</strong>
+                        <button type="button">View Profile</button>
+                    </div>
+                </div>
+
+                <div class="freelancer-card">
+                    <div class="freelancer-top">
+                        <div class="freelancer-avatar">
+                            MT
+                        </div>
+                        <span class="available-dot">
+                            Available
+                        </span>
+                    </div>
+
+                    <h4>Michael Thomas</h4>
+                    <p>React Developer</p>
+
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        4.8
+                        <span>(35 reviews)</span>
+                    </div>
+
+                    <div class="skill-list">
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>TypeScript</span>
+                    </div>
+
+                    <div class="freelancer-bottom">
+                        <strong>$55/hr</strong>
+                        <button type="button">View Profile</button>
+                    </div>
+                </div>
+
+                <div class="freelancer-card">
+                    <div class="freelancer-top">
+                        <div class="freelancer-avatar">
+                            DR
+                        </div>
+                        <span class="available-dot">
+                            Available
+                        </span>
+                    </div>
+
+                    <h4>David Rodriguez</h4>
+                    <p>Backend Developer</p>
+
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        4.9
+                        <span>(56 reviews)</span>
+                    </div>
+
+                    <div class="skill-list">
+                        <span>Python</span>
+                        <span>Flask</span>
+                        <span>AWS</span>
+                    </div>
+
+                    <div class="freelancer-bottom">
+                        <strong>$80/hr</strong>
+                        <button type="button">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 </div>
 {% endblock %}

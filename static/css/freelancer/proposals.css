@@ -1,0 +1,54 @@
+/* Freelancer Proposals */
+.proposals-header{margin-bottom:1.5rem}
+.find-project-btn{border:1px solid var(--primary);background:var(--primary);color:white;border-radius:var(--radius-md);padding:.65rem .8rem;font-size:.68rem;font-weight:600;cursor:pointer}
+.proposal-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.25rem}
+.proposal-stat{background:white;border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:1rem;display:flex;align-items:center;gap:.8rem;box-shadow:var(--shadow-sm)}
+.proposal-stat-icon{width:42px;height:42px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.proposal-stat-icon.blue{background:#dbeafe;color:#2563eb}
+.proposal-stat-icon.orange{background:#ffedd5;color:#ea580c}
+.proposal-stat-icon.green{background:#dcfce7;color:#16a34a}
+.proposal-stat-icon.red{background:#fee2e2;color:#dc2626}
+.proposal-stat span{display:block;font-size:.65rem;color:var(--text-muted)}
+.proposal-stat strong{display:block;font-size:1.25rem;margin-top:.15rem}
+.proposal-tabs-card{background:white;border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:0 1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.proposal-tabs{display:flex;gap:.2rem}
+.proposal-tab{border:0;background:none;padding:.9rem .75rem;color:var(--text-muted);font-size:.68rem;cursor:pointer;border-bottom:2px solid transparent}
+.proposal-tab.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:600}
+.proposal-tab span{background:var(--bg-light);padding:.2rem .35rem;border-radius:999px;font-size:.55rem;margin-left:.2rem}
+.proposal-tab.active span{background:var(--primary-light);color:var(--primary)}
+.proposal-search{display:flex;align-items:center;gap:.5rem;border:1px solid var(--border-color);border-radius:var(--radius-md);padding:0 .65rem;width:210px}
+.proposal-search i{font-size:.65rem;color:var(--text-muted)}
+.proposal-search input{border:0;outline:0;width:100%;padding:.55rem 0;font-size:.65rem}
+.proposal-list{display:flex;flex-direction:column;gap:.75rem}
+.proposal-card{background:white;border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:1rem 1.15rem;box-shadow:var(--shadow-sm)}
+.proposal-card-main{display:flex;align-items:flex-start;gap:.8rem}
+.proposal-project-icon{width:44px;height:44px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.proposal-project-icon.blue{background:#dbeafe;color:#2563eb}
+.proposal-project-icon.purple{background:#ede9fe;color:#7c3aed}
+.proposal-project-icon.green{background:#dcfce7;color:#16a34a}
+.proposal-project-icon.orange{background:#ffedd5;color:#ea580c}
+.proposal-project{flex:1;min-width:0}
+.proposal-title-row{display:flex;align-items:center;gap:.6rem;justify-content:space-between}
+.proposal-title-row h3{margin:0;font-size:.82rem}
+.proposal-project>p{margin:.25rem 0 .55rem;font-size:.63rem;color:var(--text-muted)}
+.proposal-status{padding:.3rem .5rem;border-radius:999px;font-size:.57rem;font-weight:600;white-space:nowrap}
+.proposal-status.review{background:#ffedd5;color:#c2410c}
+.proposal-status.accepted{background:#dcfce7;color:#15803d}
+.proposal-status.declined{background:#fee2e2;color:#dc2626}
+.proposal-meta{display:flex;flex-wrap:wrap;gap:1rem}
+.proposal-meta span{font-size:.6rem;color:var(--text-muted)}
+.proposal-meta i{margin-right:.2rem}
+.proposal-menu{border:0;background:none;color:var(--text-muted);cursor:pointer;padding:.2rem}
+.proposal-bottom{border-top:1px solid var(--border-color);margin-top:.9rem;padding-top:.8rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.proposal-message{display:flex;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.62rem;min-width:0}
+.proposal-message i{color:#cbd5e1;font-size:.7rem}
+.proposal-message span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.view-proposal-btn{border:1px solid var(--border-color);background:white;color:var(--text-main);border-radius:var(--radius-md);padding:.5rem .7rem;font-size:.62rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.view-proposal-btn:hover{border-color:var(--primary);color:var(--primary)}
+.proposal-pagination{display:flex;align-items:center;justify-content:space-between;margin-top:.9rem;color:var(--text-muted);font-size:.63rem}
+.proposal-pagination div{display:flex;gap:.25rem}
+.proposal-pagination button{width:29px;height:29px;border:1px solid var(--border-color);background:white;border-radius:6px;font-size:.63rem;cursor:pointer}
+.proposal-pagination button:disabled{opacity:.4}
+.proposal-pagination .page-active{background:var(--primary);border-color:var(--primary);color:white}
+@media(max-width:1000px){.proposal-stats{grid-template-columns:repeat(2,1fr)}.proposal-tabs-card{align-items:flex-start;gap:.7rem;flex-direction:column;padding-top:.5rem}.proposal-search{width:100%;margin-bottom:.7rem}}
+@media(max-width:700px){.proposal-stats{grid-template-columns:1fr}.proposal-title-row{align-items:flex-start;flex-direction:column;gap:.4rem}.proposal-bottom{align-items:flex-start;flex-direction:column}.proposal-message span{white-space:normal}.proposal-pagination{align-items:flex-start;gap:.7rem;flex-direction:column}.proposal-tabs{width:100%;overflow-x:auto}.proposal-tab{white-space:nowrap}}

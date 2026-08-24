@@ -1,1 +1,177 @@
+{% extends "base.html" %}
+{% block title %}Manage Users - SmartTeam{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/users.css') }}">
+{% endblock %}
+{% block content %}
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="sidebar-user">
+            <div class="admin-avatar"><i class="fas fa-shield-alt"></i></div>
+            <div>
+                <div class="name">{{ current_user.full_name }}</div>
+                <div class="role">Administrator</div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-link"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+            <a href="#" class="sidebar-link active"><i class="fas fa-users"></i><span>Users</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-user-tie"></i><span>Freelancers</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-project-diagram"></i><span>Projects</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-file-invoice-dollar"></i><span>Transactions</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-chart-line"></i><span>Reports</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-bell"></i><span>Notifications</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-cog"></i><span>Settings</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="#" class="sidebar-link logout-link"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+        </div>
+    </aside>
 
+    <main class="dashboard-main admin-users-main">
+        <div class="dashboard-header users-header">
+            <div>
+                <span class="admin-page-badge"><i class="fas fa-users"></i> User Management</span>
+                <h1>Manage Users</h1>
+                <p>View, manage, and monitor all users on the SmartTeam platform.</p>
+            </div>
+            <button class="export-users-btn"><i class="fas fa-download"></i> Export Users</button>
+        </div>
+
+        <section class="user-management-stats">
+            <div class="user-management-stat">
+                <div class="management-stat-icon blue"><i class="fas fa-users"></i></div>
+                <div><span>Total Users</span><strong>1,248</strong><small>All registered accounts</small></div>
+            </div>
+            <div class="user-management-stat">
+                <div class="management-stat-icon purple"><i class="fas fa-user-tie"></i></div>
+                <div><span>Freelancers</span><strong>842</strong><small>67.5% of users</small></div>
+            </div>
+            <div class="user-management-stat">
+                <div class="management-stat-icon blue"><i class="fas fa-building"></i></div>
+                <div><span>Clients</span><strong>398</strong><small>31.9% of users</small></div>
+            </div>
+            <div class="user-management-stat">
+                <div class="management-stat-icon orange"><i class="fas fa-user-clock"></i></div>
+                <div><span>Pending</span><strong>8</strong><small>Requires review</small></div>
+            </div>
+        </section>
+
+        <section class="users-toolbar">
+            <div class="users-tabs">
+                <button class="user-tab active">All Users <span>1,248</span></button>
+                <button class="user-tab">Freelancers <span>842</span></button>
+                <button class="user-tab">Clients <span>398</span></button>
+                <button class="user-tab">Admins <span>8</span></button>
+            </div>
+            <div class="users-tools">
+                <div class="user-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search users...">
+                </div>
+                <button class="filter-users-btn"><i class="fas fa-filter"></i> Filter</button>
+            </div>
+        </section>
+
+        <section class="users-table-card">
+            <div class="users-table-top">
+                <div>
+                    <h2>All Users</h2>
+                    <p>Showing recently registered and active users.</p>
+                </div>
+                <select>
+                    <option>Newest First</option>
+                    <option>Oldest First</option>
+                    <option>Name A-Z</option>
+                    <option>Name Z-A</option>
+                </select>
+            </div>
+
+            <div class="users-table-wrapper">
+                <div class="users-table-row users-table-heading">
+                    <span>User</span>
+                    <span>Role</span>
+                    <span>Joined</span>
+                    <span>Projects</span>
+                    <span>Status</span>
+                    <span>Actions</span>
+                </div>
+
+                <div class="users-table-row">
+                    <div class="managed-user">
+                        <div class="managed-avatar blue-avatar">SW</div>
+                        <div><strong>Sarah Williams</strong><small>sarah@example.com</small></div>
+                    </div>
+                    <span class="managed-role freelancer">Freelancer</span>
+                    <span>Aug 24, 2026</span>
+                    <span>12</span>
+                    <span class="managed-status active">Active</span>
+                    <button class="user-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+
+                <div class="users-table-row">
+                    <div class="managed-user">
+                        <div class="managed-avatar purple-avatar">JD</div>
+                        <div><strong>James Davis</strong><small>james@example.com</small></div>
+                    </div>
+                    <span class="managed-role client">Client</span>
+                    <span>Aug 24, 2026</span>
+                    <span>7</span>
+                    <span class="managed-status active">Active</span>
+                    <button class="user-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+
+                <div class="users-table-row">
+                    <div class="managed-user">
+                        <div class="managed-avatar green-avatar">MT</div>
+                        <div><strong>Michael Thomas</strong><small>michael@example.com</small></div>
+                    </div>
+                    <span class="managed-role freelancer">Freelancer</span>
+                    <span>Aug 23, 2026</span>
+                    <span>28</span>
+                    <span class="managed-status pending">Pending</span>
+                    <button class="user-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+
+                <div class="users-table-row">
+                    <div class="managed-user">
+                        <div class="managed-avatar orange-avatar">EC</div>
+                        <div><strong>Emily Chen</strong><small>emily@example.com</small></div>
+                    </div>
+                    <span class="managed-role freelancer">Freelancer</span>
+                    <span>Aug 22, 2026</span>
+                    <span>34</span>
+                    <span class="managed-status active">Active</span>
+                    <button class="user-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+
+                <div class="users-table-row">
+                    <div class="managed-user">
+                        <div class="managed-avatar red-avatar">RD</div>
+                        <div><strong>Robert Davis</strong><small>robert@example.com</small></div>
+                    </div>
+                    <span class="managed-role client">Client</span>
+                    <span>Aug 21, 2026</span>
+                    <span>4</span>
+                    <span class="managed-status suspended">Suspended</span>
+                    <button class="user-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+            </div>
+
+            <div class="users-table-footer">
+                <span>Showing 1–5 of 1,248 users</span>
+                <div class="users-pagination">
+                    <button disabled><i class="fas fa-chevron-left"></i></button>
+                    <button class="active-page">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                    <button><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+{% endblock %}

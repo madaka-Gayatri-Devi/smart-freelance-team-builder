@@ -1,1 +1,400 @@
+{% extends "base.html" %}
+{% block title %}Freelancer Profile - SmartTeam{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/freelancer/profile.css') }}">
+{% endblock %}
+{% block content %}
+<div class="dashboard-layout">
+    {% include 'components/freelancer_sidebar.html' %}
 
+    <main class="dashboard-main freelancer-profile-main">
+        <div class="profile-page-header">
+            <div>
+                <h1>My Profile</h1>
+                <p>Show clients your skills, experience, and work.</p>
+            </div>
+            <button class="edit-profile-btn">
+                <i class="fas fa-edit"></i> Edit Profile
+            </button>
+        </div>
+
+        <section class="profile-hero-card">
+            <div class="profile-hero-left">
+                <div class="profile-photo">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Profile">
+                    <span class="online-dot"></span>
+                </div>
+
+                <div class="profile-main-info">
+                    <div class="profile-name-row">
+                        <h2>{{ current_user.full_name }}</h2>
+                        <span class="verified-profile">
+                            <i class="fas fa-check-circle"></i> Verified
+                        </span>
+                    </div>
+
+                    <h3>Full Stack Developer</h3>
+
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i> India
+                        &nbsp; • &nbsp;
+                        <i class="fas fa-clock"></i> Available for work
+                    </p>
+
+                    <div class="profile-skills-preview">
+                        <span>Python</span>
+                        <span>Flask</span>
+                        <span>React</span>
+                        <span>MongoDB</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-hero-right">
+                <div class="profile-rating">
+                    <i class="fas fa-star"></i>
+                    <strong>4.9</strong>
+                    <span>32 reviews</span>
+                </div>
+
+                <div class="profile-rate">
+                    <span>Hourly Rate</span>
+                    <strong>$55/hr</strong>
+                </div>
+            </div>
+        </section>
+
+        <div class="profile-content-grid">
+            <div class="profile-content-main">
+
+                <section class="profile-section">
+                    <div class="profile-section-header">
+                        <div>
+                            <h2>About Me</h2>
+                            <p>A short introduction about my professional background.</p>
+                        </div>
+                        <button>
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </div>
+
+                    <p class="profile-bio">
+                        I'm a passionate full-stack developer focused on building modern,
+                        responsive, and scalable web applications. I enjoy turning ideas
+                        into reliable digital products and working closely with clients
+                        to deliver high-quality solutions.
+                    </p>
+                </section>
+
+                <section class="profile-section">
+                    <div class="profile-section-header">
+                        <div>
+                            <h2>Skills</h2>
+                            <p>Technologies and skills I work with.</p>
+                        </div>
+                        <button>
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </div>
+
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                            <strong>Advanced</strong>
+                        </div>
+
+                        <div class="skill-item">
+                            <i class="fas fa-server"></i>
+                            <span>Flask</span>
+                            <strong>Advanced</strong>
+                        </div>
+
+                        <div class="skill-item">
+                            <i class="fab fa-react"></i>
+                            <span>React</span>
+                            <strong>Intermediate</strong>
+                        </div>
+
+                        <div class="skill-item">
+                            <i class="fab fa-node-js"></i>
+                            <span>Node.js</span>
+                            <strong>Intermediate</strong>
+                        </div>
+
+                        <div class="skill-item">
+                            <i class="fas fa-database"></i>
+                            <span>MongoDB</span>
+                            <strong>Advanced</strong>
+                        </div>
+
+                        <div class="skill-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                            <strong>Advanced</strong>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="profile-section">
+                    <div class="profile-section-header">
+                        <div>
+                            <h2>Experience</h2>
+                            <p>Professional experience and background.</p>
+                        </div>
+                        <button>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+
+                        <div class="experience-info">
+                            <h3>Full Stack Developer</h3>
+                            <h4>Freelance</h4>
+                            <span>2023 - Present · 3 Years</span>
+                            <p>
+                                Developing full-stack web applications, REST APIs,
+                                database systems, and responsive user interfaces.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+
+                        <div class="experience-info">
+                            <h3>Web Developer Intern</h3>
+                            <h4>Technology Company</h4>
+                            <span>2022 - 2023 · 1 Year</span>
+                            <p>
+                                Worked on frontend interfaces and backend services
+                                while collaborating with development teams.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="profile-section">
+                    <div class="profile-section-header">
+                        <div>
+                            <h2>Portfolio</h2>
+                            <p>Selected projects that showcase my work.</p>
+                        </div>
+                        <button>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <div class="portfolio-grid">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image ecommerce">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+
+                            <div class="portfolio-info">
+                                <span>Web Development</span>
+                                <h3>E-commerce Platform</h3>
+                                <p>
+                                    Full-stack shopping platform with authentication
+                                    and payments.
+                                </p>
+
+                                <div>
+                                    <b>React</b>
+                                    <b>Flask</b>
+                                    <b>MongoDB</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portfolio-card">
+                            <div class="portfolio-image dashboard">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+
+                            <div class="portfolio-info">
+                                <span>Web Application</span>
+                                <h3>Analytics Dashboard</h3>
+                                <p>
+                                    Interactive dashboard for monitoring business
+                                    performance.
+                                </p>
+
+                                <div>
+                                    <b>Python</b>
+                                    <b>JavaScript</b>
+                                    <b>REST API</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portfolio-card">
+                            <div class="portfolio-image mobile">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+
+                            <div class="portfolio-info">
+                                <span>Mobile Application</span>
+                                <h3>Fitness App</h3>
+                                <p>
+                                    Modern application for tracking workouts and progress.
+                                </p>
+
+                                <div>
+                                    <b>React</b>
+                                    <b>Node.js</b>
+                                    <b>API</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="profile-section">
+                    <div class="profile-section-header">
+                        <div>
+                            <h2>Client Reviews</h2>
+                            <p>What clients say about my work.</p>
+                        </div>
+
+                        <div class="overall-rating">
+                            <i class="fas fa-star"></i> 4.9
+                        </div>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="review-avatar">NT</div>
+
+                        <div class="review-content">
+                            <div class="review-top">
+                                <strong>NovaTech</strong>
+                                <span>2 weeks ago</span>
+                            </div>
+
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+
+                            <p>
+                                Excellent developer. Delivered the project on time
+                                and communicated very clearly throughout the entire process.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="review-avatar purple-review">BC</div>
+
+                        <div class="review-content">
+                            <div class="review-top">
+                                <strong>BrightCommerce</strong>
+                                <span>1 month ago</span>
+                            </div>
+
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+
+                            <p>
+                                Very professional and technically strong. I would
+                                definitely work with this freelancer again.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <aside class="profile-sidebar">
+
+                <div class="profile-side-card">
+                    <h3>Profile Strength</h3>
+
+                    <div class="strength-value">
+                        <strong>92%</strong>
+                        <span>Excellent</span>
+                    </div>
+
+                    <div class="strength-bar">
+                        <span></span>
+                    </div>
+
+                    <p>
+                        Complete your profile to attract more clients.
+                    </p>
+
+                    <a href="#">
+                        Improve Profile
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="profile-side-card">
+                    <h3>Freelancer Stats</h3>
+
+                    <div class="profile-stat">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <strong>28</strong>
+                            <span>Projects Completed</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-stat">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>1,240</strong>
+                            <span>Hours Worked</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-stat">
+                        <i class="fas fa-user-check"></i>
+                        <div>
+                            <strong>96%</strong>
+                            <span>Success Rate</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-stat">
+                        <i class="fas fa-repeat"></i>
+                        <div>
+                            <strong>87%</strong>
+                            <span>Repeat Clients</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-side-card availability-card">
+                    <div class="availability-title">
+                        <h3>Availability</h3>
+                        <span class="available-dot"></span>
+                    </div>
+
+                    <strong>Available for work</strong>
+
+                    <p>Ready to accept new projects.</p>
+
+                    <button>Update Availability</button>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+</div>
+{% endblock %}

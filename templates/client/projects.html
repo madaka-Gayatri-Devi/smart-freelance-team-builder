@@ -1,1 +1,160 @@
-
+{% extends "base.html" %}
+{% block title %}My Projects - SmartTeam{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client/projects.css') }}">
+{% endblock %}
+{% block content %}
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="sidebar-user">
+            <div class="client-avatar"><i class="fas fa-user"></i></div>
+            <div>
+                <div class="name">{{ current_user.full_name }}</div>
+                <div class="role">Client</div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-link"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+            <a href="#" class="sidebar-link active"><i class="fas fa-folder"></i><span>My Projects</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-plus-circle"></i><span>Create Project</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-users"></i><span>Find Freelancers</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-comments"></i><span>Messages</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-bell"></i><span>Notifications</span></a>
+            <a href="#" class="sidebar-link"><i class="fas fa-cog"></i><span>Settings</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="#" class="sidebar-link logout-link"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+        </div>
+    </aside>
+    <main class="dashboard-main">
+        <div class="dashboard-header projects-header">
+            <div>
+                <h1>My Projects</h1>
+                <p>Create, manage, and track all your projects.</p>
+            </div>
+            <button class="create-project-btn"><i class="fas fa-plus"></i> Create Project</button>
+        </div>
+        <div class="project-summary">
+            <div class="summary-item active">
+                <div class="summary-icon"><i class="fas fa-layer-group"></i></div>
+                <div><span>All Projects</span><strong>8</strong></div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-icon blue"><i class="fas fa-spinner"></i></div>
+                <div><span>In Progress</span><strong>3</strong></div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-icon orange"><i class="fas fa-clock"></i></div>
+                <div><span>Pending</span><strong>2</strong></div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-icon green"><i class="fas fa-check"></i></div>
+                <div><span>Completed</span><strong>3</strong></div>
+            </div>
+        </div>
+        <section class="projects-toolbar">
+            <div class="project-tabs">
+                <button class="project-tab active">All <span>8</span></button>
+                <button class="project-tab">In Progress <span>3</span></button>
+                <button class="project-tab">Pending <span>2</span></button>
+                <button class="project-tab">Completed <span>3</span></button>
+            </div>
+            <div class="project-tools">
+                <div class="project-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search projects...">
+                </div>
+                <button class="filter-btn"><i class="fas fa-filter"></i> Filter</button>
+            </div>
+        </section>
+        <section class="projects-list">
+            <div class="project-list-card">
+                <div class="project-list-icon blue"><i class="fas fa-shopping-cart"></i></div>
+                <div class="project-list-info">
+                    <h3>E-Commerce Website</h3>
+                    <p>Build a modern responsive online shopping platform.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-calendar"></i> Due Aug 31, 2026</span>
+                        <span><i class="fas fa-users"></i> 4 Proposals</span>
+                        <span><i class="fas fa-clock"></i> Posted 3 days ago</span>
+                    </div>
+                    <div class="project-skills"><span>React</span><span>Node.js</span><span>MongoDB</span></div>
+                </div>
+                <div class="project-list-side">
+                    <span class="project-badge progress">In Progress</span>
+                    <strong>$2,500</strong>
+                    <small>Fixed Price</small>
+                    <button>View Project</button>
+                </div>
+            </div>
+            <div class="project-list-card">
+                <div class="project-list-icon purple"><i class="fas fa-mobile-alt"></i></div>
+                <div class="project-list-info">
+                    <h3>Mobile Application</h3>
+                    <p>Develop a cross-platform mobile application for our business.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-calendar"></i> Due Sep 12, 2026</span>
+                        <span><i class="fas fa-users"></i> 7 Proposals</span>
+                        <span><i class="fas fa-clock"></i> Posted 5 days ago</span>
+                    </div>
+                    <div class="project-skills"><span>Flutter</span><span>Firebase</span><span>UI/UX</span></div>
+                </div>
+                <div class="project-list-side">
+                    <span class="project-badge progress">In Progress</span>
+                    <strong>$1,800</strong>
+                    <small>Fixed Price</small>
+                    <button>View Project</button>
+                </div>
+            </div>
+            <div class="project-list-card">
+                <div class="project-list-icon orange"><i class="fas fa-paint-brush"></i></div>
+                <div class="project-list-info">
+                    <h3>Brand Identity Design</h3>
+                    <p>Create a complete brand identity and visual style guide.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-calendar"></i> Due Sep 5, 2026</span>
+                        <span><i class="fas fa-users"></i> 12 Proposals</span>
+                        <span><i class="fas fa-clock"></i> Posted 8 days ago</span>
+                    </div>
+                    <div class="project-skills"><span>Figma</span><span>Branding</span><span>Illustrator</span></div>
+                </div>
+                <div class="project-list-side">
+                    <span class="project-badge pending">Pending</span>
+                    <strong>$950</strong>
+                    <small>Fixed Price</small>
+                    <button>View Project</button>
+                </div>
+            </div>
+            <div class="project-list-card">
+                <div class="project-list-icon green"><i class="fas fa-chart-line"></i></div>
+                <div class="project-list-info">
+                    <h3>Analytics Dashboard</h3>
+                    <p>Create a dashboard for tracking business performance.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-calendar"></i> Completed Aug 10, 2026</span>
+                        <span><i class="fas fa-users"></i> 9 Proposals</span>
+                        <span><i class="fas fa-check-circle"></i> Completed</span>
+                    </div>
+                    <div class="project-skills"><span>Python</span><span>Flask</span><span>Charts</span></div>
+                </div>
+                <div class="project-list-side">
+                    <span class="project-badge completed">Completed</span>
+                    <strong>$940</strong>
+                    <small>Fixed Price</small>
+                    <button>View Project</button>
+                </div>
+            </div>
+        </section>
+        <div class="projects-pagination">
+            <span>Showing 1–4 of 8 projects</span>
+            <div>
+                <button disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="page-active">1</button>
+                <button>2</button>
+                <button><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

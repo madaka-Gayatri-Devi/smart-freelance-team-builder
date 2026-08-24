@@ -8,11 +8,18 @@ def init_db():
         "MONGO_URI",
         "mongodb://localhost:27017/"
     )  # Gets the MongoDB URL from .env.
-    client = MongoClient(mongo_uri)  # Connects Flask to MongoDB.
+    database_name = os.getenv(
+        "DATABASE_NAME",
+        "smart_freelance_team_builder"
+    )  # Gets the database name from .env.
+    client = MongoClient(
+        mongo_uri,
+        serverSelectionTimeoutMS=5000
+    )  # Connects to the local MongoDB server without SSL.
     client.admin.command("ping")  # Checks whether MongoDB is reachable.
-    db = client["smart_freelance_team_builder"]  # Selects our project database.
+    db = client[database_name]  # Selects our project database.
     print("MongoDB connected successfully.")  # Shows successful connection.
-    print("Database: smart_freelance_team_builder")  # Shows the database name.
+    print(f"Database: {database_name}")  # Shows the database name.
     return db  # Returns the database connection.
 def get_db():
     return db  # Gives other backend files access to our database.
