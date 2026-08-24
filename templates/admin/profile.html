@@ -1,0 +1,28 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block admin_content %}
+<div class="dashboard-header" style="margin-bottom: 24px;">
+    <h1 style="font-size: 24px; font-weight: 700; color: var(--st-text-main); margin-bottom: 8px;">Admin Profile</h1>
+    <p style="color: var(--st-text-muted); font-size: 14px; margin: 0;">Manage your personal admin account settings.</p>
+</div>
+
+<div class="dashboard-card" style="max-width: 600px;">
+    <form action="{{ url_for('admin.profile') }}" method="POST">
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--st-text-main);">Full Name</label>
+            <input type="text" name="full_name" value="{{ admin_data.full_name }}" required 
+                   style="width: 100%; padding: 10px 12px; border: 1px solid var(--st-border); border-radius: 6px; font-size: 14px;">
+        </div>
+        
+        <div style="margin-bottom: 24px;">
+            <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--st-text-main);">Email Address</label>
+            <input type="email" name="email" value="{{ admin_data.email }}" required 
+                   style="width: 100%; padding: 10px 12px; border: 1px solid var(--st-border); border-radius: 6px; font-size: 14px;">
+        </div>
+        
+        <div>
+            <button type="submit" class="btn-primary-custom" style="padding: 10px 24px;">Save Changes</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

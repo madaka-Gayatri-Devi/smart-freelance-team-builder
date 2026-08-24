@@ -1,1 +1,81 @@
+{% extends 'admin/admin_base.html' %}
 
+{% block admin_content %}
+<div class="dashboard-header" style="margin-bottom: 24px;">
+    <h1 style="font-size: 24px; font-weight: 700; color: var(--st-text-main); margin-bottom: 8px;">Freelancers Management</h1>
+    <p style="color: var(--st-text-muted); font-size: 14px; margin: 0;">Detailed view of freelancer profiles on the platform.</p>
+</div>
+
+<div class="dashboard-card">
+    <div class="table-responsive">
+        <table class="table-modern">
+            <thead>
+                <tr>
+                    <th>Freelancer</th>
+                    <th>Professional Title</th>
+                    <th>Email</th>
+                    <th>Hourly Rate</th>
+                    <th>Availability</th>
+                    <th>Profile</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for f in freelancers %}
+                <tr>
+                    <td style="font-weight: 500; display: flex; align-items: center; gap: 12px;">
+                        {% if f.profile_picture %}
+                            <img src="{{ url_for('static', filename=f.profile_picture) }}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+                        {% else %}
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--st-primary-light); color: var(--st-primary); display: flex; align-items: center; justify-content: center;"><i class="fas fa-user"></i></div>
+                        {% endif %}
+                        {{ f.full_name }}
+                    </td>
+                    <td>{{ f.professional_title if f.professional_title else 'N/A' }}</td>
+                    <td>{{ f.email }}</td>
+                    <td>{{ f.hourly_rate if f.hourly_rate else 'N/A' }}</td>
+                    <td>
+                        {% if f.availability %}
+                            <span class="badge bg-light text-dark">{{ f.availability }}</span>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if f.profile_completed %}
+                            <span class="badge bg-success" style="font-size: 11px;">Completed</span>
+                        {% else %}
+                            <span class="badge bg-warning text-dark" style="font-size: 11px;">Incomplete</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if f.is_active %}
+                            <span class="badge-status status-active">Active</span>
+                        {% else %}
+                            <span class="badge-status status-inactive">Inactive</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div style="display: flex; gap: 8px;">
+                            <form action="{{ url_for('admin.toggle_user', user_id=f._id) }}" method="POST" style="margin:0;">
+                                <button type="submit" class="btn-outline-primary-custom" title="Toggle Status">
+                                    {% if f.is_active %}<i class="fas fa-ban"></i>{% else %}<i class="fas fa-check"></i>{% endif %}
+                                </button>
+                            </form>
+                            <form action="{{ url_for('admin.delete_user', user_id=f._id) }}" method="POST" style="margin:0;" onsubmit="return confirm('Are you sure you want to delete this freelancer?');">
+                                <button type="submit" class="btn-outline-danger-custom" title="Delete"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="8" style="text-align: center; padding: 32px; color: var(--st-text-muted);">No freelancers found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

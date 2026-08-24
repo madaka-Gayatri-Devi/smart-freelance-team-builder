@@ -1,0 +1,70 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block admin_extra_css %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block admin_content %}
+<div class="dashboard-header" style="margin-bottom: 24px;">
+    <h1 style="font-size: 24px; font-weight: 700; color: var(--st-text-main); margin-bottom: 8px;">Platform Analytics</h1>
+    <p style="color: var(--st-text-muted); font-size: 14px; margin: 0;">Visualize platform metrics and user activity.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+    <div class="dashboard-card" style="text-align: center;">
+        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 24px;">User Distribution</h3>
+        <div style="max-width: 300px; margin: 0 auto;">
+            <canvas id="userChart"></canvas>
+        </div>
+    </div>
+    
+    <div class="dashboard-card" style="text-align: center;">
+        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 24px;">Project Statuses</h3>
+        <div style="max-width: 300px; margin: 0 auto;">
+            <canvas id="projectChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const userCtx = document.getElementById('userChart').getContext('2d');
+    new Chart(userCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Clients', 'Freelancers', 'Admins'],
+            datasets: [{
+                data: {{ data.user_distribution|tojson }},
+                backgroundColor: ['#6d4aff', '#10b981', '#ec4899'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+
+    const projectCtx = document.getElementById('projectChart').getContext('2d');
+    new Chart(projectCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Open', 'In Progress', 'Completed'],
+            datasets: [{
+                data: {{ data.project_distribution|tojson }},
+                backgroundColor: ['#f59e0b', '#3b82f6', '#10b981'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -7,7 +7,6 @@
     :root {
         --st-primary: #6d4aff;
         --st-primary-light: #f3e8ff;
-        --st-secondary: #ec4899;
         --st-bg: #f8fafc;
         --st-surface: #ffffff;
         --st-text-main: #1e293b;
@@ -41,24 +40,6 @@
     }
     
     .btn-back:hover {
-        color: var(--st-primary);
-    }
-    
-    .btn-edit {
-        background: var(--st-surface);
-        color: var(--st-primary);
-        border: 1px solid var(--st-border);
-        padding: 8px 16px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 500;
-        transition: 0.2s;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    }
-    
-    .btn-edit:hover {
-        border-color: var(--st-primary);
-        background: var(--st-primary-light);
         color: var(--st-primary);
     }
     
@@ -265,44 +246,43 @@
 {% block content %}
 <div class="profile-container">
     <div class="profile-nav">
-        <a href="{{ url_for('freelancer.dashboard') }}" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
-        <a href="{{ url_for('freelancer.edit_profile') }}" class="btn-edit"><i class="fas fa-edit"></i> Edit Profile</a>
+        <a href="{{ url_for('client.find_freelancers') }}" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Find Freelancers</a>
     </div>
 
     <!-- Header Section -->
     <div class="profile-card">
         <div class="profile-header">
             <div class="profile-avatar">
-                {% if user.profile_picture %}
-                    <img src="{{ url_for('static', filename=user.profile_picture) }}" alt="Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                {% if freelancer.profile_picture %}
+                    <img src="{{ url_for('static', filename=freelancer.profile_picture) }}" alt="Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                 {% else %}
                     <i class="fas fa-user"></i>
                 {% endif %}
             </div>
             <div class="profile-info">
-                <h1>{{ user.full_name }}</h1>
-                <div class="profile-title">{{ user_data.professional_title if user_data.professional_title else 'Professional Title' }}</div>
+                <h1>{{ freelancer.full_name }}</h1>
+                <div class="profile-title">{{ freelancer.professional_title if freelancer.professional_title else 'Professional Title' }}</div>
                 
                 <div class="profile-meta">
                     <div class="meta-item">
                         <i class="fas fa-map-marker-alt text-primary"></i> 
-                        {{ user_data.location if user_data.location else 'Location not set' }}
+                        {{ freelancer.location if freelancer.location else 'Location not set' }}
                     </div>
                     <div class="meta-item">
                         <i class="fas fa-circle text-success" style="font-size: 10px;"></i> 
-                        {{ user_data.availability if user_data.availability else 'Available' }}
+                        {{ freelancer.availability if freelancer.availability else 'Available' }}
                     </div>
                     <div class="meta-item">
                         <i class="fas fa-star text-warning"></i> 
-                        {% if user_data.rating %}
-                            {{ user_data.rating }}
+                        {% if freelancer.rating %}
+                            {{ freelancer.rating }}
                         {% else %}
                             No ratings yet
                         {% endif %}
                     </div>
                     <div class="meta-item">
                         <i class="fas fa-dollar-sign text-success"></i> 
-                        {{ user_data.hourly_rate if user_data.hourly_rate else '0' }}/hr
+                        {{ freelancer.hourly_rate if freelancer.hourly_rate else '0' }}/hr
                     </div>
                 </div>
             </div>
@@ -311,36 +291,36 @@
 
     <!-- About Me -->
     <div class="profile-card">
-        <h3 class="section-title">About Me</h3>
-        {% if user_data.bio %}
-            <p class="bio-text">{{ user_data.bio }}</p>
+        <h3 class="section-title">About {{ freelancer.full_name.split(' ')[0] }}</h3>
+        {% if freelancer.bio %}
+            <p class="bio-text">{{ freelancer.bio }}</p>
         {% else %}
-            <div class="empty-state">No bio added yet.</div>
+            <div class="empty-state">No bio provided.</div>
         {% endif %}
     </div>
 
     <!-- Skills -->
     <div class="profile-card">
         <h3 class="section-title">Skills & Expertise</h3>
-        {% if user_data.skills and user_data.skills|length > 0 %}
+        {% if freelancer.skills and freelancer.skills|length > 0 %}
             <div>
-                {% for skill in user_data.skills %}
+                {% for skill in freelancer.skills %}
                     {% if skill %}
                         <span class="skill-chip">{{ skill }}</span>
                     {% endif %}
                 {% endfor %}
             </div>
         {% else %}
-            <div class="empty-state">No skills added yet.</div>
+            <div class="empty-state">No skills listed.</div>
         {% endif %}
     </div>
 
     <!-- Experience -->
     <div class="profile-card">
         <h3 class="section-title">Professional Experience</h3>
-        {% if user_data.experiences and user_data.experiences|length > 0 %}
+        {% if freelancer.experiences and freelancer.experiences|length > 0 %}
             <div class="experience-list">
-                {% for exp in user_data.experiences %}
+                {% for exp in freelancer.experiences %}
                 <div class="experience-card">
                     <div class="exp-header">
                         <div>
@@ -361,7 +341,7 @@
         {% else %}
             <div class="empty-state">
                 <i class="fas fa-briefcase mb-2" style="font-size: 24px; color: #cbd5e1;"></i>
-                <p class="mb-0">No professional experience added yet.</p>
+                <p class="mb-0">No professional experience listed.</p>
             </div>
         {% endif %}
     </div>
@@ -369,9 +349,9 @@
     <!-- Portfolio -->
     <div class="profile-card">
         <h3 class="section-title">Portfolio & Projects</h3>
-        {% if user_data.portfolios and user_data.portfolios|length > 0 %}
+        {% if freelancer.portfolios and freelancer.portfolios|length > 0 %}
             <div class="portfolio-grid">
-                {% for port in user_data.portfolios %}
+                {% for port in freelancer.portfolios %}
                 <div class="portfolio-card">
                     <div class="port-title">{{ port.title }}</div>
                     {% if port.technologies %}
@@ -389,22 +369,9 @@
         {% else %}
             <div class="empty-state">
                 <i class="fas fa-folder-open mb-2" style="font-size: 24px; color: #cbd5e1;"></i>
-                <p class="mb-0">No portfolio projects added yet.</p>
+                <p class="mb-0">No portfolio projects listed.</p>
             </div>
         {% endif %}
     </div>
-    
-    <!-- Pricing -->
-    <div class="profile-card">
-        <h3 class="section-title">Pricing</h3>
-        {% if user_data.hourly_rate %}
-        <div style="font-size: 24px; font-weight: 700; color: var(--st-text-main);">
-            ${{ user_data.hourly_rate }} <span style="font-size: 16px; color: var(--st-text-muted); font-weight: 400;">/ hour</span>
-        </div>
-        {% else %}
-        <div class="empty-state">No hourly rate specified.</div>
-        {% endif %}
-    </div>
-
 </div>
 {% endblock %}

@@ -1,0 +1,283 @@
+{% extends 'dashboard_base.html' %}
+
+{% block extra_css %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<style>
+    :root {
+        --st-primary: #6d4aff;
+        --st-primary-light: #f3e8ff;
+        --st-bg: #f8fafc;
+        --st-surface: #ffffff;
+        --st-text-main: #1e293b;
+        --st-text-muted: #64748b;
+        --st-border: #e2e8f0;
+    }
+    
+    body { background-color: var(--st-bg); }
+    
+    .edit-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 24px 100px;
+    }
+    
+    .page-header {
+        margin-bottom: 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    
+    .btn-back {
+        color: var(--st-text-muted);
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 24px;
+        transition: 0.2s;
+    }
+    .btn-back:hover { color: var(--st-primary); }
+    
+    .page-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--st-text-main);
+        margin-bottom: 8px;
+    }
+    
+    .page-subtitle {
+        color: var(--st-text-muted);
+        font-size: 15px;
+        margin: 0;
+    }
+    
+    .form-card {
+        background: var(--st-surface);
+        border-radius: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        border: 1px solid var(--st-border);
+        padding: 32px;
+        margin-bottom: 24px;
+    }
+    
+    .section-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--st-text-main);
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--st-border);
+    }
+    
+    .form-label {
+        font-weight: 500;
+        color: var(--st-text-main);
+        font-size: 14px;
+    }
+    
+    .form-control, .form-select {
+        border-radius: 8px;
+        border: 1px solid var(--st-border);
+        padding: 10px 16px;
+        background-color: #f8fafc;
+    }
+    
+    .form-control:focus, .form-select:focus {
+        background-color: #fff;
+        border-color: var(--st-primary);
+        box-shadow: 0 0 0 3px rgba(109, 74, 255, 0.15);
+    }
+    
+    .action-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        border-top: 1px solid var(--st-border);
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        backdrop-filter: blur(5px);
+    }
+    
+    .btn-cancel {
+        padding: 10px 24px;
+        background: white;
+        border: 1px solid var(--st-border);
+        border-radius: 8px;
+        color: var(--st-text-main);
+        font-weight: 500;
+        text-decoration: none;
+    }
+    
+    .btn-save {
+        padding: 10px 32px;
+        background: var(--st-primary);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+    }
+    .btn-save:hover { background: #5b3ce4; }
+    
+    .btn-delete {
+        color: #ef4444;
+        background: transparent;
+        border: 1px solid #ef4444;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: 0.2s;
+    }
+    .btn-delete:hover {
+        background: #fef2f2;
+    }
+
+    /* Modal Styling */
+    .modal-content {
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .modal-header {
+        border-bottom: 1px solid var(--st-border);
+        padding: 24px;
+    }
+    .modal-title {
+        font-weight: 700;
+        color: var(--st-text-main);
+    }
+    .modal-body {
+        padding: 24px;
+        color: var(--st-text-muted);
+        font-size: 15px;
+    }
+    .modal-footer {
+        border-top: 1px solid var(--st-border);
+        padding: 24px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="edit-container">
+    <a href="{{ url_for('client.profile') }}" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Profile</a>
+    
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Edit Your Profile</h1>
+            <p class="page-subtitle">Manage your personal and professional information.</p>
+        </div>
+    </div>
+
+    <form method="POST" action="{{ url_for('client.edit_profile') }}" enctype="multipart/form-data">
+        
+        <!-- Basic Information -->
+        <div class="form-card">
+            <h3 class="section-title">Basic Information</h3>
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <label class="form-label">Profile Picture</label>
+                    <input type="file" class="form-control" name="profile_picture" accept="image/*">
+                    <small class="text-muted" style="font-size: 11px;">Upload a square image (JPG, PNG).</small>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" value="{{ user.full_name }}" disabled>
+                    <small class="text-muted" style="font-size: 11px;">Name can only be changed in account settings.</small>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Location</label>
+                    <input type="text" class="form-control" name="location" value="{{ user_data.location if user_data.location else '' }}">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" name="phone" value="{{ user_data.phone if user_data.phone else '' }}">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control" value="{{ user.email }}" disabled>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Information -->
+        <div class="form-card">
+            <h3 class="section-title">Professional Information</h3>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Company Name</label>
+                    <input type="text" class="form-control" name="company_name" value="{{ user_data.company_name if user_data.company_name else '' }}">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Industry</label>
+                    <input type="text" class="form-control" name="industry" value="{{ user_data.industry if user_data.industry else '' }}" placeholder="e.g. Technology, Healthcare">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Company Website</label>
+                    <input type="url" class="form-control" name="company_website" value="{{ user_data.company_website if user_data.company_website else '' }}" placeholder="https://">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Company Size</label>
+                    <select class="form-select" name="company_size">
+                        <option value="">Select size...</option>
+                        <option value="1-10 employees" {% if user_data.company_size == '1-10 employees' %}selected{% endif %}>1-10 employees</option>
+                        <option value="11-50 employees" {% if user_data.company_size == '11-50 employees' %}selected{% endif %}>11-50 employees</option>
+                        <option value="51-200 employees" {% if user_data.company_size == '51-200 employees' %}selected{% endif %}>51-200 employees</option>
+                        <option value="201-500 employees" {% if user_data.company_size == '201-500 employees' %}selected{% endif %}>201-500 employees</option>
+                        <option value="500+ employees" {% if user_data.company_size == '500+ employees' %}selected{% endif %}>500+ employees</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- About -->
+        <div class="form-card">
+            <h3 class="section-title">About</h3>
+            <div class="mb-3">
+                <label class="form-label">Company Description / About Me</label>
+                <textarea class="form-control" name="bio" rows="5" placeholder="Tell freelancers about your company and what you do...">{{ user_data.bio if user_data.bio else '' }}</textarea>
+            </div>
+        </div>
+
+        <!-- Action Footer -->
+        <div class="action-footer">
+            <button type="button" class="btn-delete" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete Profile
+            </button>
+            
+            <div class="d-flex gap-3">
+                <a href="{{ url_for('client.profile') }}" class="btn-cancel">Cancel</a>
+                <button type="submit" class="btn-save">Save Changes</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete your profile?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        This action cannot be undone. Your account and associated profile data may be permanently removed.
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <form method="POST" action="{{ url_for('client.delete_profile') }}" style="width: 100%; display: flex; justify-content: flex-end; gap: 12px;">
+            <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-danger">Delete Profile</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

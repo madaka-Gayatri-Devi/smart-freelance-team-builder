@@ -7,6 +7,8 @@ class User(UserMixin):
         self.email = user_data.get("email", "")  # Gets the user's email.
         self.role = user_data.get("role", "")  # Gets the user's role.
         self._is_active = user_data.get("is_active", True)  # Checks whether the account is active.
+        self.profile_completed = user_data.get("profile_completed", False)
+        self.profile_picture = user_data.get("profile_picture", None)
         
     @property
     def is_active(self):

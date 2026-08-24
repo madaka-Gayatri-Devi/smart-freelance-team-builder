@@ -1,0 +1,124 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block admin_content %}
+<div class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+    <div>
+        <h1 style="font-size: 24px; font-weight: 700; color: var(--st-text-main); margin-bottom: 8px;">Project Details</h1>
+        <p style="color: var(--st-text-muted); font-size: 14px; margin: 0;"><a href="{{ url_for('admin.projects') }}" style="color: var(--st-primary); text-decoration: none;">← Back to Projects</a></p>
+    </div>
+    
+    <div>
+        <form action="{{ url_for('admin.delete_project', project_id=project._id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this project?');">
+            <button type="submit" class="btn-outline-danger-custom" style="padding: 10px 20px;">
+                <i class="fas fa-trash"></i> Delete Project
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class="dashboard-card" style="padding: 32px;">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--st-border);">
+        <div>
+            <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">{{ project.title }}</h2>
+            <div style="display: flex; gap: 16px; color: var(--st-text-muted); font-size: 14px;">
+                <span><i class="fas fa-folder text-primary"></i> {{ project.category }}</span>
+                <span><i class="fas fa-calendar"></i> Posted: {{ project.created_at.strftime('%Y-%m-%d') if project.created_at else 'Unknown' }}</span>
+                <span>
+                    {% if project.status == 'In Progress' %}
+                    <span class="badge-status" style="background: #e0e7ff; color: #4338ca;">In Progress</span>
+                    {% elif project.status == 'Completed' %}
+                    <span class="badge-status status-active">Completed</span>
+                    {% else %}
+                    <span class="badge-status" style="background: #fef3c7; color: #b45309;">{{ project.status }}</span>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+        <div style="text-align: right;">
+            <div style="font-size: 24px; font-weight: 700; color: var(--st-text-main);">
+                {% if project.budget_type == 'Fixed Price' %}
+                ${{ project.budget }}
+                {% else %}
+                ${{ project.budget_min }} - ${{ project.budget_max }} <span style="font-size: 14px; color: var(--st-text-muted); font-weight: 400;">/hr</span>
+                {% endif %}
+            </div>
+            <div style="color: var(--st-text-muted); font-size: 14px;">{{ project.budget_type }}</div>
+        </div>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px;">
+        <div>
+            <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Description</h3>
+            <p style="color: var(--st-text-main); line-height: 1.6; margin-bottom: 24px; white-space: pre-wrap;">{{ project.description }}</p>
+            
+            <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Skills Required</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;">
+                {% if project.skills %}
+                    {% for skill in project.skills %}
+                        {% for s in skill.split(',') %}
+                            {% if s.strip() %}
+                            <span style="background: var(--st-primary-light); color: var(--st-primary); padding: 4px 12px; border-radius: 16px; font-size: 13px; font-weight: 500;">{{ s.strip() }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    <span class="text-muted">No skills specified</span>
+                {% endif %}
+            </div>
+            
+            <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Deliverables</h3>
+            <ul style="margin-bottom: 24px; padding-left: 20px; color: var(--st-text-main);">
+                {% if project.deliverables %}
+                    {% for deliverable in project.deliverables %}
+                        <li>{{ deliverable }}</li>
+                    {% endfor %}
+                {% else %}
+                    <li class="text-muted">No deliverables specified</li>
+                {% endif %}
+            </ul>
+        </div>
+        
+        <div>
+            <div style="background: #f8fafc; padding: 24px; border-radius: 12px; border: 1px solid var(--st-border); margin-bottom: 24px;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--st-border);">About the Client</h3>
+                {% if client_user %}
+                <div style="font-weight: 500; font-size: 16px; margin-bottom: 4px;">{{ client_user.full_name }}</div>
+                <div style="color: var(--st-text-muted); font-size: 14px; margin-bottom: 12px;">{{ client_user.company_name if client_user.company_name else 'No company specified' }}</div>
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--st-text-main); margin-bottom: 8px;">
+                    <i class="fas fa-map-marker-alt" style="color: var(--st-text-muted); width: 16px;"></i> {{ client_user.location if client_user.location else 'Location not provided' }}
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--st-text-main);">
+                    <i class="fas fa-clock" style="color: var(--st-text-muted); width: 16px;"></i> Member since {{ client_user.created_at.strftime('%Y') if client_user.created_at else 'Unknown' }}
+                </div>
+                {% else %}
+                <div class="text-muted">Client information not available</div>
+                {% endif %}
+            </div>
+            
+            <div style="background: #f8fafc; padding: 24px; border-radius: 12px; border: 1px solid var(--st-border);">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--st-border);">Project Details</h3>
+                
+                <div style="margin-bottom: 12px;">
+                    <div style="font-size: 12px; color: var(--st-text-muted); margin-bottom: 4px;">Experience Level</div>
+                    <div style="font-size: 14px; font-weight: 500;">{{ project.experience_level }}</div>
+                </div>
+                
+                <div style="margin-bottom: 12px;">
+                    <div style="font-size: 12px; color: var(--st-text-muted); margin-bottom: 4px;">Project Duration</div>
+                    <div style="font-size: 14px; font-weight: 500;">{{ project.duration if project.duration else 'Not specified' }}</div>
+                </div>
+                
+                <div style="margin-bottom: 12px;">
+                    <div style="font-size: 12px; color: var(--st-text-muted); margin-bottom: 4px;">Deadline</div>
+                    <div style="font-size: 14px; font-weight: 500;">{{ project.deadline if project.deadline else 'Not specified' }}</div>
+                </div>
+                
+                <div>
+                    <div style="font-size: 12px; color: var(--st-text-muted); margin-bottom: 4px;">Team Size Required</div>
+                    <div style="font-size: 14px; font-weight: 500;">{{ project.team_size if project.team_size else '1' }} freelancer(s)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

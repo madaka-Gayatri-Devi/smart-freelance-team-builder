@@ -41,6 +41,8 @@ def login():
         if user.role == "client":  # Checks whether the user is a client.
             return redirect(url_for("client.dashboard"))  # Sends the client to the client dashboard.
         if user.role == "freelancer":  # Checks whether the user is a freelancer.
+            if not user.profile_completed:
+                return redirect(url_for("freelancer.profile_setup"))
             return redirect(url_for("freelancer.dashboard"))  # Sends the freelancer to their dashboard.
         if user.role == "admin":  # Checks whether the user is an admin.
             return redirect(url_for("admin.dashboard"))  # Sends the admin to their dashboard.
@@ -97,6 +99,8 @@ def register():
         flash("Account created successfully!", "success")  # Shows a registration success message.
         if role == "client":  # Checks whether the new user is a client.
             return redirect(url_for("client.dashboard"))  # Sends the client to their dashboard.
+        if not user.profile_completed:
+            return redirect(url_for("freelancer.profile_setup"))
         return redirect(url_for("freelancer.dashboard"))  # Sends the freelancer to their dashboard.
     return render_template("auth/register.html")  # Displays the registration page.
 @auth.route("/logout")
@@ -191,6 +195,8 @@ def google_callback():
         if user.role == "client":
             return redirect(url_for("client.dashboard"))
         elif user.role == "freelancer":
+            if not user.profile_completed:
+                return redirect(url_for("freelancer.profile_setup"))
             return redirect(url_for("freelancer.dashboard"))
         elif user.role == "admin":
             return redirect(url_for("admin.dashboard"))

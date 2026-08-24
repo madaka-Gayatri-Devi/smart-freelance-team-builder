@@ -1,1 +1,278 @@
+{% extends 'dashboard_base.html' %}
 
+{% block extra_css %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<style>
+    :root {
+        --st-primary: #6d4aff;
+        --st-primary-light: #f3e8ff;
+        --st-bg: #f8fafc;
+        --st-surface: #ffffff;
+        --st-text-main: #1e293b;
+        --st-text-muted: #64748b;
+        --st-border: #e2e8f0;
+    }
+    
+    body { background-color: var(--st-bg); }
+    
+    .profile-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 24px 80px;
+    }
+    
+    .profile-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+    }
+    
+    .btn-back {
+        color: var(--st-text-muted);
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: 0.2s;
+    }
+    
+    .btn-back:hover {
+        color: var(--st-primary);
+    }
+    
+    .btn-edit {
+        background: var(--st-surface);
+        color: var(--st-primary);
+        border: 1px solid var(--st-border);
+        padding: 8px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.2s;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    
+    .btn-edit:hover {
+        border-color: var(--st-primary);
+        background: var(--st-primary-light);
+        color: var(--st-primary);
+    }
+    
+    .profile-card {
+        background: var(--st-surface);
+        border-radius: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        border: 1px solid var(--st-border);
+        padding: 32px;
+        margin-bottom: 24px;
+    }
+    
+    .profile-header {
+        display: flex;
+        gap: 32px;
+        align-items: flex-start;
+    }
+    
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: var(--st-primary-light);
+        color: var(--st-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        flex-shrink: 0;
+        border: 4px solid white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    
+    .profile-info h1 {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--st-text-main);
+        margin: 0 0 4px 0;
+    }
+    
+    .profile-role {
+        font-size: 15px;
+        color: var(--st-text-muted);
+        font-weight: 500;
+        margin-bottom: 16px;
+        display: inline-block;
+        background: #f1f5f9;
+        padding: 4px 12px;
+        border-radius: 20px;
+    }
+    
+    .profile-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        color: var(--st-text-muted);
+        font-size: 14px;
+    }
+    
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .section-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--st-text-main);
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--st-border);
+    }
+    
+    .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+    
+    .info-group {
+        margin-bottom: 16px;
+    }
+    
+    .info-label {
+        font-size: 13px;
+        color: var(--st-text-muted);
+        margin-bottom: 4px;
+        font-weight: 500;
+    }
+    
+    .info-value {
+        font-size: 15px;
+        color: var(--st-text-main);
+        font-weight: 500;
+    }
+    
+    .empty-value {
+        color: #94a3b8;
+        font-style: italic;
+    }
+    
+    @media (max-width: 768px) {
+        .profile-header {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .profile-meta {
+            justify-content: center;
+        }
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-nav">
+        <a href="{{ url_for('client.dashboard') }}" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    </div>
+
+    <!-- Header Section -->
+    <div class="profile-card">
+        <div class="d-flex justify-content-between align-items-start">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    {% if user.profile_picture %}
+                        <img src="{{ url_for('static', filename=user.profile_picture) }}" alt="Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    {% else %}
+                        <i class="fas fa-building"></i>
+                    {% endif %}
+                </div>
+                <div class="profile-info">
+                    <h1>{{ user.full_name }}</h1>
+                    <div class="profile-role">Client</div>
+                    
+                    <div class="profile-meta mt-2">
+                        <div class="meta-item">
+                            <i class="fas fa-map-marker-alt text-primary"></i> 
+                            {{ user_data.location if user_data.location else 'Location not set' }}
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-envelope text-primary"></i> 
+                            {{ user.email }}
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-briefcase text-primary"></i> 
+                            {{ user_data.company_name if user_data.company_name else 'Independent Client' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="{{ url_for('client.edit_profile') }}" class="btn-edit"><i class="fas fa-edit"></i> Edit Profile</a>
+        </div>
+    </div>
+
+    <!-- About Company -->
+    <div class="profile-card">
+        <h3 class="section-title">About</h3>
+        {% if user_data.bio %}
+            <p style="color: var(--st-text-main); line-height: 1.6; font-size: 15px;">{{ user_data.bio }}</p>
+        {% else %}
+            <p class="empty-value">No description provided yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- Professional Information -->
+    <div class="profile-card">
+        <h3 class="section-title">Professional Information</h3>
+        <div class="info-grid">
+            <div class="info-group">
+                <div class="info-label">Company Name</div>
+                <div class="info-value">{{ user_data.company_name if user_data.company_name else '<span class="empty-value">Not set</span>'|safe }}</div>
+            </div>
+            <div class="info-group">
+                <div class="info-label">Industry</div>
+                <div class="info-value">{{ user_data.industry if user_data.industry else '<span class="empty-value">Not set</span>'|safe }}</div>
+            </div>
+            <div class="info-group">
+                <div class="info-label">Company Website</div>
+                <div class="info-value">
+                    {% if user_data.company_website %}
+                    <a href="{{ user_data.company_website }}" target="_blank" style="color: var(--st-primary);">{{ user_data.company_website }}</a>
+                    {% else %}
+                    <span class="empty-value">Not set</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="info-group">
+                <div class="info-label">Company Size</div>
+                <div class="info-value">{{ user_data.company_size if user_data.company_size else '<span class="empty-value">Not set</span>'|safe }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="profile-card">
+        <h3 class="section-title">Contact Information</h3>
+        <div class="info-grid">
+            <div class="info-group">
+                <div class="info-label">Email Address</div>
+                <div class="info-value">{{ user.email }}</div>
+            </div>
+            <div class="info-group">
+                <div class="info-label">Phone Number</div>
+                <div class="info-value">{{ user_data.phone if user_data.phone else '<span class="empty-value">Not set</span>'|safe }}</div>
+            </div>
+            <div class="info-group">
+                <div class="info-label">Location</div>
+                <div class="info-value">{{ user_data.location if user_data.location else '<span class="empty-value">Not set</span>'|safe }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

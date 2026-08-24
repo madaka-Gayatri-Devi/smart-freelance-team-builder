@@ -1,124 +1,671 @@
-{% extends 'base.html' %}
+{% extends 'dashboard_base.html' %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<style>
+    :root {
+        --st-primary: #6d4aff;
+        --st-primary-light: #f3e8ff;
+        --st-secondary: #ec4899;
+        --st-bg: #f8fafc;
+        --st-surface: #ffffff;
+        --st-text-main: #1e293b;
+        --st-text-muted: #64748b;
+        --st-border: #e2e8f0;
+        --st-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --st-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --st-radius-md: 12px;
+        --st-radius-lg: 20px;
+    }
+
+    body {
+        background-color: var(--st-bg);
+    }
+
+    .dashboard-layout {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    /* Fixed Sidebar */
+    .sidebar {
+        width: 260px;
+        background: var(--st-surface);
+        border-right: 1px solid var(--st-border);
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+    }
+
+    .sidebar-header {
+        padding: 24px;
+        border-bottom: 1px solid var(--st-border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .sidebar-brand {
+        font-size: 20px;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--st-primary) 0%, var(--st-secondary) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-decoration: none;
+    }
+
+    .sidebar-user {
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        border-bottom: 1px solid var(--st-border);
+    }
+
+    .sidebar-user .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--st-primary-light);
+        color: var(--st-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+    }
+
+    .sidebar-user .user-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar-user .name {
+        font-weight: 600;
+        color: var(--st-text-main);
+        font-size: 15px;
+    }
+
+    .sidebar-user .role {
+        font-size: 13px;
+        color: var(--st-text-muted);
+    }
+
+    .sidebar-nav {
+        padding: 16px 0;
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+
+    .sidebar-nav a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 24px;
+        color: var(--st-text-muted);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+
+    .sidebar-nav a:hover {
+        background: #f1f5f9;
+        color: var(--st-primary);
+    }
+
+    .sidebar-nav a.active {
+        background: var(--st-primary-light);
+        color: var(--st-primary);
+        border-right: 3px solid var(--st-primary);
+    }
+
+    .sidebar-nav a i {
+        width: 20px;
+        text-align: center;
+    }
+
+    /* Main Content */
+    .dashboard-main {
+        flex-grow: 1;
+        margin-left: 260px; /* offset for sidebar */
+        padding: 32px;
+        background: var(--st-bg);
+    }
+
+    .dashboard-header {
+        margin-bottom: 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .welcome-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--st-text-main);
+        margin-bottom: 8px;
+    }
+
+    .welcome-subtitle {
+        color: var(--st-text-muted);
+        font-size: 15px;
+        margin: 0;
+    }
+
+    .btn-primary-custom {
+        background: var(--st-primary);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: none;
+        transition: all 0.2s;
+    }
+    
+    .btn-primary-custom:hover {
+        background: #5b3ce4;
+        color: white;
+    }
+    
+    .btn-outline-primary-custom {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border: 1px solid var(--st-primary);
+        color: var(--st-primary);
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.2s;
+    }
+
+    .btn-outline-primary-custom:hover {
+        background: var(--st-primary-light);
+        color: var(--st-primary);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-bottom: 32px;
+    }
+
+    .stat-card {
+        background: var(--st-surface);
+        padding: 24px;
+        border-radius: var(--st-radius-md);
+        box-shadow: var(--st-shadow-sm);
+        border: 1px solid var(--st-border);
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .stat-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    .stat-icon.active { background: #e0e7ff; color: #4338ca; }
+    .stat-icon.completed { background: #dcfce7; color: #15803d; }
+    .stat-icon.teams { background: #fef3c7; color: #d97706; }
+    .stat-icon.spent { background: var(--st-primary-light); color: var(--st-primary); }
+
+    .stat-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stat-value {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--st-text-main);
+        line-height: 1.2;
+    }
+
+    .stat-label {
+        font-size: 13px;
+        color: var(--st-text-muted);
+        margin-top: 4px;
+    }
+
+    /* Layout Grids */
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+        margin-bottom: 24px;
+    }
+
+    .dashboard-card {
+        background: var(--st-surface);
+        border-radius: var(--st-radius-md);
+        box-shadow: var(--st-shadow-sm);
+        border: 1px solid var(--st-border);
+        padding: 24px;
+        margin-bottom: 24px;
+    }
+
+    .dashboard-card-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--st-text-main);
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--st-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Empty States */
+    .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        background: #f8fafc;
+        border-radius: 8px;
+        border: 1px dashed #cbd5e1;
+    }
+
+    .empty-state-icon {
+        font-size: 48px;
+        color: #94a3b8;
+        margin-bottom: 16px;
+    }
+
+    /* Table */
+    .table-modern {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .table-modern th {
+        text-align: left;
+        padding: 12px 16px;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: var(--st-text-muted);
+        font-weight: 600;
+        border-bottom: 1px solid var(--st-border);
+    }
+    
+    .table-modern td {
+        padding: 16px;
+        border-bottom: 1px solid var(--st-border);
+        font-size: 14px;
+        color: var(--st-text-main);
+    }
+    
+    .table-modern tr:last-child td {
+        border-bottom: none;
+    }
+
+    .badge-status {
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+    
+    .status-in-progress { background: #e0e7ff; color: #4338ca; }
+    .status-completed { background: #dcfce7; color: #15803d; }
+    .status-open { background: #fef3c7; color: #b45309; }
+    
+    /* Freelancer Cards */
+    .freelancer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+    }
+    
+    .freelancer-card {
+        border: 1px solid var(--st-border);
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .freelancer-card .avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: var(--st-primary-light);
+        color: var(--st-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    
+    .freelancer-card .name {
+        font-weight: 600;
+        color: var(--st-text-main);
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+    
+    .freelancer-card .title {
+        font-size: 13px;
+        color: var(--st-text-muted);
+        margin-bottom: 12px;
+    }
+    
+    /* Activity List */
+    .activity-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .activity-item {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .activity-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--st-primary-light);
+        color: var(--st-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+    
+    .activity-content .title {
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--st-text-main);
+    }
+    
+    .activity-content .date {
+        font-size: 12px;
+        color: var(--st-text-muted);
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .quick-action-btn {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        background: #f8fafc;
+        border: 1px solid var(--st-border);
+        border-radius: 8px;
+        color: var(--st-text-main);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        transition: 0.2s;
+    }
+    
+    .quick-action-btn:hover {
+        background: white;
+        border-color: var(--st-primary);
+        color: var(--st-primary);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+        .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        .dashboard-grid { grid-template-columns: 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+        .sidebar { transform: translateX(-100%); transition: 0.3s; }
+        .dashboard-main { margin-left: 0; padding: 20px; }
+        .stats-grid { grid-template-columns: 1fr; }
+        .dashboard-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <div class="dashboard-layout">
-    <!-- Sidebar -->
+    <!-- Fixed Sidebar -->
     <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-brand"><i class="fas fa-layer-group"></i> SmartTeam</a>
+        </div>
         <div class="sidebar-user">
-            <div class="avatar"><i class="fas fa-user-circle fa-2x"></i></div>
+            <div class="avatar">
+                {% if current_user.profile_picture %}
+                    <img src="{{ url_for('static', filename=current_user.profile_picture) }}" alt="Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                {% else %}
+                    <i class="fas fa-building"></i>
+                {% endif %}
+            </div>
             <div class="user-info">
                 <div class="name">{{ current_user.full_name }}</div>
                 <div class="role">Client</div>
             </div>
         </div>
         <nav class="sidebar-nav">
-            <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
-            <a href="#"><i class="fas fa-project-diagram"></i> My Projects</a>
-            <a href="#"><i class="fas fa-plus-circle"></i> Create Project</a>
-            <a href="#"><i class="fas fa-search"></i> Find Freelancers</a>
+            <a href="{{ url_for('client.dashboard') }}" class="active"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="{{ url_for('client.projects') }}"><i class="fas fa-project-diagram"></i> My Projects</a>
+            <a href="{{ url_for('client.new_project') }}"><i class="fas fa-plus-circle"></i> Create Project</a>
+            <a href="{{ url_for('client.find_freelancers') }}"><i class="fas fa-search"></i> Find Freelancers</a>
+            <a href="{{ url_for('client.profile') }}"><i class="fas fa-user"></i> My Profile</a>
             <a href="#"><i class="fas fa-users"></i> My Teams</a>
             <a href="#"><i class="fas fa-tasks"></i> Tasks</a>
             <a href="#"><i class="fas fa-wallet"></i> Payments</a>
             <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            <a href="{{ url_for('auth.logout') }}" style="margin-top: 24px; color: #ef4444;"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </nav>
     </aside>
 
     <!-- Main Content -->
     <div class="dashboard-main">
         <header class="dashboard-header">
-            <h2>Welcome back, {{ current_user.full_name }}!</h2>
-            <a href="#" class="btn btn-primary">+ Create Project</a>
+            <div>
+                <h1 class="welcome-title">Welcome back, {{ current_user.full_name.split(' ')[0] }}!</h1>
+                <p class="welcome-subtitle">Manage your projects, find talented freelancers, and build high-performing teams.</p>
+            </div>
+            <div>
+                <a href="{{ url_for('client.new_project') }}" class="btn-primary-custom"><i class="fas fa-plus"></i> Create Project</a>
+            </div>
         </header>
         
+        <!-- Stats Grid -->
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-icon bg-primary-light text-primary"><i class="fas fa-project-diagram"></i></div>
+                <div class="stat-icon active"><i class="fas fa-project-diagram"></i></div>
                 <div class="stat-details">
-                    <div class="stat-value">3</div>
+                    <div class="stat-value">{{ stats.active_projects }}</div>
                     <div class="stat-label">Active Projects</div>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon bg-success text-white"><i class="fas fa-check-circle"></i></div>
+                <div class="stat-icon completed"><i class="fas fa-check-circle"></i></div>
                 <div class="stat-details">
-                    <div class="stat-value">12</div>
+                    <div class="stat-value">{{ stats.completed_projects }}</div>
                     <div class="stat-label">Completed Projects</div>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon bg-warning text-white"><i class="fas fa-users"></i></div>
+                <div class="stat-icon teams"><i class="fas fa-users"></i></div>
                 <div class="stat-details">
-                    <div class="stat-value">2</div>
+                    <div class="stat-value">{{ stats.teams_count }}</div>
                     <div class="stat-label">Active Teams</div>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon bg-light text-primary"><i class="fas fa-dollar-sign"></i></div>
+                <div class="stat-icon spent"><i class="fas fa-dollar-sign"></i></div>
                 <div class="stat-details">
-                    <div class="stat-value">$4,250</div>
+                    <div class="stat-value">${{ stats.total_spent }}</div>
                     <div class="stat-label">Total Spent</div>
                 </div>
             </div>
         </div>
 
-        <section class="dashboard-section mt-4">
-            <h3>My Projects</h3>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Project</th>
-                            <th>Progress</th>
-                            <th>Budget</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>E-Commerce Mobile App</td>
-                            <td>45%</td>
-                            <td>$5,000</td>
-                            <td><span class="badge bg-primary-light text-primary">In Progress</span></td>
-                        </tr>
-                        <tr>
-                            <td>Corporate Website Redesign</td>
-                            <td>100%</td>
-                            <td>$2,500</td>
-                            <td><span class="badge bg-success text-white">Completed</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="dashboard-grid">
+            <!-- Left: My Projects -->
+            <div class="dashboard-card">
+                <div class="dashboard-card-title">
+                    <span>My Projects</span>
+                    {% if projects %}
+                    <a href="{{ url_for('client.projects') }}" style="font-size: 13px; color: var(--st-primary); text-decoration: none;">View All</a>
+                    {% endif %}
+                </div>
+                
+                {% if projects and projects|length > 0 %}
+                    <table class="table-modern">
+                        <thead>
+                            <tr>
+                                <th>Project</th>
+                                <th>Required Skills</th>
+                                <th>Budget</th>
+                                <th>Deadline</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for proj in projects %}
+                            <tr>
+                                <td style="font-weight: 500;">{{ proj.title }}</td>
+                                <td>
+                                    {% if proj.skills %}
+                                        {% set first_skill = proj.skills[0].split(',')[0].strip() %}
+                                        {{ first_skill }}
+                                        {% if proj.skills[0].split(',')|length > 1 %}
+                                        <span class="text-muted" style="font-size: 11px;">+{{ proj.skills[0].split(',')|length - 1 }}</span>
+                                        {% endif %}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                                <td>${{ proj.budget }}</td>
+                                <td>{{ proj.deadline }}</td>
+                                <td>
+                                    {% if proj.status == 'In Progress' %}
+                                    <span class="badge-status status-in-progress">In Progress</span>
+                                    {% elif proj.status == 'Completed' %}
+                                    <span class="badge-status status-completed">Completed</span>
+                                    {% else %}
+                                    <span class="badge-status status-open">{{ proj.status }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="#" style="color: var(--st-primary); font-size: 13px; text-decoration: none;">View Details</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🚀</div>
+                        <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--st-text-main);">Ready to build your team?</h4>
+                        <p style="color: var(--st-text-muted); font-size: 14px; margin-bottom: 24px; max-width: 400px; margin-left: auto; margin-right: auto;">Create your first project, define the skills you need, and discover freelancers who match your requirements.</p>
+                        <a href="{{ url_for('client.new_project') }}" class="btn-primary-custom">Create Your First Project →</a>
+                    </div>
+                {% endif %}
             </div>
-        </section>
+
+            <!-- Right: Recent Activity & Quick Actions -->
+            <div>
+                <div class="dashboard-card" style="margin-bottom: 24px;">
+                    <div class="dashboard-card-title">Recent Activity</div>
+                    {% if recent_activity and recent_activity|length > 0 %}
+                        <div class="activity-list">
+                            {% for act in recent_activity %}
+                            <div class="activity-item">
+                                <div class="activity-icon"><i class="fas fa-check"></i></div>
+                                <div class="activity-content">
+                                    <div class="title">{{ act.title }}</div>
+                                    <div class="date">{{ act.date }}</div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-3">
+                            <p style="color: var(--st-text-muted); font-size: 14px; margin-bottom: 4px;">No recent activity</p>
+                            <p style="font-size: 12px; color: #94a3b8;">Your project and team activity will appear here.</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-card-title">Quick Actions</div>
+                    <div class="quick-actions">
+                        <a href="{{ url_for('client.new_project') }}" class="quick-action-btn"><i class="fas fa-plus-circle text-primary"></i> Create Project</a>
+                        <a href="#" class="quick-action-btn"><i class="fas fa-search text-primary"></i> Find Freelancers</a>
+                        <a href="{{ url_for('client.projects') }}" class="quick-action-btn"><i class="fas fa-project-diagram text-primary"></i> View My Projects</a>
+                        <a href="#" class="quick-action-btn"><i class="fas fa-users text-primary"></i> View My Teams</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         
-        <section class="dashboard-section mt-4">
-            <h3>AI Recommended Freelancers</h3>
-            <p class="text-muted mb-3">Based on your active project "E-Commerce Mobile App"</p>
-            <div class="features-grid">
-                <div class="feature-card team-card">
-                    <div class="avatar mb-2"><img src="https://ui-avatars.com/api/?name=Sarah+J" alt="Avatar" style="border-radius:50%;width:48px;"></div>
-                    <div class="info">
-                        <div class="name">Sarah J.</div>
-                        <div class="role text-muted">UI/UX Designer</div>
-                        <div class="stats mb-3 mt-1">98% Match &bull; 4.9 <i class="fas fa-star text-warning"></i></div>
-                        <button class="btn btn-outline btn-sm btn-block" style="width:100%;">View Profile</button>
+        <!-- AI Recommended Freelancers -->
+        <div class="dashboard-card">
+            <div class="dashboard-card-title">AI Recommended Freelancers</div>
+            
+            {% if projects and recommended_freelancers and recommended_freelancers|length > 0 %}
+                <p style="color: var(--st-text-muted); font-size: 14px; margin-bottom: 24px;">Based on your current open projects and required skills.</p>
+                <div class="freelancer-grid">
+                    {% for free in recommended_freelancers %}
+                    <div class="freelancer-card">
+                        <div class="avatar">
+                            {% if free.profile_picture %}
+                                <img src="{{ url_for('static', filename=free.profile_picture) }}" alt="Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                            {% else %}
+                                <i class="fas fa-user"></i>
+                            {% endif %}
+                        </div>
+                        <div class="name">{{ free.full_name }}</div>
+                        <div class="title">{{ free.professional_title if free.professional_title else 'Freelancer' }}</div>
+                        {% if free.skills %}
+                        <div class="mb-3">
+                            <span class="badge bg-light text-dark" style="font-size: 11px; font-weight: 500;">{{ free.skills[0] }}</span>
+                        </div>
+                        {% endif %}
+                        <a href="#" class="btn-outline-primary-custom mt-auto w-100 justify-content-center">View Profile</a>
                     </div>
+                    {% endfor %}
                 </div>
-                <div class="feature-card team-card">
-                    <div class="avatar mb-2"><img src="https://ui-avatars.com/api/?name=Michael+T" alt="Avatar" style="border-radius:50%;width:48px;"></div>
-                    <div class="info">
-                        <div class="name">Michael T.</div>
-                        <div class="role text-muted">React Native Dev</div>
-                        <div class="stats mb-3 mt-1">95% Match &bull; 5.0 <i class="fas fa-star text-warning"></i></div>
-                        <button class="btn btn-outline btn-sm btn-block" style="width:100%;">View Profile</button>
-                    </div>
+            {% else %}
+                <div class="empty-state">
+                    <div class="empty-state-icon"><i class="fas fa-robot"></i></div>
+                    <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 8px; color: var(--st-text-main);">Find the right talent for your project</h4>
+                    <p style="color: var(--st-text-muted); font-size: 14px; margin-bottom: 20px;">Create a project to receive personalized freelancer recommendations.</p>
+                    <a href="{{ url_for('client.new_project') }}" class="btn-outline-primary-custom">Create Project →</a>
                 </div>
-            </div>
-        </section>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

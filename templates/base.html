@@ -25,7 +25,9 @@
         {% endblock %}
     </main>
     
+    {% block footer %}
     {% include 'footer.html' %}
+    {% endblock %}
     
     {% if not current_user.is_authenticated %}
         {% include 'components/auth_modal.html' %}
